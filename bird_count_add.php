@@ -39,7 +39,7 @@ require_once "./html/header.php";
                     <input type="text" class="form-control" placeholder="Longitude" name="long_0">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Area" name="area_0" id="area">
+                    <input type="text" class="form-control" placeholder="Zone" name="zone_0" id="zone">
                 </div>
             </div>
             </fieldset>
@@ -54,7 +54,7 @@ require_once "./html/header.php";
     <script>
         $(document).ready(function () {
             fieldCount = 0;
-            $( document ).on( "keydown", "#area", function(e) {
+            $( document ).on( "keydown", "#zone", function(e) {
                 var keyCode = e.keyCode || e.which;
                 if (keyCode === 9) {
                     fieldCount++;
@@ -80,7 +80,7 @@ require_once "./html/header.php";
                         <input type="text" class="form-control" placeholder="Longitude" name="long_' + fieldCount + '"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Area" name="area_' + fieldCount + '" id="area"> \
+                        <input type="text" class="form-control" placeholder="Zone" name="zone_' + fieldCount + '" id="zone"> \
                       </div> \
             </div>'
                     );
