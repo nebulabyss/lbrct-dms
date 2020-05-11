@@ -27,6 +27,18 @@ require_once "./html/header.php";
                     <input type="text" class="form-control" placeholder="Count" name="count_0">
                 </div>
                 <div class="col">
+                    <input type="text" class="form-control" placeholder="Behaviour" name="behave_0">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Habitat" name="hab_0">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Latitude" name="lat_0">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Longitude" name="long_0">
+                </div>
+                <div class="col">
                     <input type="text" class="form-control" placeholder="Area" name="area_0" id="area">
                 </div>
             </div>
@@ -54,6 +66,18 @@ require_once "./html/header.php";
                       </div> \
                       <div class="col"> \
                         <input type="text" class="form-control" placeholder="Count" name="count_' + fieldCount + '"> \
+                      </div> \
+                      \<div class="col"> \
+                        <input type="text" class="form-control" placeholder="Behaviour" name="behave_' + fieldCount + '"> \
+                      </div> \
+                      \<div class="col"> \
+                        <input type="text" class="form-control" placeholder="Habitat" name="hab_' + fieldCount + '"> \
+                      </div> \
+                      \<div class="col"> \
+                        <input type="text" class="form-control" placeholder="Latitude" name="lat_' + fieldCount + '"> \
+                      </div> \
+                      \<div class="col"> \
+                        <input type="text" class="form-control" placeholder="Longitude" name="long_' + fieldCount + '"> \
                       </div> \
                       <div class="col"> \
                         <input type="text" class="form-control" placeholder="Area" name="area_' + fieldCount + '" id="area"> \

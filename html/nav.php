@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom shadow-sm">
-    <a class="navbar-brand" href="#">LBRCT <small class="text-muted d-sm-none d-md-inline d-none">Data Management System</small></a>
+    <a class="navbar-brand" href="index.php">LBRCT <small class="text-muted d-sm-none d-md-inline d-none">Data Management System</small></a>
     <?php if (isset($_SESSION['user_id'])): ?>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
                 Conservation
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Add bird count</a>
+                <a class="dropdown-item" href="bird_count_add.php">Add bird count</a>
                 <a class="dropdown-item" href="#">Add water quality</a>
                 <a class="dropdown-item" href="#">Add marine debris</a>
             </div>

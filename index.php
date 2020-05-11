@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_name'])) {
 ?>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
 <?php require_once "./html/nav.php";?>
 
 </div>
