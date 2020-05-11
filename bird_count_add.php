@@ -21,7 +21,7 @@ require_once "./html/header.php";
             <fieldset disabled>
             <div class="form-row mb-2">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Common Name" name="name_0">
+                    <input id="c_name" type="text" class="form-control" placeholder="Common Name" name="name_0">
                 </div>
                 <div class="col">
                     <input type="text" class="form-control" placeholder="Count" name="count_0">
@@ -53,6 +53,11 @@ require_once "./html/header.php";
 
     <script>
         $(document).ready(function () {
+            $( document ).on( "keydown", "#c_name", function() {
+                $(this).autocomplete({
+                    source: "bird_c_name.php"
+                });
+            });
             fieldCount = 0;
             $( document ).on( "keydown", "#zone", function(e) {
                 var keyCode = e.keyCode || e.which;
@@ -62,7 +67,7 @@ require_once "./html/header.php";
                     $( ".form" ).append(
                         '<div class="form-row mb-2"> \
                                   <div class="col"> \
-                                    <input type="text" class="form-control" placeholder="Common Name" name="name_' + fieldCount + '"> \
+                                    <input id="c_name" type="text" class="form-control" placeholder="Common Name" name="name_' + fieldCount + '"> \
                       </div> \
                       <div class="col"> \
                         <input type="text" class="form-control" placeholder="Count" name="count_' + fieldCount + '"> \
@@ -96,6 +101,7 @@ require_once "./html/header.php";
             $('fieldset').prop('disabled', false);
             $('input[name="name_0"]').focus();
         });
+
     </script>
     </div>
 </div>
