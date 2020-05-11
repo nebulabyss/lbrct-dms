@@ -8,16 +8,17 @@ require_once "./html/header.php";
 
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <?php require_once "./html/nav.php";?>
     <div>
         <h3 class="text-muted mt-2">Bird count</h3>
         <form class="form">
             <div class="form-row mb-2">
                 <div class="col-2">
-                    <input type="text" class="form-control" placeholder="Batch Date" id="datepicker" name="date">
+                    <input type="text" class="form-control bg-warning text-dark" placeholder="Batch Date" id="datepicker" name="date">
                 </div>
             </div>
+            <fieldset disabled>
             <div class="form-row mb-2">
                 <div class="col">
                     <input type="text" class="form-control" placeholder="Common Name" name="name_0">
@@ -29,6 +30,7 @@ require_once "./html/header.php";
                     <input type="text" class="form-control" placeholder="Area" name="area_0" id="area">
                 </div>
             </div>
+            </fieldset>
         </form>
 
     </div>
@@ -59,8 +61,12 @@ require_once "./html/header.php";
             });
         });
 
-        $( "#datepicker" ).datepicker({
+        $( '#datepicker' ).datepicker({
             dateFormat:  "yy-mm-dd"
+        });
+        $('#datepicker').change( function () {
+            $('fieldset').prop('disabled', false);
+            $('input[name="name_0"]').focus();
         });
     </script>
     </div>
