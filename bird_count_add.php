@@ -32,6 +32,10 @@ require_once "./html/header.php";
             </div>
             </fieldset>
         </form>
+        <div class="float-right">
+            <button type="button" class="btn btn-danger">Cancel</button>
+            <button type="button" class="btn btn-success">Submit</button>
+        </div>
 
     </div>
 
