@@ -11,8 +11,4 @@ if (isset($_POST['species_name']) && isset($_POST['species_type'])) {
             ':type' => $_POST['species_type']
         )
     );
-
-    echo json_encode(array('success' => 1));
-} else {
-    echo json_encode(array('success' => 0));
 }
