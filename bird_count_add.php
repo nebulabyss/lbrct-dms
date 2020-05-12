@@ -65,9 +65,11 @@ require_once "./html/header.php";
         </div>
     </div>
     <script>
+        var lineNum = 1;
         var fieldCount = 0;
-        function generateForm(fc) {
+        function generateForm(fc, ln) {
             formHtml = '<div class="form-row mb-2"> \
+                       <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
                           <div class="col"> \
                             <input id="c_name" type="text" class="form-control" placeholder="Common Name" name="row[' + fc + '][c_name]"> \
                       </div> \
@@ -96,7 +98,7 @@ require_once "./html/header.php";
         $(document).ready(function () {
 
             $( '.form-body' ).append(
-                generateForm(fieldCount)
+                generateForm(fieldCount, lineNum)
             );
 
             $( document ).on( 'keydown', '#c_name', function() {
@@ -108,9 +110,10 @@ require_once "./html/header.php";
                 var keyCode = event.keyCode || event.which;
                 if (keyCode === 9) {
                     fieldCount++;
+                    lineNum++;
 
                     $( '.form-body' ).append(
-                        generateForm(fieldCount)
+                        generateForm(fieldCount, lineNum)
                     );
                     $(this).focus();
                 };
