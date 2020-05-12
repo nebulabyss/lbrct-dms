@@ -37,9 +37,6 @@ require_once "./html/header.php";
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title text-muted" id="addSpeciesModalTitle">Add bird species</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
                 <div class="modal-body">
                     <form id="addSpecies" method="post">
@@ -54,7 +51,6 @@ require_once "./html/header.php";
                                 </select>
                             </div>
                         </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -65,8 +61,8 @@ require_once "./html/header.php";
         </div>
     </div>
     <script>
-        var lineNum = 1;
-        var fieldCount = 0;
+        let lineNum = 1;
+        let fieldCount = 0;
         function generateForm(fc, ln) {
             formHtml = '<div class="form-row mb-2"> \
                        <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
@@ -116,7 +112,7 @@ require_once "./html/header.php";
                         generateForm(fieldCount, lineNum)
                     );
                     $(this).focus();
-                };
+                }
             });
         });
 
@@ -129,34 +125,20 @@ require_once "./html/header.php";
             $('input[name="name_0"]').focus();
         });
 
-        $( '#addSpecies' ).on( "submit", function( event ) {
+        $( '#addSpecies' ).submit(function( event ) {
             event.preventDefault();
-            $.ajax({
+            let request = $.ajax({
                 type: "POST",
                 url: 'add_species.php',
-                data: $(this).serialize()
+                data: $(this).serialize(),
             })
-                .done( function( response ) {
-                    {
-                        var jsonData = JSON.parse(response);
 
-                        // response
-                        if (jsonData.success == "1") {
-                            // TODO: success message
-                            $(function () {
-                                $('#addSpeciesModal').modal('toggle');
-                                $('input[name="species_name"').val('');
-                                $('#inputState').prop("selectedIndex", 0);
-                            });
-                        } else {
-                            // TODO: error message
-                        }
-                    }
-                });
+            request.done(function () {
+                $('#addSpeciesModal').modal('toggle');
+                $('input[name="species_name"').val('');
+                $('#inputState').prop("selectedIndex", 0);
             });
-
-
-
+        })
     </script>
 </div>
 
