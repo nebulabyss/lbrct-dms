@@ -46,6 +46,10 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 
                 </div>
             </fieldset>
+            <div class="float-right">
+                <button type="button" class="btn btn-danger">Cancel</button>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
         </form>
     </div>
     <script>
