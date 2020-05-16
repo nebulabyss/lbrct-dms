@@ -80,7 +80,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_COLUMN );
                         <input type="text" class="form-control" placeholder="Engine size" name="row[' + fc + '][size]"> \
                       </div> \
                       <div class="form-check big-checkbox my-auto ml-2 mr-1"> \
-                      <input class="form-check-input" type="checkbox" id="gridCheck"> \
+                      <input class="form-check-input" type="checkbox" id="gridCheck" name="row[' + fc + '][twin]"> \
                       <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Twin</label> \
                       </div> \
                       <div class="col"> \
@@ -93,9 +93,9 @@ $zones = $stmt->fetchAll(PDO::FETCH_COLUMN );
                         <input type="text" class="form-control" placeholder="Fine" name="row[' + fc + '][fine]"> \
                       </div> \
                       <div class="col"> \
-                        <select class="form-control" name="row[' + fc + '][zone]" id="zone"><option>Zone</option> \ <?php
-                foreach($zones as $element):
-                    echo ("<option>" . $element . "</option>");
+                        <select class="form-control" name="row[' + fc + '][zone]" id="zone"><option selected value="">Zone</option> \ <?php
+                foreach($zones as $k => $v):
+                    echo ('<option value="' . $k . '">' . $v . '</option>');
                 endforeach;
                 ?>
                 </select> \
