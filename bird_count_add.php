@@ -1,9 +1,23 @@
 <?php
+require 'pdo.php';
 session_start();
 ?>
 
 <?php
 require_once "./html/header.php";
+
+
+$stmt = $pdo->prepare('SELECT code FROM birds_behaviours');
+$stmt->execute(array());
+$behavior_codes = $stmt->fetchAll(PDO::FETCH_COLUMN );
+
+$stmt = $pdo->prepare('SELECT code FROM birds_habitats');
+$stmt->execute(array());
+$habitat_codes = $stmt->fetchAll(PDO::FETCH_COLUMN );
+
+$stmt = $pdo->prepare('SELECT birds_minor_zones_id FROM birds_minor_zones');
+$stmt->execute(array());
+$zones = $stmt->fetchAll(PDO::FETCH_COLUMN );
 ?>
 
 </head>
@@ -72,20 +86,35 @@ require_once "./html/header.php";
                       <div class="col"> \
                         <input type="text" class="form-control" placeholder="Count" name="row[' + fc + '][count]"> \
                       </div> \
-                      \<div class="col"> \
-                        <input type="text" class="form-control" placeholder="Behaviour" name="row[' + fc + '][behavior]"> \
+                      <div class="col"> \
+                        <select class="form-control" name="row[' + fc + '][behavior]"><option>Behaviour</option> \ <?php
+                foreach($behavior_codes as $element):
+                    echo ("<option>" . $element . "</option>");
+                endforeach;
+                ?>
+                        </select> \
                       </div> \
-                      \<div class="col"> \
-                        <input type="text" class="form-control" placeholder="Habitat" name="row[' + fc + '][habitat]"> \
+                      <div class="col"> \
+                        <select class="form-control" name="row[' + fc + '][habitat]"><option>Habitat</option> \ <?php
+                foreach($habitat_codes as $element):
+                    echo ("<option>" . $element . "</option>");
+                endforeach;
+                ?>
+                      </select> \
                       </div> \
-                      \<div class="col"> \
+                      <div class="col"> \
                         <input type="text" class="form-control" placeholder="Latitude" name="row[' + fc + '][lat]"> \
                       </div> \
-                      \<div class="col"> \
+                      <div class="col"> \
                         <input type="text" class="form-control" placeholder="Longitude" name="row[' + fc + '][long]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Zone" name="row[' + fc + '][zone]" id="zone"> \
+                        <select class="form-control" name="row[' + fc + '][zone]" id="zone"><option>Zone</option> \ <?php
+                foreach($zones as $element):
+                    echo ("<option>" . $element . "</option>");
+                endforeach;
+                ?>
+                </select> \
                       </div> \
             </div>'
             return formHtml;
