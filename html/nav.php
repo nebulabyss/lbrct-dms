@@ -19,7 +19,7 @@
                 Compliance
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Add boat inspection</a>
+                <a class="dropdown-item" href="c_boatpatrol_add.php">Add boat inspection</a>
                 <a class="dropdown-item" href="#">Add slipway inspection</a>
                 <a class="dropdown-item" href="#">Add area usage count</a>
             </div>
