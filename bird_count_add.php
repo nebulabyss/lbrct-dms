@@ -34,7 +34,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 
                 <fieldset class="form-row" disabled>
                 <div class="col">
-                    <select class="form-control custom-select" name="[zone]" required><option selected value="">Zone</option>
+                    <select class="form-control custom-select" name="zone" required><option selected value="">Zone</option>
                         <?php
                         foreach($zones as $k => $v):
                             echo ('<option value="' . $k . '">' . $v . '</option>');
@@ -45,10 +45,10 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 
 
                 <div class="col">
-                    <input id="c_name" type="time" class="form-control" placeholder="Start Time " name="[time_start]" required>
+                    <input type="time" class="form-control" placeholder="Start Time " name="time_start" required>
                 </div>
                 <div class="col">
-                    <input id="c_name" type="time" class="form-control" placeholder="End Time" name="[time_end]" required>
+                    <input type="time" class="form-control" placeholder="End Time" name="time_end" required>
                 </div>
                 </fieldset>
             </div>
@@ -65,7 +65,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
         </div>
         </form>
     </div>
-    <!-- Modal -->
+    <!-- Modal Start -->
     <div class="modal fade" id="addSpeciesModal" tabindex="-1" role="dialog" aria-labelledby="addSpeciesModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -85,15 +85,17 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                                 </select>
                             </div>
                         </div>
-                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-success">Save changes</button>
                 </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal End -->
     <script>
         let lineNum = 1;
         let fieldCount = 0;
@@ -101,7 +103,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
             formHtml = '<div class="form-row mb-2"> \
                        <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
                           <div class="col"> \
-                            <input id="c_name" type="text" class="form-control" placeholder="Common Name" name="row[' + fc + '][c_name]"> \
+                            <input id="s_name" type="text" class="form-control" placeholder="Species Name" name="row[' + fc + '][s_name]"> \
                       </div> \
                       <div class="col"> \
                         <input type="text" class="form-control" placeholder="Count" name="row[' + fc + '][count]"> \
@@ -138,7 +140,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                 generateForm(fieldCount, lineNum)
             );
 
-            $( document ).on( 'keydown', '#c_name', function() {
+            $( document ).on( 'keydown', '#s_name', function() {
                 $(this).autocomplete({
                     source: 'bird_c_name.php'
                 });
@@ -184,5 +186,4 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 </div>
 
 <?php require_once "./html/footer.php";?>
-</body>
 
