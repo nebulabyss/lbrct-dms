@@ -7,9 +7,9 @@ session_start();
 require_once "./html/header.php";
 
 
-$stmt = $pdo->prepare('SELECT description FROM compliance_zones');
+$stmt = $pdo->prepare('SELECT compliance_zones_id, description FROM compliance_zones');
 $stmt->execute(array());
-$zones = $stmt->fetchAll(PDO::FETCH_COLUMN );
+$zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 
 ?>
 
@@ -63,37 +63,37 @@ $zones = $stmt->fetchAll(PDO::FETCH_COLUMN );
     </div>
     <script>
         let lineNum = 1;
-        let fieldCount = 0;
-        function generateForm(fc, ln) {
+        let rowCount = 0;
+        function generateForm(rc, ln) {
             formHtml = '<div class="form-row mb-2"> \
                        <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
                           <div class="col"> \
-                            <input id="c_name" type="text" class="form-control" placeholder="Breede Reg." name="row[' + fc + '][breede]"> \
+                            <input id="c_name" type="text" class="form-control" placeholder="Breede Reg." name="row[' + rc + '][breede]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Licence No." name="row[' + fc + '][licence]"> \
+                        <input type="text" class="form-control" placeholder="Licence No." name="row[' + rc + '][licence]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="SAMSA" name="row[' + fc + '][samsa]"> \
+                        <input type="text" class="form-control" placeholder="SAMSA" name="row[' + rc + '][samsa]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Engine size" name="row[' + fc + '][size]"> \
+                        <input type="text" class="form-control" placeholder="Engine size" name="row[' + rc + '][size]"> \
                       </div> \
                       <div class="form-check big-checkbox my-auto ml-2 mr-1"> \
-                      <input class="form-check-input" type="checkbox" id="gridCheck" name="row[' + fc + '][twin]"> \
+                      <input class="form-check-input" type="checkbox" id="gridCheck" name="row[' + rc + '][twin]"> \
                       <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Twin</label> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Offence" name="row[' + fc + '][offence]"> \
+                        <input type="text" class="form-control" placeholder="Offence" name="row[' + rc + '][offence]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Warning" name="row[' + fc + '][warning]"> \
+                        <input type="text" class="form-control" placeholder="Warning" name="row[' + rc + '][warning]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Fine" name="row[' + fc + '][fine]"> \
+                        <input type="text" class="form-control" placeholder="Fine" name="row[' + rc + '][fine]"> \
                       </div> \
                       <div class="col"> \
-                        <select class="form-control" name="row[' + fc + '][zone]" id="zone"><option selected value="">Zone</option> \ <?php
+                        <select class="form-control" name="row[' + rc + '][zone]" id="zone"><option selected value="">Zone</option> \ <?php
                 foreach($zones as $k => $v):
                     echo ('<option value="' . $k . '">' . $v . '</option>');
                 endforeach;
@@ -107,7 +107,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_COLUMN );
         $(document).ready(function () {
 
             $( '.form-body' ).append(
-                generateForm(fieldCount, lineNum)
+                generateForm(rowCount, lineNum)
             );
 
             $( document ).on( 'keydown', '#c_name', function() {
@@ -118,11 +118,11 @@ $zones = $stmt->fetchAll(PDO::FETCH_COLUMN );
             $( document ).on( 'keydown', '#zone', function( event ) {
                 var keyCode = event.keyCode || event.which;
                 if (keyCode === 9) {
-                    fieldCount++;
+                    rowCount++;
                     lineNum++;
 
                     $( '.form-body' ).append(
-                        generateForm(fieldCount, lineNum)
+                        generateForm(rowCount, lineNum)
                     );
                     $(this).focus();
                 }

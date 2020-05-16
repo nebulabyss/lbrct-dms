@@ -102,18 +102,18 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
     <!-- Modal End -->
     <script>
         let lineNum = 1;
-        let fieldCount = 0;
-        function generateForm(fc, ln) {
+        let rowCount = 0;
+        function generateForm(rc, ln) {
             formHtml = '<div class="form-row mb-2"> \
                        <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
                           <div class="col"> \
-                            <input id="s_name" type="text" class="form-control" placeholder="Species Name" name="row[' + fc + '][s_name]"> \
+                            <input id="s_name" type="text" class="form-control" placeholder="Species Name" name="row[' + rc + '][s_name]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Count" name="row[' + fc + '][count]"> \
+                        <input type="text" class="form-control" placeholder="Count" name="row[' + rc + '][count]"> \
                       </div> \
                       <div class="col"> \
-                        <select class="form-control custom-select" name="row[' + fc + '][behavior]"><option selected value="">Behaviour</option> \ <?php
+                        <select class="form-control custom-select" name="row[' + rc + '][behavior]"><option selected value="">Behaviour</option> \ <?php
                 foreach($behavior_codes as $k => $v):
                     echo ('<option value="' . $k . '">' . $v . '</option>');
                 endforeach;
@@ -121,7 +121,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                         </select> \
                       </div> \
                       <div class="col"> \
-                        <select class="form-control custom-select" name="row[' + fc + '][habitat]"><option selected value="">Habitat</option> \ <?php
+                        <select class="form-control custom-select" name="row[' + rc + '][habitat]"><option selected value="">Habitat</option> \ <?php
                 foreach($habitat_codes as $k => $v):
                     echo ('<option value="' . $k . '">' . $v . '</option>');
                 endforeach;
@@ -129,10 +129,10 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                       </select> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Latitude" name="row[' + fc + '][lat]"> \
+                        <input type="text" class="form-control" placeholder="Latitude" name="row[' + rc + '][lat]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Longitude" name="row[' + fc + '][long]"> \
+                        <input type="text" class="form-control" placeholder="Longitude" name="row[' + rc + '][long]"> \
                       </div> \
             </div>'
             return formHtml;
@@ -141,7 +141,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
         $(document).ready(function () {
 
             $( '.form-body' ).append(
-                generateForm(fieldCount, lineNum)
+                generateForm(rowCount, lineNum)
             );
 
             $( document ).on( 'keydown', '#s_name', function() {
@@ -152,11 +152,11 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
             $( document ).on( 'keydown', '#zone', function( event ) {
                 var keyCode = event.keyCode || event.which;
                 if (keyCode === 9) {
-                    fieldCount++;
+                    rowCount++;
                     lineNum++;
 
                     $( '.form-body' ).append(
-                        generateForm(fieldCount, lineNum)
+                        generateForm(rowCount, lineNum)
                     );
                     $(this).focus();
                 }
