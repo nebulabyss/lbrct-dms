@@ -29,12 +29,12 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
         <form>
             <div class="form-row mb-2">
                 <div class="col-1">
-                    <input type="text" class="form-control bg-warning text-dark" placeholder="Batch Date" id="datepicker" name="date">
+                    <input type="text" class="form-control bg-warning text-dark" placeholder="Batch Date" id="datepicker" name="date" required>
                 </div>
 
                 <fieldset class="form-row" disabled>
                 <div class="col">
-                    <select class="form-control custom-select" name="zone" required><option selected value="">Zone</option>
+                    <select class="form-control bg-warning text-dark custom-select" name="zone" required><option selected value="">Zone</option>
                         <?php
                         foreach($zones as $k => $v):
                             echo ('<option value="' . $k . '">' . $v . '</option>');
@@ -42,13 +42,17 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                         ?>
                     </select>
                 </div>
-
-
+                    <div class="form-group row">
+                        <label for="time" class="col col-form-label">Start Time:</label>
+                    </div>
                 <div class="col">
-                    <input type="time" class="form-control" placeholder="Start Time " name="time_start" required>
+                    <input type="time" class="form-control bg-warning text-dark" name="time_start" required>
                 </div>
+                    <div class="form-group row">
+                        <label for="time" class="col col-form-label">End Time:</label>
+                    </div>
                 <div class="col">
-                    <input type="time" class="form-control" placeholder="End Time" name="time_end" required>
+                    <input type="time" class="form-control bg-warning text-dark" name="time_end" required>
                 </div>
                 </fieldset>
             </div>
@@ -117,7 +121,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                         </select> \
                       </div> \
                       <div class="col"> \
-                        <select class="form-control custom-select" name="row[' + fc + '][habitat]"><option>Habitat</option> \ <?php
+                        <select class="form-control custom-select" name="row[' + fc + '][habitat]"><option selected value="">Habitat</option> \ <?php
                 foreach($habitat_codes as $k => $v):
                     echo ('<option value="' . $k . '">' . $v . '</option>');
                 endforeach;
@@ -165,7 +169,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 
         $( '#datepicker' ).change( function () {
             $('fieldset').prop('disabled', false);
-            $('input[name="name_0"]').focus();
+            $('select[name="zone"]').focus();
         });
 
         $( '#addSpecies' ).submit(function( event ) {
