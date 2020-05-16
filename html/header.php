@@ -20,4 +20,15 @@
             color: white;
             background-image: none;
         }
+        input[type=checkbox]
+        {
+            /* Double-sized Checkboxes */
+            -ms-transform: scale(2); /* IE */
+            -moz-transform: scale(2); /* FF */
+            -webkit-transform: scale(2); /* Safari and Chrome */
+            -o-transform: scale(2); /* Opera */
+            padding: 10px;
+        }
+
+
     </style>
