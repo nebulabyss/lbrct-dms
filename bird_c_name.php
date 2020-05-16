@@ -3,7 +3,7 @@ require 'pdo.php';
 
 session_start();
 
-$stmt = $pdo->prepare('SELECT common_name FROM bird_species
+$stmt = $pdo->prepare('SELECT common_name FROM birds_species
     WHERE common_name LIKE :prefix');
 $stmt->execute(array( ':prefix' => $_REQUEST['term']."%"));
 
