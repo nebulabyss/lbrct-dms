@@ -15,9 +15,9 @@ $stmt = $pdo->prepare('SELECT birds_habitats_id, code FROM birds_habitats');
 $stmt->execute(array());
 $habitat_codes = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 
-$stmt = $pdo->prepare('SELECT birds_minor_zones_id FROM birds_minor_zones');
+$stmt = $pdo->prepare('SELECT birds_minor_zones_id, code FROM birds_minor_zones');
 $stmt->execute(array());
-$zones = $stmt->fetchAll(PDO::FETCH_COLUMN );
+$zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 ?>
 
 </head>
@@ -36,8 +36,8 @@ $zones = $stmt->fetchAll(PDO::FETCH_COLUMN );
                 <div class="col">
                     <select class="form-control custom-select" name="[zone]" required><option selected value="">Zone</option>
                         <?php
-                        foreach($zones as $element):
-                            echo ("<option>" . $element . "</option>");
+                        foreach($zones as $k => $v):
+                            echo ('<option value="' . $k . '">' . $v . '</option>');
                         endforeach;
                         ?>
                     </select>
