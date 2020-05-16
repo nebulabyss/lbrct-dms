@@ -4,7 +4,7 @@ session_start();
 $salt = '+Aqr2jwFfD-nSQ4J';
 
 if (isset($_POST['email'])) {
-    $_SESSION['user_name'] = "Maximillian Oertel";
+    $_SESSION['user_name'] = "Signed in user";
     $_SESSION['user_id'] = 1;
     header("Location: index.php");
     return;

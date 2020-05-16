@@ -7,13 +7,13 @@ session_start();
 require_once "./html/header.php";
 
 
-$stmt = $pdo->prepare('SELECT code FROM birds_behaviours');
+$stmt = $pdo->prepare('SELECT bird_behaviours_id, code FROM birds_behaviours');
 $stmt->execute(array());
-$behavior_codes = $stmt->fetchAll(PDO::FETCH_COLUMN );
+$behavior_codes = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 
-$stmt = $pdo->prepare('SELECT code FROM birds_habitats');
+$stmt = $pdo->prepare('SELECT birds_habitats_id, code FROM birds_habitats');
 $stmt->execute(array());
-$habitat_codes = $stmt->fetchAll(PDO::FETCH_COLUMN );
+$habitat_codes = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 
 $stmt = $pdo->prepare('SELECT birds_minor_zones_id FROM birds_minor_zones');
 $stmt->execute(array());
@@ -28,9 +28,29 @@ $zones = $stmt->fetchAll(PDO::FETCH_COLUMN );
         <h3 class="text-muted mt-2">Bird count</h3>
         <form>
             <div class="form-row mb-2">
-                <div class="col-2">
+                <div class="col-1">
                     <input type="text" class="form-control bg-warning text-dark" placeholder="Batch Date" id="datepicker" name="date">
                 </div>
+
+                <fieldset class="form-row" disabled>
+                <div class="col">
+                    <select class="form-control custom-select" name="[zone]" required><option selected value="">Zone</option>
+                        <?php
+                        foreach($zones as $element):
+                            echo ("<option>" . $element . "</option>");
+                        endforeach;
+                        ?>
+                    </select>
+                </div>
+
+
+                <div class="col">
+                    <input id="c_name" type="time" class="form-control" placeholder="Start Time " name="[time_start]" required>
+                </div>
+                <div class="col">
+                    <input id="c_name" type="time" class="form-control" placeholder="End Time" name="[time_end]" required>
+                </div>
+                </fieldset>
             </div>
             <fieldset disabled>
                 <div class="form-body">
@@ -41,7 +61,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_COLUMN );
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addSpeciesModal">Add species</button>
         <div class="float-right">
             <button type="button" class="btn btn-danger">Cancel</button>
-            <button type="button" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success">Submit</button>
         </div>
         </form>
     </div>
@@ -87,17 +107,17 @@ $zones = $stmt->fetchAll(PDO::FETCH_COLUMN );
                         <input type="text" class="form-control" placeholder="Count" name="row[' + fc + '][count]"> \
                       </div> \
                       <div class="col"> \
-                        <select class="form-control" name="row[' + fc + '][behavior]"><option>Behaviour</option> \ <?php
-                foreach($behavior_codes as $element):
-                    echo ("<option>" . $element . "</option>");
+                        <select class="form-control custom-select" name="row[' + fc + '][behavior]"><option selected value="">Behaviour</option> \ <?php
+                foreach($behavior_codes as $k => $v):
+                    echo ('<option value="' . $k . '">' . $v . '</option>');
                 endforeach;
                 ?>
                         </select> \
                       </div> \
                       <div class="col"> \
-                        <select class="form-control" name="row[' + fc + '][habitat]"><option>Habitat</option> \ <?php
-                foreach($habitat_codes as $element):
-                    echo ("<option>" . $element . "</option>");
+                        <select class="form-control custom-select" name="row[' + fc + '][habitat]"><option>Habitat</option> \ <?php
+                foreach($habitat_codes as $k => $v):
+                    echo ('<option value="' . $k . '">' . $v . '</option>');
                 endforeach;
                 ?>
                       </select> \
@@ -107,14 +127,6 @@ $zones = $stmt->fetchAll(PDO::FETCH_COLUMN );
                       </div> \
                       <div class="col"> \
                         <input type="text" class="form-control" placeholder="Longitude" name="row[' + fc + '][long]"> \
-                      </div> \
-                      <div class="col"> \
-                        <select class="form-control" name="row[' + fc + '][zone]" id="zone"><option>Zone</option> \ <?php
-                foreach($zones as $element):
-                    echo ("<option>" . $element . "</option>");
-                endforeach;
-                ?>
-                </select> \
                       </div> \
             </div>'
             return formHtml;
