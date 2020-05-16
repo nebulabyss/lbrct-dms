@@ -48,6 +48,7 @@
                 <a class="dropdown-item" href="#">Boat inspections</a>
                 <a class="dropdown-item" href="#">Slipway inspections</a>
                 <a class="dropdown-item" href="#">Area usage count</a>
+            </div>
         </li>
     </ul>
 </nav>
