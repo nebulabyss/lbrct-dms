@@ -15,7 +15,7 @@
 <nav class="">
     <ul class="nav bg-light p-2 border-bottom">
         <li class="nav-item dropdown mr-2">
-            <a class="nav-link btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 Compliance
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
