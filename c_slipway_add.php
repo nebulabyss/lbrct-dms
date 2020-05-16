@@ -27,7 +27,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 
                 <fieldset class="form-row" disabled>
                     <div class="col-auto">
-                        <select class="form-control bg-warning" name="row[' + rc + '][zone]" id="zone"><option selected value="">Slipway</option>
+                        <select class="form-control bg-warning" name="slipway" id="zone"><option selected value="">Slipway</option>
                             <?php
                             foreach($zones as $k => $v):
                                 echo ('<option value="' . $k . '">' . $v . '</option>');
@@ -53,6 +53,10 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 
                 </div>
             </fieldset>
+            <div class="float-right">
+                <button type="button" class="btn btn-danger">Cancel</button>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
         </form>
     </div>
     <script>
@@ -74,16 +78,13 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                         <input type="text" class="form-control" placeholder="Vehicle Reg." name="row[' + rc + '][vreg]"> \
                       </div> \
                       <div class="col"> \
+                        <input type="text" class="form-control" placeholder="Trailer Reg." name="row[' + rc + '][treg]"> \
+                      </div> \
+                      <div class="col"> \
                         <input type="text" class="form-control" placeholder="SAMSA" name="row[' + rc + '][samsa]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Boat Name" name="row[' + rc + '][bname]"> \
-                      </div> \
-                      <div class="col"> \
                         <input type="text" class="form-control" placeholder="Licence No." name="row[' + rc + '][licence]"> \
-                      </div> \
-                      <div class="col"> \
-                        <input type="text" id="final" class="form-control" placeholder="Fine" name="row[' + rc + '][fine]"> \
                       </div> \
                       <div class="col"> \
                         <input type="text" class="form-control" placeholder="Engine size" name="row[' + rc + '][size]"> \
@@ -91,6 +92,9 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                       <div class="form-check big-checkbox my-auto ml-2 mr-1"> \
                       <input class="form-check-input" type="checkbox" id="gridCheck" name="row[' + rc + '][twin]"> \
                       <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Twin</label> \
+                      </div> \
+                      <div class="col"> \
+                        <input type="text" id="final" class="form-control" placeholder="Boat Name" name="row[' + rc + '][bname]"> \
                       </div> \
             </div>'
             return formHtml;
@@ -127,7 +131,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 
         $( '#datepicker' ).change( function () {
             $('fieldset').prop('disabled', false);
-            $('input[name="name_0"]').focus();
+            $('select[name="slipway"]').focus();
         });
     </script>
 </div>
