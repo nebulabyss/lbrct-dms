@@ -125,7 +125,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 
         $( '#datepicker' ).change( function () {
             $('fieldset').prop('disabled', false);
-            $('input[name="name_0"]').focus();
+            $('input[name="time_start"]').focus();
         });
     </script>
 </div>
