@@ -27,7 +27,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 
                 <fieldset class="form-row" disabled>
                     <div class="col-auto">
-                        <select class="form-control bg-warning" name="slipway" id="zone"><option selected value="">Slipway</option>
+                        <select class="form-control custom-select bg-warning" name="slipway" id="zone" required><option selected value="">Slipway</option>
                             <?php
                             foreach($zones as $k => $v):
                                 echo ('<option value="' . $k . '">' . $v . '</option>');
