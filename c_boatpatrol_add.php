@@ -59,7 +59,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
             formHtml = '<div class="form-row mb-2"> \
                        <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
                           <div class="col"> \
-                        <select class="form-control" name="row[' + rc + '][zone]" id="zone"><option selected value="">Zone</option> \ <?php
+                        <select class="form-control custom-select" name="row[' + rc + '][zone]" id="zone"><option selected value="">Zone</option> \ <?php
                 foreach($zones as $k => $v):
                     echo ('<option value="' . $k . '">' . $v . '</option>');
                 endforeach;
