@@ -43,25 +43,25 @@ $zones = $stmt->fetchAll(PDO::FETCH_COLUMN );
                     <div class="form-row mb-2">
                         <label class="col-form-label d-inline-block" style="width: 250px;">' . $k . '</label>
                         <div class="col">
-                            <input type="text" class="form-control" name="[row' . $rowCount . '][transit]" required>
+                            <input type="text" class="form-control" name="[row' . $rowCount . '][transit]">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="[row' . $rowCount . '][moored]" required>
+                            <input type="text" class="form-control" name="[row' . $rowCount . '][moored]">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="[row' . $rowCount . '][skiing]" required>
+                            <input type="text" class="form-control" name="[row' . $rowCount . '][skiing]">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="[row' . $rowCount . '][fishing]" required>
+                            <input type="text" class="form-control" name="[row' . $rowCount . '][fishing]">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="[row' . $rowCount . '][other]" required>
+                            <input type="text" class="form-control" name="[row' . $rowCount . '][other]">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="[row' . $rowCount . '][angler]" required>
+                            <input type="text" class="form-control" name="[row' . $rowCount . '][angler]">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="[row' . $rowCount . '][bait]" required>
+                            <input type="text" class="form-control" name="[row' . $rowCount . '][bait]">
                         </div>
                     </div>
                     ');
