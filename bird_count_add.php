@@ -107,10 +107,10 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
             formHtml = '<div class="form-row mb-2"> \
                        <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
                           <div class="col"> \
-                            <input id="s_name" type="text" class="form-control" placeholder="Species Name" name="row[' + rc + '][s_name]"> \
+                            <input id="s_name" type="text" class="form-control" placeholder="Species Name" name="row[' + rc + '][s_name]" required> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Count" name="row[' + rc + '][count]"> \
+                        <input type="text" class="form-control" placeholder="Count" name="row[' + rc + '][count]" required> \
                       </div> \
                       <div class="col"> \
                         <select class="form-control custom-select" name="row[' + rc + '][behavior]"><option selected value="">Behaviour</option> \ <?php
@@ -132,7 +132,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                         <input type="text" class="form-control" placeholder="Latitude" name="row[' + rc + '][lat]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Longitude" name="row[' + rc + '][long]"> \
+                        <input type="text" id="long" class="form-control" placeholder="Longitude" name="row[' + rc + '][long]"> \
                       </div> \
             </div>'
             return formHtml;
@@ -149,7 +149,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                     source: 'bird_c_name.php'
                 });
             });
-            $( document ).on( 'keydown', '#zone', function( event ) {
+            $( document ).on( 'keydown', '#long', function( event ) {
                 var keyCode = event.keyCode || event.which;
                 if (keyCode === 9) {
                     rowCount++;
