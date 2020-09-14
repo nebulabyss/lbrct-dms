@@ -45,7 +45,7 @@ require_once "./html/header.php";
 </style>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <?php require_once "./html/nav.php";?>
     <form method="post" class="form-signin mt-5">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
