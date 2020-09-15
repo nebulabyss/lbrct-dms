@@ -29,6 +29,5 @@
             -o-transform: scale(2); /* Opera */
             padding: 10px;
         }
-
-
     </style>
+</head>

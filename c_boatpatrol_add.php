@@ -13,7 +13,6 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 
 ?>
 
-</head>
 <body>
 <div class="container-fluid">
     <?php require_once "./html/nav.php";?>
