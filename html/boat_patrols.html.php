@@ -6,7 +6,7 @@
         <form action="../boatpatrols_add.php" method="post">
             <div class="form-row mb-2">
                     <div class="col-1">
-                        <input type="text" class="form-control bg-warning" placeholder="Batch Date" id="datepicker" name="date" required>
+                        <label for="datepicker" class="ui-helper-hidden"></label><input type="text" class="form-control bg-warning" placeholder="Batch Date" id="datepicker" name="date" required>
                     </div>
                     <div>
                         <label for="time_start" class="col ml-1 col-form-label">Start Time:</label>
@@ -98,7 +98,7 @@
                 });
             });
             $( document ).on( 'keydown', '#final', function( event ) {
-                var keyCode = event.keyCode || event.which;
+                const keyCode = event.keyCode || event.which;
                 if (keyCode === 9) {
                     rowCount++;
                     lineNum++;
