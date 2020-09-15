@@ -1,24 +1,9 @@
-<?php
-require 'pdo.php';
-session_start();
-?>
-
-<?php
-require_once "./html/header.php";
-
-
-$stmt = $pdo->prepare('SELECT compliance_zones_id, description FROM compliance_zones');
-$stmt->execute(array());
-$zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
-
-?>
-
 <body>
 <div class="container-fluid">
     <?php require_once "./html/nav.php";?>
     <div>
         <h3 class="text-muted mt-2">Boat patrol inspection</h3>
-        <form>
+        <form action="boatpatrols_add.php" method="post">
             <div class="form-row mb-2">
                 <div class="col-1">
                     <input type="text" class="form-control bg-warning text-dark" placeholder="Batch Date" id="datepicker" name="date" required>
@@ -59,9 +44,11 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                        <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
                           <div class="col"> \
                         <select class="form-control custom-select" name="row[' + rc + '][zone]" id="zone"><option selected value="">Zone</option> \ <?php
-                foreach($zones as $k => $v):
-                    echo ('<option value="' . $k . '">' . $v . '</option>');
-                endforeach;
+                if (isset($zones)) {
+                    foreach($zones as $k => $v):
+                        echo ('<option value="' . $k . '">' . $v . '</option>');
+                    endforeach;
+                }
                 ?> </select> \
                     </div> \
                       <div> \
@@ -80,16 +67,25 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                       <input class="form-check-input" type="checkbox" id="gridCheck" name="row[' + rc + '][twin]"> \
                       <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Twin</label> \
                       </div> \
-                      <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Offence" name="row[' + rc + '][offence]"> \
+                      <div class="form-check big-checkbox my-auto ml-2 mr-1"> \
+                      <input class="form-check-input" type="checkbox" id="gridCheck" name="row[' + rc + '][fine]"> \
+                      <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Fine</label> \
+                      </div> \
+                      <div class="form-check big-checkbox my-auto ml-2 mr-1"> \
+                      <input class="form-check-input" type="checkbox" id="gridCheck" name="row[' + rc + '][warn]"> \
+                      <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Warning</label> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Warning" name="row[' + rc + '][warning]"> \
-                      </div> \
-                      <div class="col"> \
-                        <input type="text" id="final" class="form-control" placeholder="Fine" name="row[' + rc + '][fine]"> \
-                      </div> \
-            </div>'
+                      <select class="form-control custom-select" name="row[' + rc + '][trans]" id="trans"><option selected value="">Transgression</option> \ <?php
+                if (isset($trans)) {
+                    foreach($trans as $k => $v):
+                        echo ('<option value="' . $k . '">' . $v . '</option>');
+                    endforeach;
+                }
+                    ?> </select> \
+                        </div> \
+                        </div>'
+
             return formHtml;
         }
 
@@ -128,7 +124,3 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
         });
     </script>
 </div>
-
-<?php require_once "./html/footer.php";?>
-</body>
-
