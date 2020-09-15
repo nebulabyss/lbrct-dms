@@ -1,29 +1,25 @@
 <body>
 <div class="container-fluid">
-    <?php require_once "./html/nav.php";?>
+    <?php include "./html/nav.php";?>
     <div>
         <h3 class="text-muted mt-2">Boat patrol inspection</h3>
         <form action="../boatpatrols_add.php" method="post">
             <div class="form-row mb-2">
-                <div class="col-1">
-                    <input type="text" class="form-control bg-warning text-dark" placeholder="Batch Date" id="datepicker" name="date" required>
-                </div>
-
-                <fieldset class="form-row" disabled>
-
-                    <div class="form-group row">
-                        <label for="time" class="col ml-1 col-form-label">Start Time:</label>
+                    <div class="col-1">
+                        <input type="text" class="form-control bg-warning" placeholder="Batch Date" id="datepicker" name="date" required>
                     </div>
-                    <div class="col">
-                        <input type="time" class="form-control bg-warning text-dark" name="time_start" required>
+                    <div>
+                        <label for="time_start" class="col ml-1 col-form-label">Start Time:</label>
                     </div>
-                    <div class="form-group row">
-                        <label for="time" class="col col-form-label">End Time:</label>
+                    <div class="col-1">
+                        <input type="time" class="form-control bg-warning" id="time_start" name="time_start" required>
                     </div>
-                    <div class="col">
-                        <input type="time" class="form-control bg-warning text-dark" name="time_end" required>
+                    <div>
+                        <label for="time_end" class="col col-form-label">End Time:</label>
                     </div>
-                </fieldset>
+                    <div class="col-1">
+                        <input type="time" class="form-control bg-warning" id="time_end" name="time_end" required>
+                    </div>
             </div>
             <fieldset disabled>
                 <div class="form-body">
@@ -37,6 +33,7 @@
         </form>
     </div>
     <script>
+        let formHtml = '';
         let lineNum = 1;
         let rowCount = 0;
         function generateForm(rc, ln) {
@@ -45,8 +42,8 @@
                           <div class="col"> \
                         <select class="form-control custom-select" name="row[' + rc + '][zone]" id="zone"><option selected value="">Zone</option> \ <?php
                 if (isset($zones)) {
-                    foreach($zones as $k => $v):
-                        echo ('<option value="' . $k . '">' . $v . '</option>');
+                    foreach ($zones as $k => $v):
+                        echo('<option value="' . $k . '">' . $v . '</option>');
                     endforeach;
                 }
                 ?> </select> \
@@ -78,11 +75,11 @@
                       <div class="col"> \
                       <select class="form-control custom-select" name="row[' + rc + '][trans]" id="trans"><option selected value="">Transgression</option> \ <?php
                 if (isset($trans)) {
-                    foreach($trans as $k => $v):
-                        echo ('<option value="' . $k . '">' . $v . '</option>');
+                    foreach ($trans as $k => $v):
+                        echo('<option value="' . $k . '">' . $v . '</option>');
                     endforeach;
                 }
-                    ?> </select> \
+                ?> </select> \
                         </div> \
                         </div>'
 
