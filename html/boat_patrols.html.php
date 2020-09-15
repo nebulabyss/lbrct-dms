@@ -3,7 +3,7 @@
     <?php require_once "./html/nav.php";?>
     <div>
         <h3 class="text-muted mt-2">Boat patrol inspection</h3>
-        <form action="boatpatrols_add.php" method="post">
+        <form action="../boatpatrols_add.php" method="post">
             <div class="form-row mb-2">
                 <div class="col-1">
                     <input type="text" class="form-control bg-warning text-dark" placeholder="Batch Date" id="datepicker" name="date" required>

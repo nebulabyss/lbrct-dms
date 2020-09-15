@@ -18,7 +18,7 @@ if (isset($_POST['row'])) {
         $stmt->execute(array());
         $trans = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
 
-        include 'boat_patrols.html.php';
+        include 'html/boat_patrols.html.php';
         include 'html/footer.php';
 
     } else {
