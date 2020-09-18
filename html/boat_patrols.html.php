@@ -9,16 +9,16 @@
                         <label for="datepicker" class="ui-helper-hidden"></label><input type="text" class="form-control bg-warning" placeholder="Batch Date" id="datepicker" name="date" required>
                     </div>
                     <div>
-                        <label for="time_start" class="col ml-1 col-form-label">Start Time:</label>
+                        <label for="start_time" class="col ml-1 col-form-label">Start Time:</label>
                     </div>
                     <div class="col-1">
-                        <input type="time" class="form-control bg-warning" id="time_start" name="time_start" required>
+                        <input type="time" class="form-control bg-warning" id="start_time" name="start_time" required>
                     </div>
                     <div>
-                        <label for="time_end" class="col col-form-label">End Time:</label>
+                        <label for="end_time" class="col col-form-label">End Time:</label>
                     </div>
                     <div class="col-1">
-                        <input type="time" class="form-control bg-warning" id="time_end" name="time_end" required>
+                        <input type="time" class="form-control bg-warning" id="end_time" name="end_time" required>
                     </div>
             </div>
             <fieldset disabled>
