@@ -92,12 +92,8 @@
                 generateForm(rowCount, lineNum)
             );
 
-            $( document ).on( 'keydown', '#c_name', function() {
-                $(this).autocomplete({
-                    source: 'bird_c_name.php'
-                });
-            });
-            $( document ).on( 'keydown', '#final', function( event ) {
+            $( document ).on( 'keydown', '#trans', function( event ) {
+                $(this).attr('id', '');
                 const keyCode = event.keyCode || event.which;
                 if (keyCode === 9) {
                     rowCount++;
@@ -110,12 +106,12 @@
                 }
             });
         });
-
-        $( '#datepicker' ).datepicker({
+        let date_picker = $( '#datepicker' );
+        date_picker.datepicker({
             dateFormat:  "yy-mm-dd"
         });
 
-        $( '#datepicker' ).change( function () {
+        date_picker.change( function () {
             $('fieldset').prop('disabled', false);
             $('input[name="time_start"]').focus();
         });
