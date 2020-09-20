@@ -1,6 +1,6 @@
 <body>
 <div class="container-fluid">
-    <?php include "./html/nav.php";?>
+    <?php include "includes/nav.php";?>
     <div>
         <h3 class="text-muted mt-2">Boat patrol inspection</h3>
         <form action="../boat_patrols.php" method="post">

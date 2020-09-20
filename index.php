@@ -3,7 +3,7 @@ session_start();
 ?>
 
 <?php
-require_once "./html/header.php";
+include "./includes/header.php";
 
 if (!isset($_SESSION['user_name'])) {
     header("Location: login.php");
@@ -13,11 +13,11 @@ if (!isset($_SESSION['user_name'])) {
 </head>
 <body>
 <div class="container-fluid">
-<?php require_once "./html/nav.php";?>
+<?php include "./includes/nav.php";?>
 
 </div>
 
-<?php require_once "./html/footer.php";?>
+<?php include "./includes/footer.php";?>
 
 </body>
 

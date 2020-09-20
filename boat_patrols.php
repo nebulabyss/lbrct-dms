@@ -45,7 +45,7 @@ if (isset($_POST['date'])) {
     $zones = $form_processing->selectKeyPairs($table_columns[0]);
     $trans = $form_processing->selectKeyPairs($table_columns[1]);
 
-    include 'html/header.php';
-    include 'html/boat_patrols.html.php';
-    include 'html/footer.php';
+    include 'includes/header.php';
+    include 'views/boat_patrols.html.php';
+    include 'includes/footer.php';
 }
