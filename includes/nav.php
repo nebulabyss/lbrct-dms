@@ -20,7 +20,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="../boat_patrols.php">Add boat inspection</a>
-                <a class="dropdown-item" href="../c_slipway_add.php">Add slipway inspection</a>
+                <a class="dropdown-item" href="../slipway_patrols.php">Add slipway inspection</a>
                 <a class="dropdown-item" href="../c_zone_count_add.php">Add zone usage count</a>
             </div>
         </li>
