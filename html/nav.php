@@ -5,7 +5,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse mr-auto mt-2 mt-lg-0" id="navbarSupportedContent">
-        <span class="navbar-text ml-auto mr-2">Signed in as <span class="text-dark" style="font-weight: bold"><?php echo $_SESSION[user_name];?></span></span>
+        <span class="navbar-text ml-auto mr-2">Signed in as <span class="text-dark" style="font-weight: bold"><?=$_SESSION['user_name'];?></span></span>
         <a type="button" href='../logout.php' class="btn btn-secondary ml-2 text-white">Sign out</a>
     </div>
     <?php endif; ?>
