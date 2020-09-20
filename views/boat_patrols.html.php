@@ -73,7 +73,7 @@
                       <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Warning</label> \
                       </div> \
                       <div class="col"> \
-                      <select class="form-control custom-select" name="row[' + rc + '][trans]" id="trans"><option selected value="">Transgression</option> \ <?php
+                      <select class="form-control custom-select" name="row[' + rc + '][trans]" id="final"><option selected value="">Transgression</option> \ <?php
                 if (isset($trans)) {
                     foreach ($trans as $k => $v):
                         echo('<option value="' . $k . '">' . $v . '</option>');
@@ -92,7 +92,7 @@
                 generateForm(rowCount, lineNum)
             );
 
-            $( document ).on( 'keydown', '#trans', function( event ) {
+            $( document ).on( 'keydown', '#final', function( event ) {
                 $(this).attr('id', '');
                 const keyCode = event.keyCode || event.which;
                 if (keyCode === 9) {
