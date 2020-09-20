@@ -34,7 +34,6 @@ class DatabaseController
         if ($last_batch_id != 0) {
             $form_data['batch_id'] = $last_batch_id;
         }
-        print("<pre>".print_r($form_data,true)."</pre>");
         $sql = 'INSERT INTO ' . $table . ' (';
         foreach ($form_data as $k => $v) {
             $sql .= $k . ', ';
@@ -73,5 +72,4 @@ class DatabaseController
         $query->execute(array());
         return $query->fetchAll(PDO::FETCH_KEY_PAIR);
     }
-
 }
