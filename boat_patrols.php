@@ -1,36 +1,22 @@
 <?php
 include 'pdo.php';
+include 'classes/FormProcessor.php';
 include 'classes/DatabaseController.php';
 session_start();
 
 /**
  * @var $pdo
  */
-$form_processing = new DatabaseController($pdo);
+$form_processor = new FormProcessor($_POST);
+$database_controller = new DatabaseController($pdo);
 if (isset($_POST['date'])) {
-    /*
-     * Clean up elements that expect integers in database and set checkboxes to integer 1.
-     */
-    $counter = 0;
-    while ($counter < count($_POST['row'])) {
-        foreach ($_POST['row'][$counter] as $k => $v) {
-            if ($_POST['row'][$counter][$k] == 'on') {
-                $_POST['row'][$counter][$k] = 1;
-                continue;
-            }
-            if ($_POST['row'][$counter][$k] == '') {
-                $_POST['row'][$counter][$k] = NULL;
-            }
-        }
-        $counter++;
-    }
+    $form_processor->FormElementCleanUp();
     /*
      * Specify relevant batch table and form table as strings.
      */
-
     $batch_table = 'boat_patrols_batch';
     $db_table = 'boat_patrols';
-    $form_processing->processForm($_POST, $batch_table, $db_table);
+    $form_processor->processForm($database_controller, $batch_table, $db_table);
 
 } else {
     /*
@@ -42,8 +28,8 @@ if (isset($_POST['date'])) {
         array('compliance_zones', 'compliance_zones_id', 'description'),
         array('transgression_types', 'transgression_id', 'section')
     );
-    $zones = $form_processing->selectKeyPairs($table_columns[0]);
-    $trans = $form_processing->selectKeyPairs($table_columns[1]);
+    $zones = $database_controller->selectKeyPairs($table_columns[0]);
+    $trans = $database_controller->selectKeyPairs($table_columns[1]);
 
     include 'includes/header.php';
     include 'views/boat_patrols.html.php';
