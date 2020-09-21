@@ -58,6 +58,9 @@
                         <input type="text" class="form-control" placeholder="SAMSA" name="row[' + rc + '][samsa]"> \
                       </div> \
                       <div class="col"> \
+                        <input type="text" class="form-control" placeholder="Boat Name" name="row[' + rc + '][bname]"> \
+                      </div> \
+                      <div class="col"> \
                         <input type="text" class="form-control" placeholder="Engine size" name="row[' + rc + '][size]"> \
                       </div> \
                       <div class="form-check big-checkbox my-auto ml-2 mr-1"> \
@@ -113,7 +116,7 @@
 
         date_picker.change( function () {
             $('fieldset').prop('disabled', false);
-            $('input[name="time_start"]').focus();
+            $('#start_time').focus();
         });
     </script>
 </div>
