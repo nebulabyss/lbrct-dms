@@ -3,10 +3,14 @@
 
 class DatabaseController
 {
-    public PDO $pdo;
+    private PDO $pdo;
 
     function __construct(PDO $pdo) {
         $this->pdo = $pdo;
+    }
+
+    public function GetLastInsertID() {
+        return $this->pdo->lastInsertId();
     }
 
     public function InsertIntoDatabase($form_data, $table, $last_batch_id = 0) {
