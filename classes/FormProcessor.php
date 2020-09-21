@@ -39,7 +39,7 @@ class FormProcessor
         }
         $db_object->InsertIntoDatabase($batch_data, $batch_table);
 
-        $last_batch_id = $db_object->pdo->lastInsertId();
+        $last_batch_id = $db_object->GetLastInsertID();
 
         // Process form rows
         $counter = 0;
