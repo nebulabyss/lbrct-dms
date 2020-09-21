@@ -1,5 +1,6 @@
 <?php
 include 'pdo.php';
+include 'classes/FormProcessor.php';
 include 'classes/DatabaseController.php';
 session_start();
 
