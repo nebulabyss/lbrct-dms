@@ -44,7 +44,7 @@ class DatabaseController
 
     }
 
-    public function selectKeyPairs(array $table_columns)
+    public function SelectKeyPairs(array $table_columns)
     {
         $sql = 'SELECT ' . implode(', ', (array_slice($table_columns, 1))) . ' FROM ' . $table_columns[0];
         $query = $this->pdo->prepare($sql);

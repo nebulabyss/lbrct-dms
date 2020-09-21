@@ -23,8 +23,8 @@ if (isset($_POST['date'])) {
         array('slipways', 'slipways_id', 'description'),
         array('slipway_activities', 'activity_id', 'description')
     );
-    $slipways = $database_controller->selectKeyPairs($table_columns[0]);
-    $activity = $database_controller->selectKeyPairs($table_columns[1]);
+    $slipways = $database_controller->SelectKeyPairs($table_columns[0]);
+    $activity = $database_controller->SelectKeyPairs($table_columns[1]);
 
     include 'includes/header.php';
     include 'views/slipway_patrols.html.php';

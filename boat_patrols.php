@@ -28,8 +28,8 @@ if (isset($_POST['date'])) {
         array('compliance_zones', 'compliance_zones_id', 'description'),
         array('transgression_types', 'transgression_id', 'section')
     );
-    $zones = $database_controller->selectKeyPairs($table_columns[0]);
-    $trans = $database_controller->selectKeyPairs($table_columns[1]);
+    $zones = $database_controller->SelectKeyPairs($table_columns[0]);
+    $trans = $database_controller->SelectKeyPairs($table_columns[1]);
 
     include 'includes/header.php';
     include 'views/boat_patrols.html.php';
