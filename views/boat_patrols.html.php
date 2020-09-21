@@ -96,7 +96,6 @@
             );
 
             $( document ).on( 'keydown', '#final', function( event ) {
-                $(this).attr('id', '');
                 const keyCode = event.keyCode || event.which;
                 if (keyCode === 9) {
                     rowCount++;
@@ -105,6 +104,7 @@
                     $( '.form-body' ).append(
                         generateForm(rowCount, lineNum)
                     );
+                    $(this).attr('id', '');
                     $(this).focus();
                 }
             });
