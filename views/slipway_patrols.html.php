@@ -1,53 +1,36 @@
-<?php
-require 'pdo.php';
-session_start();
-
-include "./includes/header.php";
-
-/**
- * @var $pdo
- */
-$stmt = $pdo->prepare('SELECT slipways_id, description FROM slipways');
-$stmt->execute(array());
-$zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
-
-?>
-
-</head>
 <body>
 <div class="container-fluid">
-    <?php require_once "./html/nav.php";?>
+    <?php include "includes/nav.php";?>
     <div>
         <h3 class="text-muted mt-2">Slipway inspection</h3>
-        <form>
+        <form action="../slipway_patrols.php" method="post">
             <div class="form-row mb-2">
                 <div class="col-1">
-                    <input type="text" class="form-control bg-warning text-dark" placeholder="Batch Date" id="datepicker" name="date" required>
+                    <label for="datepicker" class="ui-helper-hidden"></label><input type="text" class="form-control bg-warning text-dark" placeholder="Batch Date" id="datepicker" name="date" required>
                 </div>
-
-                <fieldset class="form-row" disabled>
-                    <div class="col-auto">
-                        <select class="form-control custom-select bg-warning" name="slipway" id="zone" required><option selected value="">Slipway</option>
+                 <div class="col-1">
+                        <label for="slipway" class="ui-helper-hidden"></label><select class="form-control custom-select bg-warning" name="slipway" id="slipway" required><option selected value="">Slipway</option>
                             <?php
-                            foreach($zones as $k => $v):
-                                echo ('<option value="' . $k . '">' . $v . '</option>');
-                            endforeach;
+                            if (isset($slipways)) {
+                                foreach($slipways as $k => $v):
+                                    echo ('<option value="' . $k . '">' . $v . '</option>');
+                                endforeach;
+                            }
                             ?> </select>
                     </div>
-                    <div class="form-group row">
-                        <label for="time" class="col col-form-label">Start Time:</label>
+                    <div>
+                        <label for="start_time" class="col ml-1 col-form-label">Start Time:</label>
                     </div>
-                    <div class="col">
-                        <input type="time" class="form-control bg-warning text-dark" name="time_start" required>
+                    <div class="col-1">
+                            <input type="time" class="form-control bg-warning text-dark" id="start_time" name="start_time" required>
                     </div>
-                    <div class="form-group row">
-                        <label for="time" class="col col-form-label">End Time:</label>
+                    <div>
+                        <label for="end_time" class="col col-form-label">End Time:</label>
                     </div>
-                    <div class="col">
-                        <input type="time" class="form-control bg-warning text-dark" name="time_end" required>
+                    <div class="col-1">
+                            <input type="time" class="form-control bg-warning text-dark" id="end_time" name="end_time" required>
                     </div>
-                </fieldset>
-            </div>
+                </div>
             <fieldset disabled>
                 <div class="form-body">
 
@@ -64,16 +47,22 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
         let rowCount = 0;
         function generateForm(rc, ln) {
             formHtml = '<div class="form-row mb-2"> \
-                       <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
-                       <div class=""> \
+                      <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
+                      <div class=""> \
                         <label for="time" class="col col-form-label font-weight-bold">Time:</label> \
-                        </div> \
-                        <div class="col-auto"> \
-                        <input type="time" class="form-control text-dark" name="time" required> \
-                        </div> \
-                      <div class="col"> \
-                      <input id="c_name" type="text" class="form-control" placeholder="Activity" name="row[' + rc + '][activity]"> \
                       </div> \
+                      <div class="col-auto"> \
+                        <input type="time" class="form-control text-dark" name="row[' + rc + '][time]" required> \
+                      </div> \
+                      <div class="col"> \
+                      <select class="form-control custom-select" name="row[' + rc + '][activity]"><option selected value="">Activity</option> \ <?php
+                        if (isset($activity)) {
+                            foreach ($activity as $k => $v):
+                                echo('<option value="' . $k . '">' . $v . '</option>');
+                            endforeach;
+                        }
+                ?> </select> \
+                        </div> \
                       <div class="col"> \
                         <input type="text" class="form-control" placeholder="Vehicle Reg." name="row[' + rc + '][vreg]"> \
                       </div> \
@@ -84,17 +73,20 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                         <input type="text" class="form-control" placeholder="SAMSA" name="row[' + rc + '][samsa]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Licence No." name="row[' + rc + '][licence]"> \
+                        <input type="text" class="form-control" placeholder="Boat Name" name="row[' + rc + '][bname]"> \
                       </div> \
                       <div class="col"> \
                         <input type="text" class="form-control" placeholder="Engine size" name="row[' + rc + '][size]"> \
                       </div> \
                       <div class="form-check big-checkbox my-auto ml-2 mr-1"> \
-                      <input class="form-check-input" type="checkbox" id="gridCheck" name="row[' + rc + '][twin]"> \
-                      <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Twin</label> \
+                        <input class="form-check-input" type="checkbox" id="gridCheck" name="row[' + rc + '][twin]"> \
+                        <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Twin</label> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" id="final" class="form-control" placeholder="Boat Name" name="row[' + rc + '][bname]"> \
+                        <input type="text" class="form-control" placeholder="Licence No." name="row[' + rc + '][licence]"> \
+                      </div> \
+                      <div class="col"> \
+                        <input type="text" id="final" class="form-control" placeholder="Breede No." name="row[' + rc + '][breede]"> \
                       </div> \
             </div>'
             return formHtml;
@@ -106,13 +98,9 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                 generateForm(rowCount, lineNum)
             );
 
-            $( document ).on( 'keydown', '#c_name', function() {
-                $(this).autocomplete({
-                    source: 'bird_c_name.php'
-                });
-            });
             $( document ).on( 'keydown', '#final', function( event ) {
-                var keyCode = event.keyCode || event.which;
+                $(this).attr('id', '');
+                const keyCode = event.keyCode || event.which;
                 if (keyCode === 9) {
                     rowCount++;
                     lineNum++;
@@ -124,18 +112,14 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                 }
             });
         });
-
-        $( '#datepicker' ).datepicker({
+        let date_picker = $( '#datepicker' );
+        date_picker.datepicker({
             dateFormat:  "yy-mm-dd"
         });
 
-        $( '#datepicker' ).change( function () {
+        date_picker.change( function () {
             $('fieldset').prop('disabled', false);
-            $('select[name="slipway"]').focus();
+            $('#slipway').focus();
         });
     </script>
 </div>
-
-<?php require_once "./html/footer.php";?>
-</body>
-
