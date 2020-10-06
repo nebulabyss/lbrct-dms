@@ -32,7 +32,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="../bird_count_add.php">Add bird count</a>
                 <a class="dropdown-item" href="../marine_debris_add.php">Add marine debris</a>
-                <a class="dropdown-item" href="#">Add water quality</a>
+                <a class="dropdown-item" href="../water_quality.php">Add water quality</a>
             </div>
         </li>
 
