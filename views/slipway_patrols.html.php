@@ -78,8 +78,8 @@
                       <div class="col"> \
                         <input type="text" class="form-control" placeholder="Engine size" name="row[' + rc + '][size]"> \
                       </div> \
-                      <div class="form-check big-checkbox my-auto ml-2 mr-1"> \
-                        <input class="form-check-input" type="checkbox" id="gridCheck" name="row[' + rc + '][twin]"> \
+                      <div class="form-check my-auto ml-2 mr-1"> \
+                        <input class="form-check-input big-checkbox" type="checkbox" id="gridCheck" name="row[' + rc + '][twin]"> \
                         <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Twin</label> \
                       </div> \
                       <div class="col"> \
