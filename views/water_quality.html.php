@@ -28,13 +28,6 @@
                 echo '<td style="text-align: center;">';
                 echo '<input class="big-checkbox" type="checkbox" name="row[' . $rowCounter . ']">';
                 echo '</td>';
-                // unset($k['marked']);
-//                foreach ($k as $v):
-//                    if ($v == 'Marked' || $v == '') {
-//                        continue;
-//                    }
-//                    echo '<td>' . $v . '</td>';
-//                endforeach;
                 echo '<td>' . $k['depth'] . '</td>';
                 echo '<td>' . $k['time'] . '</td>';
                 echo '<td>' . $k['rdocon'] . '</td>';

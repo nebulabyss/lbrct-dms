@@ -31,7 +31,6 @@ if (isset($_FILES['userfile'])) {
         $counter = 0;
         foreach ($tr->getElementsByTagName("td") as $td) {
             if ($counter == 0) {
-                // $pieces = explode(' ', trim($td->textContent));
                 $string = trim($td->textContent);
                 $token = strpos($string, ' ');
                 $row[$keys[$counter]] = substr($string, $token);
