@@ -6,14 +6,14 @@
             <thead>
             <tr>
                 <th scope="col">Mark</th>
+                <th scope="col">Depth (m)</th>
                 <th scope="col">Time</th>
                 <th scope="col">RDO Concentration (mg/L)</th>
                 <th scope="col">RDO Saturation (%Sat)</th>
                 <th scope="col">Temperature (°C)</th>
                 <th scope="col">Specific Conductivity (mS/cm)</th>
                 <th scope="col">Salinity (PSU)</th>
-                <th scope="col">Depth (m)</th>
-                <th scope="col">pH (pH)</th>
+                <th scope="col">pH</th>
             </tr>
             </thead>
             <tbody>
@@ -21,17 +21,28 @@
             $rowCounter = 0;
             foreach ($wq_data as $k):
                 if ($k['marked'] == 'Marked') {
-                    echo '<tr class="text-white bg-info">';
+                    echo '<tr class="text-black bg-warning">';
                 } else {
                     echo '<tr>';
                 }
                 echo '<td style="text-align: center;">';
                 echo '<input class="big-checkbox" type="checkbox" name="row[' . $rowCounter . ']">';
                 echo '</td>';
-                unset($k['marked']);
-                foreach ($k as $v):
-                    echo '<td>' . $v . '</td>';
-                endforeach;
+                // unset($k['marked']);
+//                foreach ($k as $v):
+//                    if ($v == 'Marked' || $v == '') {
+//                        continue;
+//                    }
+//                    echo '<td>' . $v . '</td>';
+//                endforeach;
+                echo '<td>' . $k['depth'] . '</td>';
+                echo '<td>' . $k['time'] . '</td>';
+                echo '<td>' . $k['rdocon'] . '</td>';
+                echo '<td>' . $k['rdosat'] . '</td>';
+                echo '<td>' . $k['temp'] . '</td>';
+                echo '<td>' . $k['cond'] . '</td>';
+                echo '<td>' . $k['sal'] . '</td>';
+                echo '<td>' . $k['ph'] . '</td>';
                 echo '</tr>';
                 $rowCounter++;
             endforeach;
@@ -45,8 +56,8 @@
     </form>
         <script>
             $('input[type=checkbox').on('click', function (){
-                if ($(this).closest('tr').hasClass('bg-info')) {
-                    $(this).closest('tr').removeClass('text-white bg-info');
+                if ($(this).closest('tr').hasClass('bg-warning')) {
+                    $(this).closest('tr').removeClass('text-black bg-warning');
                 }
                     $(this).closest('tr').toggleClass('text-white bg-success');
             });
