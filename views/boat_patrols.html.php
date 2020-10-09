@@ -11,13 +11,13 @@
                     <div>
                         <label for="start_time" class="col ml-1 col-form-label">Start Time:</label>
                     </div>
-                    <div class="col-1">
+                    <div>
                         <input type="time" class="form-control bg-warning" id="start_time" name="start_time" required>
                     </div>
                     <div>
                         <label for="end_time" class="col col-form-label">End Time:</label>
                     </div>
-                    <div class="col-1">
+                    <div>
                         <input type="time" class="form-control bg-warning" id="end_time" name="end_time" required>
                     </div>
             </div>
