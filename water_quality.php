@@ -27,7 +27,7 @@ if (isset($_FILES['userfile'])) {
     $trList = $finder->query("//tr[contains(concat(' ', normalize-space(@class), ' '), ' $classnames[0] ') or contains(concat(' ', normalize-space(@class), ' '), ' $classnames[1] ')]");
 
     foreach ($trList as $tr) {
-        $row = [];
+        $row = ['site' => $_POST['site']];
         $counter = 0;
         foreach ($tr->getElementsByTagName("td") as $td) {
             if ($counter == 0) {
