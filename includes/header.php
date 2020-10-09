@@ -20,14 +20,18 @@
             color: white;
             background-image: none;
         }
-        input[type=checkbox]
-        {
+        .big-checkbox {
             /* Double-sized Checkboxes */
             -ms-transform: scale(2); /* IE */
             -moz-transform: scale(2); /* FF */
             -webkit-transform: scale(2); /* Safari and Chrome */
             -o-transform: scale(2); /* Opera */
-            padding: 10px;
+            /* padding: 10px; */
+        }
+        .centerCheckBox {
+            position: relative;
+            display: table;
+            width: 100%;
         }
     </style>
 </head>
