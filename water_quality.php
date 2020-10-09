@@ -68,20 +68,21 @@ if (isset($_FILES['userfile'])) {
     $WQform_processor->WQprocessForm($database_controller, $batch_table, $db_table);
 
     unset($_SESSION['wq_data']);
-    unset($_POST);
+    unset($_SESSION['site']);
+    unset($_POST['row']);
 
-} else {
-    /*
-     * Use an array of arrays.
-     * The first element per array is the database table.
-     * Subsequent elements are the relevant columns.
-     */
+}
+/*
+ * Use an array of arrays.
+ * The first element per array is the database table.
+ * Subsequent elements are the relevant columns.
+ */
+if(empty($_POST) && empty($_FILES)) {
     $table_columns = array(
         array('water_quality_sites', 'id', 'description')
     );
     $sites = $database_controller->SelectKeyPairs($table_columns[0]);
 }
-
 include 'includes/header.php';
 include 'views/water_quality.html.php';
 include 'includes/footer.php';
