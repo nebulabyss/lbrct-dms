@@ -28,10 +28,6 @@
             -o-transform: scale(2); /* Opera */
             /* padding: 10px; */
         }
-        .centerCheckBox {
-            position: relative;
-            display: table;
-            width: 100%;
-        }
+
     </style>
 </head>
