@@ -67,15 +67,16 @@
                     <?php if (isset($_SESSION['date'])) echo 'value="' . $_SESSION['date'] . '"' ?> required>
                 </div>
                 <div class="col-2">
-                    <label for="site" class="ui-helper-hidden"></label>
-                    <select class="form-control custom-select bg-warning" name="site" required><option selected value="">Site</option>
-                        <?php
-                        if (isset($sites)) {
-                            foreach($sites as $k => $v):
-                                echo ('<option value="' . $k . '">' . $k . ' - ' .$v . '</option>');
-                            endforeach;
-                        }
-                        ?> </select>
+                    <label>
+                        <select class="form-control custom-select bg-warning" name="site" required><option selected value="">Site</option>
+                            <?php
+                            if (isset($sites)) {
+                                foreach($sites as $k => $v):
+                                    echo ('<option value="' . $k . '">' . $k . ' - ' .$v . '</option>');
+                                endforeach;
+                            }
+                            ?> </select>
+                    </label>
                 </div>
             </div>
             <div class="custom-file col-4">
@@ -90,7 +91,7 @@
         <script>
             // Name of the file appears on select
             $(".custom-file-input").on('change', function() {
-                var fileName = $(this).val().split("\\").pop();
+                let fileName = $(this).val().split("\\").pop();
                 $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
             });
             let date_picker = $( '#datepicker' );
