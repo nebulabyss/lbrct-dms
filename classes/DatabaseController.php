@@ -5,15 +5,18 @@ class DatabaseController
 {
     private PDO $pdo;
 
-    function __construct(PDO $pdo) {
+    function __construct(PDO $pdo)
+    {
         $this->pdo = $pdo;
     }
 
-    public function GetLastInsertID() {
+    public function GetLastInsertID()
+    {
         return $this->pdo->lastInsertId();
     }
 
-    public function InsertIntoDatabase($form_data, $table, $last_batch_id = 0) {
+    public function InsertIntoDatabase($form_data, $table, $last_batch_id = 0)
+    {
         if ($last_batch_id != 0) {
             $form_data['batch_id'] = $last_batch_id;
         }
@@ -21,13 +24,13 @@ class DatabaseController
         foreach ($form_data as $k => $v) {
             $sql .= $k . ', ';
         }
-        $sql = rtrim($sql,', ');
+        $sql = rtrim($sql, ', ');
         $sql .= ') VALUES (';
 
         foreach ($form_data as $k => $v) {
             $sql .= ':' . $k . ', ';
         }
-        $sql = rtrim($sql,', ');
+        $sql = rtrim($sql, ', ');
         $sql .= ')';
 
         $data = array();
@@ -40,8 +43,7 @@ class DatabaseController
 
         try {
             $stmt->execute($data);
-        }
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo $e->getMessage();
             die();
         }
@@ -54,5 +56,15 @@ class DatabaseController
         $query = $this->pdo->prepare($sql);
         $query->execute(array());
         return $query->fetchAll(PDO::FETCH_KEY_PAIR);
+    }
+
+    public function CheckIfBatchExists($value)
+    {
+        $return_value = false;
+        $stmt = $this->pdo->prepare('SELECT batch_id FROM water_quality_batch WHERE date = :value');
+        $stmt->execute(array(':value' => $value));
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($row !== false) $return_value = $row['batch_id'];
+        return $return_value;
     }
 }
