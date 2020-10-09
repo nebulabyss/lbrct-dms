@@ -1,14 +1,14 @@
 <?php
 include 'pdo.php';
-include 'classes/FormProcessor.php';
+include 'classes/WQFormProcessor.php';
 include 'classes/DatabaseController.php';
 session_start();
 
 /**
  * @var $pdo
  */
-$form_processor = new FormProcessor($_POST);
 $database_controller = new DatabaseController($pdo);
+
 if (isset($_FILES['userfile'])) {
     $uploaddir = __DIR__ . '/uploads/';
     $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
@@ -19,43 +19,56 @@ if (isset($_FILES['userfile'])) {
     $dom->loadHTMLFile($uploadfile, LIBXML_NOERROR);
 
     $wq_data = array();
+    $keys = array('time', 'rdocon', 'rdosat', 'temp', 'cond', 'sal', 'depth', 'ph', 'marked');
     $finder = new DomXPath($dom);
-    $classnames = ['data','data-marked'];
-
+    $classnames = ['data', 'data-marked'];
 
     $trList = $dom->getElementsByTagName('tr');
     $trList = $finder->query("//tr[contains(concat(' ', normalize-space(@class), ' '), ' $classnames[0] ') or contains(concat(' ', normalize-space(@class), ' '), ' $classnames[1] ')]");
-    foreach ( $trList as $tr )  {
+
+    foreach ($trList as $tr) {
         $row = [];
-        foreach ( $tr->getElementsByTagName("td") as $td )  {
-            $row[] = trim($td->textContent);
+        $counter = 0;
+        foreach ($tr->getElementsByTagName("td") as $td) {
+            if ($counter == 0) {
+                // $pieces = explode(' ', trim($td->textContent));
+                $string = trim($td->textContent);
+                $token = strpos($string, ' ');
+                $row[$keys[$counter]] = substr($string, $token);
+                $counter++;
+                continue;
+            }
+            $row[$keys[$counter]] = trim($td->textContent);
+            $counter++;
         }
         $wq_data[] = $row;
-    }
 
+    }
+    $_SESSION['date'] = $_POST['date'];
+    $_SESSION['site'] = $_POST['site'];
+    $_SESSION['wq_data'] = $wq_data;
+
+    unlink($uploadfile);
+
+} elseif (isset($_POST['row'])) {
     $counter = 0;
-    $marked = array();
-    while ($counter < count($wq_data)) {
-
-        $pieces = explode(' ', $wq_data[$counter][0]);
-        unset($wq_data[$counter][0]);
-        if ($wq_data[$counter][8] == "Marked") {
-            $marked[] = $counter;
-        }
-        unset($wq_data[$counter][8]);
-        array_unshift($wq_data[$counter], $pieces[0], $pieces[1]);
-        $counter ++;
+    while ($counter < count($_SESSION['wq_data'])) {
+        $_SESSION['wq_data'][$counter]['marked'] = NULL;
+        $counter++;
     }
 
-    include 'includes/header.php';
-    include 'views/water_quality.html.php';
-    include 'includes/footer.php';
+    $marked = array_keys($_POST['row']);
+    foreach ($marked as $key) {
+        $_SESSION['wq_data'][$key]['marked'] = 1;
+    }
 
+    $batch_table = 'water_quality_batch';
+    $db_table = 'water_quality';
+    $WQform_processor = new WQFormProcessor($_SESSION);
+    $WQform_processor->WQprocessForm($database_controller, $batch_table, $db_table);
 
-
-
-
-
+    unset($_SESSION['wq_data']);
+    unset($_POST);
 
 } else {
     /*
@@ -64,15 +77,11 @@ if (isset($_FILES['userfile'])) {
      * Subsequent elements are the relevant columns.
      */
     $table_columns = array(
-        array('compliance_zones', 'compliance_zones_id', 'description'),
-        array('transgression_types', 'transgression_id', 'section')
+        array('water_quality_sites', 'id', 'description')
     );
-    $zones = $database_controller->SelectKeyPairs($table_columns[0]);
-    $trans = $database_controller->SelectKeyPairs($table_columns[1]);
-
-    include 'includes/header.php';
-    include 'views/water_quality.html.php';
-    include 'includes/footer.php';
-
+    $sites = $database_controller->SelectKeyPairs($table_columns[0]);
 }
 
+include 'includes/header.php';
+include 'views/water_quality.html.php';
+include 'includes/footer.php';
