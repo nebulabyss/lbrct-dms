@@ -6,7 +6,6 @@
             <thead>
             <tr>
                 <th scope="col">Mark</th>
-                <th scope="col">Date</th>
                 <th scope="col">Time</th>
                 <th scope="col">RDO Concentration (mg/L)</th>
                 <th scope="col">RDO Saturation (%Sat)</th>
