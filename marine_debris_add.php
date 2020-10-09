@@ -1,10 +1,7 @@
 <?php
 require 'pdo.php';
 session_start();
-?>
-
-<?php
-require_once "./html/header.php";
+include "./includes/header.php";
 
 $stmt = $pdo->prepare('SELECT marine_debris_minor_categories.marine_debris_minor_categories_id, marine_debris_minor_categories.code, marine_debris_minor_categories.description, marine_debris_major_categories.description FROM marine_debris_minor_categories INNER JOIN marine_debris_major_categories WHERE marine_debris_minor_categories.marine_debris_major_categories_id = marine_debris_major_categories.marine_debris_major_categories_id;
 ');
@@ -16,10 +13,9 @@ $stmt->execute(array());
 $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
 ?>
 
-</head>
 <body>
 <div class="container-fluid">
-    <?php require_once "./html/nav.php";?>
+    <?php include "./includes/nav.php";?>
     <div>
         <h3 class="text-muted mt-2">Marine debris</h3>
         <form>
@@ -61,7 +57,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                                                 <div class="col"> \
                         <select class="form-control custom-select" name="row[' + rc + '][item]" required><option selected value="">Item</option> \ <?php
                 foreach($item_codes as $a):
-                    echo ('<option value="' . $a[marine_debris_minor_categories_id] . '">' . $a[code] . ' - ' . $a[description][0].  ' - ' . $a[description][1].'</option>');
+                    echo ('<option value="' . $a['marine_debris_minor_categories_id'] . '">' . $a['code'] . ' - ' . $a['description'][0].  ' - ' . $a['description'][1].'</option>');
                 endforeach;
                 ?>
                         </select> \
@@ -110,5 +106,5 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
     </script>
 </div>
 
-<?php require_once "./html/footer.php";?>
+<?php include "./includes/footer.php";?>
 
