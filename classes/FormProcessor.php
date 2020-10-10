@@ -16,12 +16,13 @@ class FormProcessor
         $counter = 0;
         while ($counter < count($this->post_data['row'])) {
             foreach ($this->post_data['row'][$counter] as $k => $v) {
-                if ($this->post_data['row'][$counter][$k] == 'on') {
-                    $this->post_data['row'][$counter][$k] = 1;
-                    continue;
-                }
                 if ($this->post_data['row'][$counter][$k] == '') {
                     $this->post_data['row'][$counter][$k] = NULL;
+
+                    continue;
+                }
+                if ($this->post_data['row'][$counter][$k] == 'on') {
+                    $this->post_data['row'][$counter][$k] = 1;
                 }
             }
             $counter++;
