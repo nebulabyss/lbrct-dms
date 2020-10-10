@@ -1,59 +1,45 @@
-<?php
-require 'pdo.php';
-session_start();
-?>
-
-<?php
-require_once "./html/header.php";
-
-
-$stmt = $pdo->prepare('SELECT bird_behaviours_id, code FROM birds_behaviours');
-$stmt->execute(array());
-$behavior_codes = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
-
-$stmt = $pdo->prepare('SELECT birds_habitats_id, code FROM birds_habitats');
-$stmt->execute(array());
-$habitat_codes = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
-
-$stmt = $pdo->prepare('SELECT birds_minor_zones_id, code FROM birds_minor_zones');
-$stmt->execute(array());
-$zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
-?>
-
-</head>
 <body>
 <div class="container-fluid">
-    <?php require_once "./html/nav.php";?>
+    <?php require_once "./includes/nav.php";?>
     <div>
         <h3 class="text-muted mt-2">Bird count</h3>
         <form>
-            <div class="form-row mb-2">
+            <div class="form-row">
                 <div class="col-1">
+                    <label for="datepicker" class="ui-helper-hidden"></label>
                     <input type="text" class="form-control bg-warning text-dark" placeholder="Batch Date" id="datepicker" name="date" required>
                 </div>
 
                 <fieldset class="form-row" disabled>
-                <div class="col">
-                    <select class="form-control bg-warning text-dark custom-select" name="zone" required><option selected value="">Zone</option>
-                        <?php
-                        foreach($zones as $k => $v):
-                            echo ('<option value="' . $k . '">' . $v . '</option>');
-                        endforeach;
-                        ?>
-                    </select>
-                </div>
+                    <div class="col">
+                        <label>
+                            <select class="form-control bg-warning text-dark custom-select" id="zone" name="zone" required><option selected value="">Zone</option>
+                                <?php
+                                if (isset($zones)) {
+                                    foreach($zones as $k => $v):
+                                        echo ('<option value="' . $k . '">' . $v . '</option>');
+                                    endforeach;
+                                }
+                                ?>
+                            </select>
+                        </label>
+                    </div>
                     <div class="form-group row">
                         <label for="time" class="col col-form-label">Start Time:</label>
                     </div>
-                <div class="col">
-                    <input type="time" class="form-control bg-warning text-dark" name="time_start" required>
-                </div>
+                    <div class="col">
+                        <label>
+                            <input type="time" class="form-control bg-warning text-dark" name="time_start" required>
+                        </label>
+                    </div>
                     <div class="form-group row">
                         <label for="time" class="col col-form-label">End Time:</label>
                     </div>
-                <div class="col">
-                    <input type="time" class="form-control bg-warning text-dark" name="time_end" required>
-                </div>
+                    <div class="col">
+                        <label>
+                            <input type="time" class="form-control bg-warning text-dark" name="time_end" required>
+                        </label>
+                    </div>
                 </fieldset>
             </div>
             <fieldset disabled>
@@ -62,11 +48,11 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                 </div>
             </fieldset>
 
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addSpeciesModal">Add species</button>
-        <div class="float-right">
-            <button type="button" class="btn btn-danger">Cancel</button>
-            <button type="submit" class="btn btn-success">Submit</button>
-        </div>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addSpeciesModal">Add species</button>
+            <div class="float-right">
+                <button type="button" class="btn btn-danger">Cancel</button>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
         </form>
     </div>
     <!-- Modal Start -->
@@ -80,19 +66,22 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                     <form id="addSpecies" method="post">
                         <div class="form-row">
                             <div class="col">
-                                <input type="text" class="form-control" name="species_name" placeholder="Common Name">
+                                <label>
+                                    <input type="text" class="form-control" name="species_name" placeholder="Common Name">
+                                </label>
                             </div>
                             <div class="form-group col">
+                                <label for="inputState" class="ui-helper-hidden"></label>
                                 <select id="inputState" name="species_type" class="form-control">
-                                    <option selected>Water-associated</option>
-                                    <option>Terrestrial</option>
+                                    <option value="1" selected>Water-associated</option>
+                                    <option value="2">Terrestrial</option>
                                 </select>
                             </div>
                         </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-success">Save changes</button>
-                </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success">Save changes</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -107,24 +96,28 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
             formHtml = '<div class="form-row mb-2"> \
                        <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
                           <div class="col"> \
-                            <input id="s_name" type="text" class="form-control" placeholder="Species Name" name="row[' + rc + '][s_name]" required> \
+                            <input id="species" type="text" class="form-control" placeholder="Species Name" name="row[' + rc + '][species]" required> \
                       </div> \
                       <div class="col"> \
                         <input type="text" class="form-control" placeholder="Count" name="row[' + rc + '][count]" required> \
                       </div> \
                       <div class="col"> \
                         <select class="form-control custom-select" name="row[' + rc + '][behavior]"><option selected value="">Behaviour</option> \ <?php
-                foreach($behavior_codes as $k => $v):
-                    echo ('<option value="' . $k . '">' . $v . '</option>');
-                endforeach;
+                if (isset($behavior_codes)) {
+                    foreach($behavior_codes as $k => $v):
+                        echo ('<option value="' . $k . '">' . $v . '</option>');
+                    endforeach;
+                }
                 ?>
                         </select> \
                       </div> \
                       <div class="col"> \
                         <select class="form-control custom-select" name="row[' + rc + '][habitat]"><option selected value="">Habitat</option> \ <?php
-                foreach($habitat_codes as $k => $v):
-                    echo ('<option value="' . $k . '">' . $v . '</option>');
-                endforeach;
+                if (isset($habitat_codes)) {
+                    foreach($habitat_codes as $k => $v):
+                        echo ('<option value="' . $k . '">' . $v . '</option>');
+                    endforeach;
+                }
                 ?>
                       </select> \
                       </div> \
@@ -132,7 +125,7 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                         <input type="text" class="form-control" placeholder="Latitude" name="row[' + rc + '][lat]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" id="long" class="form-control" placeholder="Longitude" name="row[' + rc + '][long]"> \
+                        <input type="text" id="longt" class="form-control" placeholder="Longitude" name="row[' + rc + '][longt]"> \
                       </div> \
             </div>'
             return formHtml;
@@ -144,13 +137,13 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
                 generateForm(rowCount, lineNum)
             );
 
-            $( document ).on( 'keydown', '#s_name', function() {
+            $( document ).on( 'keydown', '#species', function() {
                 $(this).autocomplete({
                     source: 'bird_c_name.php'
                 });
             });
-            $( document ).on( 'keydown', '#long', function( event ) {
-                var keyCode = event.keyCode || event.which;
+            $( document ).on( 'keydown', '#longt', function( event ) {
+                let keyCode = event.keyCode || event.which;
                 if (keyCode === 9) {
                     rowCount++;
                     lineNum++;
@@ -163,13 +156,14 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
             });
         });
 
-        $( '#datepicker' ).datepicker({
+        let date_picker = $( '#datepicker' );
+        date_picker.datepicker({
             dateFormat:  "yy-mm-dd"
         });
 
-        $( '#datepicker' ).change( function () {
+        date_picker.change( function () {
             $('fieldset').prop('disabled', false);
-            $('select[name="zone"]').focus();
+            $('#zone').focus();
         });
 
         $( '#addSpecies' ).submit(function( event ) {
@@ -188,6 +182,3 @@ $zones = $stmt->fetchAll(PDO::FETCH_KEY_PAIR );
         })
     </script>
 </div>
-
-<?php require_once "./html/footer.php";?>
-
