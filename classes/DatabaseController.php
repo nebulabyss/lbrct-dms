@@ -58,6 +58,14 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_KEY_PAIR);
     }
 
+    public function SelectColumn(array $table_columns)
+    {
+        $sql = 'SELECT ' . $table_columns[1] . ' FROM ' . $table_columns[0];
+        $query = $this->pdo->prepare($sql);
+        $query->execute(array());
+        return $query->fetchAll(PDO::FETCH_COLUMN );
+    }
+
     public function CheckIfBatchExists($value)
     {
         $return_value = false;
