@@ -29,7 +29,7 @@ class FormProcessor
         }
     }
 
-    public function processForm($db_object, $batch_table, $db_table) {
+    public function ProcessForm($db_object, $batch_table, $db_table) {
         // Process batch
         $batch_data = array();
         foreach ($this->post_data as $k => $v) {

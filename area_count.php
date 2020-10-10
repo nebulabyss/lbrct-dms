@@ -21,7 +21,7 @@ if (isset($_POST['row'])) {
 
     $batch_table = 'compliance_zones_batch';
     $db_table = 'compliance_zone_counts';
-    $form_processor->processForm($database_controller, $batch_table, $db_table);
+    $form_processor->ProcessForm($database_controller, $batch_table, $db_table);
 }
 
 $table_columns = array(

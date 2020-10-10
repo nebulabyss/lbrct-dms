@@ -16,7 +16,7 @@ if (isset($_POST['date'])) {
      */
     $batch_table = 'boat_patrols_batch';
     $db_table = 'boat_patrols';
-    $form_processor->processForm($database_controller, $batch_table, $db_table);
+    $form_processor->ProcessForm($database_controller, $batch_table, $db_table);
 
 } else {
     /*
