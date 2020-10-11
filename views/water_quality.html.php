@@ -7,6 +7,7 @@
             <tr>
                 <th scope="col">Mark</th>
                 <th scope="col">Depth (m)</th>
+                <th scope="col">Date</th>
                 <th scope="col">Time</th>
                 <th scope="col">RDO Concentration (mg/L)</th>
                 <th scope="col">RDO Saturation (%Sat)</th>
@@ -19,8 +20,8 @@
             <tbody>
             <?php
             $rowCounter = 0;
-            foreach ($wq_data as $k):
-                if ($k['marked'] == 'Marked') {
+            foreach ($wq_data['row'] as $k):
+                if ($k['marked'] == 1) {
                     echo '<tr class="text-black bg-warning">';
                 } else {
                     echo '<tr>';
@@ -29,6 +30,7 @@
                 echo '<input class="big-checkbox" type="checkbox" name="row[' . $rowCounter . ']">';
                 echo '</td>';
                 echo '<td>' . $k['depth'] . '</td>';
+                echo '<td>' . $wq_data['date'] . '</td>';
                 echo '<td>' . $k['time'] . '</td>';
                 echo '<td>' . $k['rdocon'] . '</td>';
                 echo '<td>' . $k['rdosat'] . '</td>';
