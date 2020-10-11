@@ -1,6 +1,6 @@
 <?php
 include 'pdo.php';
-include 'classes/WQFormProcessor.php';
+include 'classes/FormProcessor.php';
 include 'classes/DatabaseController.php';
 session_start();
 
@@ -30,53 +30,49 @@ if (isset($_FILES['userfile'])) {
         $row = ['site' => $_POST['site']];
         $counter = 0;
         foreach ($tr->getElementsByTagName("td") as $td) {
+            $string = trim($td->textContent);
             if ($counter == 0) {
-                $string = trim($td->textContent);
                 $token = strpos($string, ' ');
+                if (!isset($wq_data['date'])) {
+                    $wq_data['date'] = substr($string, 0, $token);
+                }
                 $row[$keys[$counter]] = substr($string, $token);
                 $counter++;
                 continue;
             }
-            $row[$keys[$counter]] = trim($td->textContent);
+
+            if ($string == '') $string = NULL;
+            if ($string == 'Marked') $string = 1;
+
+            $row[$keys[$counter]] = $string;
             $counter++;
         }
-        $wq_data[] = $row;
+        $wq_data['row'][] = $row;
 
     }
-    $_SESSION['date'] = $_POST['date'];
-    $_SESSION['site'] = $_POST['site'];
-    $_SESSION['wq_data'] = $wq_data;
 
+    $_SESSION['wq_data'] = $wq_data;
     unlink($uploadfile);
 
 } elseif (isset($_POST['row'])) {
-    $counter = 0;
-    while ($counter < count($_SESSION['wq_data'])) {
-        $_SESSION['wq_data'][$counter]['marked'] = NULL;
-        $counter++;
-    }
-
     $marked = array_keys($_POST['row']);
-    foreach ($marked as $key) {
-        $_SESSION['wq_data'][$key]['marked'] = 1;
-    }
+    $form_processor = new FormProcessor($_SESSION['wq_data']);
+    $form_processor->WQMarkedElementCleanUp($marked);
 
     $batch_table = 'water_quality_batch';
     $db_table = 'water_quality';
-    $WQform_processor = new WQFormProcessor($_SESSION);
-    $WQform_processor->WQprocessForm($database_controller, $batch_table, $db_table);
+
+    $form_processor->ProcessForm($database_controller, $batch_table, $db_table);
 
     unset($_SESSION['wq_data']);
-    unset($_SESSION['site']);
     unset($_POST['row']);
-
 }
 /*
  * Use an array of arrays.
  * The first element per array is the database table.
  * Subsequent elements are the relevant columns.
  */
-if(empty($_POST) && empty($_FILES)) {
+if (empty($_POST) && empty($_FILES)) {
     $table_columns = array(
         array('water_quality_sites', 'id', 'description')
     );
