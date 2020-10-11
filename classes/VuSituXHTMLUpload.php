@@ -35,11 +35,11 @@ class VuSituXHTMLUpload
             foreach ($tr->getElementsByTagName("td") as $td) {
                 $string = trim($td->textContent);
                 if ($counter == 0) {
-                    $token = strpos($string, ' ');
+                    $needle = strpos($string, ' ');
                     if (!isset($wq_data['date'])) {
-                        $wq_data['date'] = substr($string, 0, $token);
+                        $wq_data['date'] = substr($string, 0, $needle);
                     }
-                    $row[$keys[$counter]] = substr($string, $token);
+                    $row[$keys[$counter]] = substr($string, $needle);
                     $counter++;
                     continue;
                 }
