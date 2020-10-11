@@ -21,7 +21,7 @@
             <?php
             $rowCounter = 0;
             foreach ($wq_data['row'] as $k):
-                if ($k['marked'] == 1) {
+                if ($k['marked'] == 'Marked') {
                     echo '<tr class="text-black bg-warning">';
                 } else {
                     echo '<tr>';
@@ -66,21 +66,17 @@
         <h3 class="text-muted mt-2">Water quality</h3>
         <form action="../water_quality.php" method="post" enctype="multipart/form-data">
             <div class="form-row mb-2">
-                <div class="col-1">
-                    <label for="datepicker" class="ui-helper-hidden"></label>
-                    <input type="text" class="form-control bg-warning" placeholder="Batch Date" id="datepicker" name="date"
-                    <?php if (isset($_SESSION['date'])) echo 'value="' . $_SESSION['date'] . '"' ?> required>
-                </div>
                 <div class="col-2">
                     <label>
-                        <select class="form-control custom-select bg-warning" name="site" required><option selected value="">Site</option>
+                        <select class="form-control custom-select bg-warning" name="site" id="site" required><option selected value="">Site</option>
                             <?php
                             if (isset($sites)) {
                                 foreach($sites as $k => $v):
                                     echo ('<option value="' . $k . '">' . $k . ' - ' .$v . '</option>');
                                 endforeach;
                             }
-                            ?> </select>
+                            ?>
+                        </select>
                     </label>
                 </div>
             </div>
@@ -99,14 +95,9 @@
                 let fileName = $(this).val().split('\\').pop();
                 $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
             });
-            let date_picker = $( '#datepicker' );
-            date_picker.datepicker({
-                dateFormat:  'yy-mm-dd'
-            });
 
-            date_picker.change( function () {
-                $('fieldset').prop('disabled', false);
-                $('#start_time').focus();
+            $('#site').change( function () {
+                $('#customFile').focus();
             });
         </script>
     </div>
