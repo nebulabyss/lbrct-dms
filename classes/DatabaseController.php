@@ -66,11 +66,12 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_COLUMN );
     }
 
-    public function CheckIfBatchExists($value)
+    public function CheckIfBatchExists($date, $table)
     {
         $return_value = false;
-        $stmt = $this->pdo->prepare('SELECT batch_id FROM water_quality_batch WHERE date = :value');
-        $stmt->execute(array(':value' => $value));
+        $column = 'batch_id';
+        $stmt = $this->pdo->prepare('SELECT ' . $column . ' FROM ' . $table . ' WHERE date = :date');
+        $stmt->execute(array(':date' => $date));
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row !== false) $return_value = $row['batch_id'];
         return $return_value;
