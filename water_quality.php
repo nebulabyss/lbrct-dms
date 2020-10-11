@@ -14,8 +14,9 @@ if (isset($_FILES['userfile'])) {
     $upload = new VuSituXHTML($_FILES);
     $wq_data = $upload->ParseXHTML();
     $_SESSION['wq_data'] = $wq_data;
+}
 
-} elseif (isset($_POST['row'])) {
+if (isset($_POST['row'])) {
     $marked = array_keys($_POST['row']);
     $form_processor = new FormProcessor($_SESSION['wq_data']);
     $form_processor->WQMarkedElementCleanUp($marked);
