@@ -1,6 +1,6 @@
 <?php
 include 'pdo.php';
-include 'classes/VuSituXHTMLUpload.php';
+include 'classes/VuSituXHTML.php';
 include 'classes/FormProcessor.php';
 include 'classes/DatabaseController.php';
 session_start();
@@ -11,8 +11,7 @@ session_start();
 $database_controller = new DatabaseController($pdo);
 
 if (isset($_FILES['userfile'])) {
-    $upload = new VuSituXHTMLUpload($_FILES);
-    $upload->MoveUploadedFile();
+    $upload = new VuSituXHTML($_FILES);
     $wq_data = $upload->ParseXHTML();
     $_SESSION['wq_data'] = $wq_data;
 

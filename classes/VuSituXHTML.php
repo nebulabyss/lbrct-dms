@@ -1,7 +1,7 @@
 <?php
 
 
-class VuSituXHTMLUpload
+class VuSituXHTML
 {
     private array $files_array;
     private string $uploaddir;
@@ -12,11 +12,9 @@ class VuSituXHTMLUpload
         $this->files_array = $files_array;
         $this->uploaddir = __DIR__ . '/../uploads/';
         $this->uploadfile = $this->uploaddir . basename($this->files_array['userfile']['name']);
-    }
 
-    public function MoveUploadedFile()
-    {
         move_uploaded_file($this->files_array['userfile']['tmp_name'], $this->uploadfile);
+
     }
 
     public function ParseXHTML() {
