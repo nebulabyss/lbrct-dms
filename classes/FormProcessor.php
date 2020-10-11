@@ -11,14 +11,13 @@ class FormProcessor
 
     public function FormElementCleanUp() {
         /*
-         * Clean up elements that expect integers in database and set checkboxes to integer 1.
+         * Set empty string elements that expect integers in database to NULL, and set checkboxes to integer 1.
          */
         $counter = 0;
         while ($counter < count($this->user_data['row'])) {
             foreach ($this->user_data['row'][$counter] as $k => $v) {
                 if ($this->user_data['row'][$counter][$k] == '') {
                     $this->user_data['row'][$counter][$k] = NULL;
-
                     continue;
                 }
                 if ($this->user_data['row'][$counter][$k] == 'on') {
@@ -29,6 +28,9 @@ class FormProcessor
         }
     }
 
+    /**
+     * @param $marked
+     */
     public function WQMarkedElementCleanUp($marked) {
         $counter = 0;
         while ($counter < count($this->user_data['row'])) {
@@ -41,6 +43,11 @@ class FormProcessor
         }
     }
 
+    /**
+     * @param $db_object
+     * @param $batch_table
+     * @param $db_table
+     */
     public function ProcessForm($db_object, $batch_table, $db_table) {
         // Process batch
         $batch_data = array();
@@ -60,7 +67,7 @@ class FormProcessor
             $last_batch_id = $db_object->GetLastInsertID();
         }
 
-        // Process form rows
+        // Process rows
         $counter = 0;
         while ($counter < count($this->user_data['row'])) {
             $db_object->InsertIntoDatabase($this->user_data['row'][$counter], $db_table, $last_batch_id);
