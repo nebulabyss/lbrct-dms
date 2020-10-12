@@ -33,16 +33,10 @@ class DatabaseController
         $sql = rtrim($sql, ', ');
         $sql .= ')';
 
-        $data = array();
-        foreach ($form_data as $k => $v) {
-            $k = ':' . $k;
-            $data[$k] = $v;
-        }
-
         $stmt = $this->pdo->prepare($sql);
 
         try {
-            $stmt->execute($data);
+            $stmt->execute($form_data);
         } catch (PDOException $e) {
             echo $e->getMessage();
             die();
@@ -70,22 +64,18 @@ class DatabaseController
         $return_value = false;
         $column = 'batch_id';
         $sql = 'SELECT ' . $column . ' FROM ' . $batch_table . ' WHERE ';
-        $bindings = NULL;
 
         if (count($batch_data) > 1) {
             foreach ($batch_data as $k => $v) {
                 $sql .= $k . ' = ' . ':' . $k . ' AND ';
-                $k = ':' . $k;
-                $bindings[$k] = $v;
             }
             $sql = rtrim($sql, ' AND ');
         } else {
             $sql .= key($batch_data) . ' = ' . ':' . key($batch_data);
-            $bindings = $batch_data;
         }
 
         $query = $this->pdo->prepare($sql);
-        $query->execute($bindings);
+        $query->execute($batch_data);
         $row = $query->fetch(PDO::FETCH_ASSOC);
         if ($row !== false) $return_value = $row['batch_id'];
         return $return_value;
