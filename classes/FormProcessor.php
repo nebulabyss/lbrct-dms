@@ -58,7 +58,7 @@ class FormProcessor
             $batch_data[$k] = $v;
         }
 
-        $check_batch = $db_object->CheckIfBatchExists($batch_data['date'], $batch_table);
+        $check_batch = $db_object->CheckIfBatchExists($batch_data, $batch_table);
 
         if ($check_batch) {
             $last_batch_id = (int)$check_batch;
