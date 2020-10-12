@@ -15,7 +15,6 @@ if (isset($_POST['row'])) {
         $_POST['row'][$counter] += ['zone' => $counter + 1];
         $counter++;
     }
-    // print("<pre>".print_r($_POST,true)."</pre>");
     $form_processor = new FormProcessor($_POST);
     $form_processor->FormElementCleanUp();
 
