@@ -19,6 +19,7 @@ if (isset($_POST['date'])) {
     $form_processor->ProcessForm($database_controller, $batch_table, $db_table);
 
     header('Location: ' . basename(__FILE__) );
+    exit();
 }
 /*
  * Use an array of arrays.

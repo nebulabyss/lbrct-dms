@@ -27,13 +27,14 @@ if (isset($_POST['row'])) {
 
     unset($_SESSION['wq_data']);
     header('Location: ' . basename(__FILE__) );
+    exit();
 }
 /*
  * Use an array of arrays.
  * The first element per array is the database table.
  * Subsequent elements are the relevant columns.
  */
-if (empty($_POST) && empty($_FILES)) {
+if (empty($_POST)) {
     $table_columns = array(
         array('water_quality_sites', 'id', 'description')
     );

@@ -23,6 +23,7 @@ if (isset($_POST['row'])) {
     $form_processor->ProcessForm($database_controller, $batch_table, $db_table);
 
     header('Location: ' . basename(__FILE__) );
+    exit();
 }
 
 $table_columns = array(
