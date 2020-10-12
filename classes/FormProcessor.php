@@ -27,7 +27,6 @@ class FormProcessor
             $counter++;
         }
     }
-
     /**
      * @param $marked
      */
@@ -47,6 +46,7 @@ class FormProcessor
      * @param $db_object
      * @param $batch_table
      * @param $db_table
+     * @param $allow_duplicates
      */
     public function ProcessForm($db_object, $batch_table, $db_table, $allow_duplicates) {
         // Process batch
@@ -63,16 +63,18 @@ class FormProcessor
         if ($check_batch && $allow_duplicates) {
             $last_batch_id = (int)$check_batch;
         }   elseif ($check_batch && !$allow_duplicates) {
-            echo 'Batch already exists.';
-            exit();
+            $_SESSION['error_message'] = 'Batch already exists';
+            return;
         }   else {
             $db_object->InsertIntoDatabase($batch_data, $batch_table);
             $last_batch_id = $db_object->GetLastInsertID();
         }
 
         // Process rows
+        $row_count = count($this->user_data['row']);
+        $_SESSION['success_message'] = $row_count . ' records added to database';
         $counter = 0;
-        while ($counter < count($this->user_data['row'])) {
+        while ($counter < $row_count ) {
             $db_object->InsertIntoDatabase($this->user_data['row'][$counter], $db_table, $last_batch_id);
             $counter++;
         }
