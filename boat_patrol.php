@@ -7,9 +7,9 @@ session_start();
 /**
  * @var $pdo
  */
-$form_processor = new FormProcessor($_POST);
 $database_controller = new DatabaseController($pdo);
 if (isset($_POST['date'])) {
+    $form_processor = new FormProcessor($_POST);
     $form_processor->FormElementCleanUp();
     /*
      * Specify relevant batch table and form table as strings.
