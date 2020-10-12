@@ -3,7 +3,7 @@
     <?php include "includes/nav.php";?>
     <div>
         <h3 class="text-muted mt-2">Boat patrols</h3>
-        <form action="../boat_patrols.php" method="post">
+        <form action="../boat_patrol.php" method="post">
             <div class="form-row mb-2">
                     <div class="col-1">
                         <label for="datepicker" class="ui-helper-hidden"></label><input type="text" class="form-control bg-warning" placeholder="Batch Date" id="datepicker" name="date" required>
