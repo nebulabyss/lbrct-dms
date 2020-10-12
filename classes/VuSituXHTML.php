@@ -27,8 +27,9 @@ class VuSituXHTML
 
         $keys = array('time', 'rdocon', 'rdosat', 'temp', 'cond', 'sal', 'depth', 'ph', 'marked');
         $wq_data = array();
+        $wq_data['site'] = $_POST['site'];
         foreach ($trList as $tr) {
-            $row = ['site' => $_POST['site']];
+            $row = [];
             $counter = 0;
             foreach ($tr->getElementsByTagName("td") as $td) {
                 $string = trim($td->textContent);
