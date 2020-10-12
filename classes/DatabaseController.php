@@ -61,7 +61,7 @@ class DatabaseController
 
     public function CheckIfBatchExists($batch_data, $batch_table)
     {
-        $return_value = false;
+        $batch_result = false;
         $column = 'batch_id';
         $sql = 'SELECT ' . $column . ' FROM ' . $batch_table . ' WHERE ';
 
@@ -77,8 +77,8 @@ class DatabaseController
         $query = $this->pdo->prepare($sql);
         $query->execute($batch_data);
         $row = $query->fetch(PDO::FETCH_ASSOC);
-        if ($row !== false) $return_value = $row['batch_id'];
-        return $return_value;
+        if ($row !== false) $batch_result = $row[$column];
+        return $batch_result;
     }
 
     public function MarineDebrisCodes() {
