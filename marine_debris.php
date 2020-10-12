@@ -17,6 +17,8 @@ if (isset($_POST['date'])) {
     $batch_table = 'marine_debris_batch';
     $db_table = 'marine_debris';
     $form_processor->ProcessForm($database_controller, $batch_table, $db_table);
+
+    header('Location: ' . basename(__FILE__) );
 }
 
 $table_columns = array(

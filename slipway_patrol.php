@@ -18,17 +18,19 @@ if (isset($_POST['date'])) {
     $db_table = 'slipway_patrol';
     $form_processor->ProcessForm($database_controller, $batch_table, $db_table);
 
-} else {
-    $table_columns = array(
-        array('slipways', 'slipways_id', 'description'),
-        array('slipway_activities', 'activity_id', 'description')
-    );
-    $slipways = $database_controller->SelectKeyPairs($table_columns[0]);
-    $activity = $database_controller->SelectKeyPairs($table_columns[1]);
-
-    include 'includes/header.php';
-    include 'views/slipway_patrol.html.php';
-    include 'includes/footer.php';
+    header('Location: ' . basename(__FILE__) );
 }
+
+$table_columns = array(
+    array('slipways', 'slipways_id', 'description'),
+    array('slipway_activities', 'activity_id', 'description')
+);
+$slipways = $database_controller->SelectKeyPairs($table_columns[0]);
+$activity = $database_controller->SelectKeyPairs($table_columns[1]);
+
+include 'includes/header.php';
+include 'views/slipway_patrol.html.php';
+include 'includes/footer.php';
+
 
 
