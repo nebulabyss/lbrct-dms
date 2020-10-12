@@ -26,7 +26,7 @@ if (isset($_POST['row'])) {
     $form_processor->ProcessForm($database_controller, $batch_table, $db_table);
 
     unset($_SESSION['wq_data']);
-    unset($_POST['row']);
+    header('Location: ' . basename(__FILE__) );
 }
 /*
  * Use an array of arrays.
