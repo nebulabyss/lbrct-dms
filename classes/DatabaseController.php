@@ -47,7 +47,6 @@ class DatabaseController
             echo $e->getMessage();
             die();
         }
-
     }
 
     public function SelectKeyPairs(array $table_columns)
@@ -65,13 +64,29 @@ class DatabaseController
         $query->execute(array());
         return $query->fetchAll(PDO::FETCH_COLUMN );
     }
-    public function CheckIfBatchExists($date, $table)
+
+    public function CheckIfBatchExists($batch_data, $batch_table)
     {
         $return_value = false;
         $column = 'batch_id';
-        $stmt = $this->pdo->prepare('SELECT ' . $column . ' FROM ' . $table . ' WHERE date = :date');
-        $stmt->execute(array(':date' => $date));
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $sql = 'SELECT ' . $column . ' FROM ' . $batch_table . ' WHERE ';
+        $bindings = NULL;
+
+        if (count($batch_data) > 1) {
+            foreach ($batch_data as $k => $v) {
+                $sql .= $k . ' = ' . ':' . $k . ' AND ';
+                $k = ':' . $k;
+                $bindings[$k] = $v;
+            }
+            $sql = rtrim($sql, ' AND ');
+        } else {
+            $sql .= key($batch_data) . ' = ' . ':' . key($batch_data);
+            $bindings = $batch_data;
+        }
+
+        $query = $this->pdo->prepare($sql);
+        $query->execute($bindings);
+        $row = $query->fetch(PDO::FETCH_ASSOC);
         if ($row !== false) $return_value = $row['batch_id'];
         return $return_value;
     }
