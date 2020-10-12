@@ -70,4 +70,5 @@
         </button>
     </div>
 <?php unset($_SESSION['success_message']);?>
+<?php unset($_SESSION['bid']);?>
 <?php endif; ?>
