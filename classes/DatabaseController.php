@@ -65,7 +65,6 @@ class DatabaseController
         $query->execute(array());
         return $query->fetchAll(PDO::FETCH_COLUMN );
     }
-
     public function CheckIfBatchExists($date, $table)
     {
         $return_value = false;
@@ -75,5 +74,12 @@ class DatabaseController
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row !== false) $return_value = $row['batch_id'];
         return $return_value;
+    }
+
+    public function MarineDebrisCodes() {
+        $query = $this->pdo->prepare('SELECT marine_debris_minor_categories.marine_debris_minor_categories_id, marine_debris_minor_categories.code, marine_debris_minor_categories.description, marine_debris_major_categories.description FROM marine_debris_minor_categories INNER JOIN marine_debris_major_categories WHERE marine_debris_minor_categories.marine_debris_major_categories_id = marine_debris_major_categories.marine_debris_major_categories_id;
+');
+        $query->execute(array());
+        return $query->fetchAll(PDO::FETCH_NAMED);
     }
 }
