@@ -20,7 +20,11 @@ if (isset($_POST['date'])) {
 
     header('Location: ' . basename(__FILE__) );
 }
-
+/*
+ * Use an array of arrays.
+ * The first element per array is the database table.
+ * Subsequent elements are the relevant columns.
+ */
 $table_columns = array(
     array('slipways', 'slipways_id', 'description'),
     array('slipway_activities', 'activity_id', 'description')
