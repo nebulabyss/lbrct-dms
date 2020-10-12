@@ -48,7 +48,7 @@ class FormProcessor
      * @param $batch_table
      * @param $db_table
      */
-    public function ProcessForm($db_object, $batch_table, $db_table) {
+    public function ProcessForm($db_object, $batch_table, $db_table, $allow_duplicates) {
         // Process batch
         $batch_data = array();
         foreach ($this->user_data as $k => $v) {
@@ -60,9 +60,12 @@ class FormProcessor
 
         $check_batch = $db_object->CheckIfBatchExists($batch_data, $batch_table);
 
-        if ($check_batch) {
+        if ($check_batch && $allow_duplicates) {
             $last_batch_id = (int)$check_batch;
-        } else {
+        }   elseif ($check_batch && !$allow_duplicates) {
+            echo 'Batch already exists.';
+            exit();
+        }   else {
             $db_object->InsertIntoDatabase($batch_data, $batch_table);
             $last_batch_id = $db_object->GetLastInsertID();
         }

@@ -10,6 +10,7 @@ session_start();
 $database_controller = new DatabaseController($pdo);
 
 if (isset($_POST['row'])) {
+    $allow_duplicate_batch = true;
     $counter = 0;
     while ($counter < count($_POST['row'])) {
         $_POST['row'][$counter] += ['zone' => $counter + 1];
@@ -20,7 +21,7 @@ if (isset($_POST['row'])) {
 
     $batch_table = 'compliance_zones_batch';
     $db_table = 'compliance_zone_counts';
-    $form_processor->ProcessForm($database_controller, $batch_table, $db_table);
+    $form_processor->ProcessForm($database_controller, $batch_table, $db_table, $allow_duplicate_batch);
 
     header('Location: ' . basename(__FILE__) );
     exit();

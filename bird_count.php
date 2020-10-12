@@ -9,7 +9,7 @@ session_start();
  */
 // $form_processor = new FormProcessor($_POST);
 $database_controller = new DatabaseController($pdo);
-
+$allow_duplicate_batch = false;
 
 /*
  * Use an array of arrays.

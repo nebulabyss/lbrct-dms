@@ -9,6 +9,7 @@ session_start();
  */
 $database_controller = new DatabaseController($pdo);
 if (isset($_POST['date'])) {
+    $allow_duplicate_batch = true;
     $form_processor = new FormProcessor($_POST);
     $form_processor->FormElementCleanUp();
     /*
@@ -16,7 +17,7 @@ if (isset($_POST['date'])) {
      */
     $batch_table = 'boat_patrol_batch';
     $db_table = 'boat_patrol';
-    $form_processor->ProcessForm($database_controller, $batch_table, $db_table);
+    $form_processor->ProcessForm($database_controller, $batch_table, $db_table, $allow_duplicate_batch);
 
     header('Location: ' . basename(__FILE__) );
     exit();
