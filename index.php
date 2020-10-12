@@ -10,7 +10,6 @@ if (!isset($_SESSION['user_name'])) {
     return;
 }
 ?>
-</head>
 <body>
 <div class="container-fluid">
 <?php include "./includes/nav.php";?>
