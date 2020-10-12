@@ -22,13 +22,13 @@
                         <label for="start_time" class="col ml-1 col-form-label">Start Time:</label>
                     </div>
                     <div>
-                            <input type="time" class="form-control bg-warning text-dark" id="start_time" name="start_time" required>
+                            <input type="time" class="form-control bg-warning text-dark" id="start_time" value="08:00" name="start_time" required>
                     </div>
                     <div>
                         <label for="end_time" class="col col-form-label">End Time:</label>
                     </div>
                     <div>
-                            <input type="time" class="form-control bg-warning text-dark" id="end_time" name="end_time" required>
+                            <input type="time" class="form-control bg-warning text-dark" id="end_time" value="16:00" name="end_time" required>
                     </div>
                 </div>
             <fieldset disabled>
@@ -52,7 +52,7 @@
                         <label for="time" class="col col-form-label font-weight-bold">Time:</label> \
                       </div> \
                       <div class="col-auto"> \
-                        <input type="time" class="form-control text-dark" name="row[' + rc + '][time]" required> \
+                        <input type="time" class="form-control text-dark" name="row[' + rc + '][time]"> \
                       </div> \
                       <div class="col"> \
                       <select class="form-control custom-select" name="row[' + rc + '][activity]"><option selected value="">Activity</option> \ <?php
