@@ -61,6 +61,7 @@
     <div>
         <h3 class="text-muted mt-2">Water quality</h3>
         <form action="../water_quality.php" method="post" enctype="multipart/form-data">
+            <fieldset class="form-group">
             <div class="form-row mb-2">
                 <div class="col-2">
                     <label>
@@ -76,17 +77,18 @@
                     </label>
                 </div>
             </div>
-            <div class="custom-file col-4">
-                <input type="file" name="userfile" class="custom-file-input" id="customFile" required>
-                <label class="custom-file-label" for="customFile">Choose file</label>
-            </div>
-            <div>
-                <button type="submit" class="btn btn-primary mt-2">Upload</button>
-            </div>
+                <div class="custom-file col-4">
+                    <input type="file" name="userfile" class="custom-file-input" id="customFile" required>
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+            </fieldset>
+        <div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </div>
         </form>
-
-        <script>
-            <?php include './js/wq_file_upload.js.php'?>
-        </script>
     </div>
+    <script>
+        <?php include './js/wq_file_upload.js.php'?>
+    </script>
+</div>
 <?php endif ?>
