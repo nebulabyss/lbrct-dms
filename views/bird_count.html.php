@@ -9,11 +9,10 @@
                     <label for="datepicker" class="ui-helper-hidden"></label>
                     <input type="text" class="form-control bg-warning text-dark" placeholder="Batch Date" id="datepicker" name="date" required>
                 </div>
-
                 <fieldset class="form-row" disabled>
                     <div class="col">
                         <label>
-                            <select class="form-control bg-warning text-dark custom-select" id="zone" name="zone" required><option selected value="">Zone</option>
+                            <select class="form-control bg-warning custom-select" id="zone" name="zone" required><option selected value="">Zone</option>
                                 <?php
                                 if (isset($zones)) {
                                     foreach($zones as $k => $v):
@@ -29,7 +28,7 @@
                     </div>
                     <div class="col">
                         <label>
-                            <input type="time" class="form-control bg-warning text-dark" name="start_time" required>
+                            <input type="time" class="form-control bg-warning" name="start_time" required>
                         </label>
                     </div>
                     <div class="form-group row">
@@ -37,7 +36,7 @@
                     </div>
                     <div class="col">
                         <label>
-                            <input type="time" class="form-control bg-warning text-dark" name="end_time" required>
+                            <input type="time" class="form-control bg-warning" name="end_time" required>
                         </label>
                     </div>
                 </fieldset>
