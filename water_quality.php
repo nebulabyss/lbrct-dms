@@ -9,9 +9,6 @@ session_start();
  * @var $pdo
  */
 $database_controller = new DatabaseController($pdo);
-if (!isset($_SESSION['check'])) {
-    $_SESSION['check'] = false;
-}
 if (isset($_FILES['userfile'])) {
     $upload = new VuSituXHTML($_FILES);
     $wq_data = $upload->ParseXHTML();
@@ -33,7 +30,7 @@ if (isset($_POST['row'])) {
     exit();
 }
 
-if (($_SESSION['check'] === true) && !isset($_POST['row'])) {
+if (isset($_SESSION['check']) && !isset($_POST['row'])) {
     $_SESSION['error_message'] = 'No rows marked';
 
     unset($_SESSION['wq_data']);
