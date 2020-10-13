@@ -15,6 +15,7 @@ class FormProcessor
          */
         $counter = 0;
         while ($counter < count($this->user_data['row'])) {
+            // TODO could be further simplified
             foreach ($this->user_data['row'][$counter] as $k => $v) {
                 if ($this->user_data['row'][$counter][$k] == '') {
                     $this->user_data['row'][$counter][$k] = NULL;
@@ -42,6 +43,21 @@ class FormProcessor
         }
     }
 
+    public function ProcessBirdNames($db_object) {
+        $counter = 0;
+        while ($counter < count($this->user_data['row'])) {
+            $check_name = $db_object->CheckBirdName($this->user_data['row'][$counter]['species']);
+
+            if ($check_name) {
+                $this->user_data['row'][$counter]['species'] = $check_name;
+            } else {
+                $_SESSION['error_message'] = 'Bird species " <strong>' . $this->user_data['row'][$counter]['species'] . '</strong> " not found in the database';
+                header('Location: bird_count.php');
+                exit;
+            }
+            $counter++;
+        }
+    }
     /**
      * @param $db_object
      * @param $batch_table
@@ -69,15 +85,15 @@ class FormProcessor
             $db_object->InsertIntoDatabase($batch_data, $batch_table);
             $last_batch_id = $db_object->GetLastInsertID();
         }
+        $_SESSION['bid'] = $last_batch_id;
 
         // Process rows
         $row_count = count($this->user_data['row']);
-        $_SESSION['success_message'] = $row_count . ' records added to database';
+        $_SESSION['success_message'] = 'Total records inserted into database => <strong>' . $row_count . '</strong>';
         $counter = 0;
         while ($counter < $row_count ) {
             $db_object->InsertIntoDatabase($this->user_data['row'][$counter], $db_table, $last_batch_id);
             $counter++;
         }
     }
-
 }

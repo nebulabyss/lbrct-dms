@@ -87,4 +87,18 @@ class DatabaseController
         $query->execute(array());
         return $query->fetchAll(PDO::FETCH_NAMED);
     }
+
+    public function CheckBirdName($bird_name) {
+        $name_result = false;
+        $table = 'birds_species';
+        $column = 'bird_id';
+        $sql = 'SELECT ' . $column . ' FROM ' . $table . ' WHERE common_name = :bird_name';
+
+        $query = $this->pdo->prepare($sql);
+        $query->execute(array(':bird_name' => $bird_name));
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        if ($row !== false) $name_result = (int)$row[$column];
+
+        return $name_result;
+    }
 }
