@@ -49,7 +49,7 @@
             </fieldset>
 
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addSpeciesModal">Add species</button>
-            <button type="button" class="btn btn-warning" id="removeRow">Remove last row</button>
+            <button type="button" class="btn btn-danger font-weight-bold" id="removeRow">&nbsp;&#45;&nbsp;</button>
             <div class="float-right">
                 <button type="button" class="btn btn-danger">Cancel</button>
                 <button type="submit" class="btn btn-success">Submit</button>
@@ -91,9 +91,10 @@
 
     <!-- Modal End -->
     <script>
+        let formHtml = '';
         let lineNum = 1;
         let rowCount = 0;
-        let triggerID = 'longt';
+        let triggerID = 'final';
         function generateForm(rc, ln) {
             formHtml = '<div class="form-row mb-2" id="row' + rowCount + '"> \
                        <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
@@ -127,7 +128,7 @@
                         <input type="text" class="form-control" placeholder="Latitude" name="row[' + rc + '][lat]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" id="longt" class="form-control" placeholder="Longitude" name="row[' + rc + '][longt]"> \
+                        <input type="text" id="final" class="form-control" placeholder="Longitude" name="row[' + rc + '][longt]"> \
                       </div> \
             </div>'
             return formHtml;

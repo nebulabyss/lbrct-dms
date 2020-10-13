@@ -36,6 +36,7 @@
 
                 </div>
             </fieldset>
+            <button type="button" class="btn btn-danger font-weight-bold" id="removeRow">&nbsp;&#45;&nbsp;</button>
             <div class="float-right">
                 <button type="button" class="btn btn-danger">Cancel</button>
                 <button type="submit" class="btn btn-success">Submit</button>
@@ -43,8 +44,10 @@
         </form>
     </div>
     <script>
+        let formHtml = '';
         let lineNum = 1;
         let rowCount = 0;
+        let triggerID = 'final';
         function generateForm(rc, ln) {
             formHtml = '<div class="form-row mb-2"> \
                       <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
@@ -92,34 +95,51 @@
             return formHtml;
         }
 
-        $(document).ready(function () {
-
+        function formInstance() {
             $( '.form-body' ).append(
                 generateForm(rowCount, lineNum)
             );
+        }
 
-            $( document ).on( 'keydown', '#final', function( event ) {
-                const keyCode = event.keyCode || event.which;
-                if (keyCode === 9) {
-                    rowCount++;
-                    lineNum++;
-
-                    $( '.form-body' ).append(
-                        generateForm(rowCount, lineNum)
-                    );
-                    $(this).attr('id', '');
-                    $(this).focus();
-                }
-            });
+        $(document).ready(function() {
+            formInstance();
         });
-        let date_picker = $( '#datepicker' );
+
+        $(document).on( 'keydown', ('#' + triggerID), function( event ) {
+            let keyCode = event.keyCode || event.which;
+            if (keyCode === 9) {
+                rowCount++;
+                lineNum++;
+                formInstance();
+                let mod = triggerID + (rowCount - 1);
+                $(this).attr('id', mod);
+                $(this).focus();
+            }
+        });
+
+        $('#removeRow').click(function() {
+            let lastFormDiv = '#row' + rowCount;
+            if (rowCount === 0){
+                $(lastFormDiv).remove();
+                formInstance();
+            }
+            if (rowCount > 0) {
+                $(lastFormDiv).fadeOut();
+                rowCount--;
+                lineNum--;
+                let mod = '#' + triggerID + (rowCount);
+                $(mod).attr('id', triggerID);
+            }
+        });
+
+        let date_picker = $('#datepicker');
         date_picker.datepicker({
             dateFormat:  "yy-mm-dd"
         });
 
-        date_picker.change( function () {
+        date_picker.change(function() {
             $('fieldset').prop('disabled', false);
-            $('#slipway').focus();
+            $('#zone').focus();
         });
     </script>
 </div>
