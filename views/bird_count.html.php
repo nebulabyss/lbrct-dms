@@ -91,7 +91,7 @@
 
     <!-- Modal End -->
     <script>
-        <?php include './js/vars.js.php'?>
+        <?php include './js/form_variables.js.php'?>
         function generateForm(rc, ln) {
             formHtml = '<div class="form-row mb-2" id="row' + rowCount + '"> \
                        <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
@@ -132,6 +132,6 @@
         }
         <?php include './js/form.js.php'?>
         <?php include './js/date.js.php'?>
-        <?php include './js/bird_count.js.php'?>
+        <?php include './js/bird_species.js.php'?>
     </script>
 </div>

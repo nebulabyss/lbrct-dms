@@ -50,12 +50,7 @@
         </div>
     </form>
         <script>
-            $('input[type=checkbox').on('click', function (){
-                if ($(this).closest('tr').hasClass('bg-warning')) {
-                    $(this).closest('tr').removeClass('text-black bg-warning');
-                }
-                    $(this).closest('tr').toggleClass('text-white bg-success');
-            });
+            <?php include './js/wq_check_marked.js.php';?>
         </script>
     </div>
 <?php else: ?>
@@ -90,7 +85,7 @@
         </form>
 
         <script>
-            <?php include './js/wq.js.php'?>
+            <?php include './js/wq_file_upload.js.php'?>
         </script>
     </div>
 <?php endif ?>

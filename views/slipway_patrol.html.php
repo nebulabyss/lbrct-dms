@@ -44,7 +44,7 @@
         </form>
     </div>
     <script>
-        <?php include './js/vars.js.php'?>
+        <?php include './js/form_variables.js.php'?>
         function generateForm(rc, ln) {
             formHtml = '<div class="form-row mb-2" id="row' + rowCount + '"> \
                       <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
