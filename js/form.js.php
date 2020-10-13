@@ -34,3 +34,7 @@ $('#removeRow').click(function() {
         $(mod).attr('id', triggerID);
     }
 });
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});

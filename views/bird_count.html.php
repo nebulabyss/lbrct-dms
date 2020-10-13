@@ -49,7 +49,7 @@
             </fieldset>
 
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addSpeciesModal">Add species</button>
-            <button type="button" class="btn btn-danger font-weight-bold" id="removeRow">&nbsp;&#45;&nbsp;</button>
+            <?php include './includes/remove_row_botton.php'?>
             <div class="float-right">
                 <button type="button" class="btn btn-danger">Cancel</button>
                 <button type="submit" class="btn btn-success">Submit</button>
