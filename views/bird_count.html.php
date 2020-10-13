@@ -91,10 +91,7 @@
 
     <!-- Modal End -->
     <script>
-        let formHtml = '';
-        let lineNum = 1;
-        let rowCount = 0;
-        let triggerID = 'final';
+        <?php include './js/vars.js.php'?>
         function generateForm(rc, ln) {
             formHtml = '<div class="form-row mb-2" id="row' + rowCount + '"> \
                        <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
@@ -133,73 +130,8 @@
             </div>'
             return formHtml;
         }
-
-        function formInstance() {
-            $( '.form-body' ).append(
-                generateForm(rowCount, lineNum)
-            );
-        }
-
-        $(document).ready(function() {
-            formInstance();
-        });
-
-        $(document).on( 'keydown', '#species', function() {
-            $(this).autocomplete({
-                source: 'bird_c_name.php'
-            });
-        });
-
-        $(document).on( 'keydown', ('#' + triggerID), function( event ) {
-            let keyCode = event.keyCode || event.which;
-            if (keyCode === 9) {
-                rowCount++;
-                lineNum++;
-                formInstance();
-                let mod = triggerID + (rowCount - 1);
-                $(this).attr('id', mod);
-                $(this).focus();
-            }
-        });
-
-        $('#removeRow').click(function() {
-            let lastFormDiv = '#row' + rowCount;
-            if (rowCount === 0){
-                $(lastFormDiv).remove();
-                formInstance();
-            }
-            if (rowCount > 0) {
-                $(lastFormDiv).fadeOut();
-                rowCount--;
-                lineNum--;
-                let mod = '#' + triggerID + (rowCount);
-                $(mod).attr('id', triggerID);
-            }
-        });
-
-        let date_picker = $('#datepicker');
-        date_picker.datepicker({
-            dateFormat:  "yy-mm-dd"
-        });
-
-        date_picker.change(function() {
-            $('fieldset').prop('disabled', false);
-            $('#zone').focus();
-        });
-
-        $('#addSpecies').submit(function(event) {
-            event.preventDefault();
-            let request = $.ajax({
-                type: "POST",
-                url: 'add_species.php',
-                data: $(this).serialize(),
-            })
-
-            request.done(function () {
-                $('#addSpeciesModal').modal('toggle');
-                $('input[name="species_name"').val('');
-                $('#inputState').prop("selectedIndex", 0);
-            });
-        })
+        <?php include './js/form.js.php'?>
+        <?php include './js/date.js.php'?>
+        <?php include './js/bird_count.js.php'?>
     </script>
 </div>
