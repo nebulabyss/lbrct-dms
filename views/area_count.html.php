@@ -3,7 +3,7 @@
     <?php require_once "./includes/nav.php";?>
         <h3 class="text-muted mt-2">Area count</h3>
         <form action="../area_count.php" method="post">
-            <div class="form-row mb-2">
+            <div class="form-row">
                 <div class="col-1">
                     <label for="datepicker" class="ui-helper-hidden"></label>
                     <input type="text" class="form-control bg-warning text-dark" placeholder="Batch Date" id="datepicker" name="date" required>
