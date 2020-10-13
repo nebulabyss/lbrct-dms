@@ -8,18 +8,20 @@
                     <div class="col-1">
                         <label for="datepicker" class="ui-helper-hidden"></label><input type="text" class="form-control bg-warning" placeholder="Batch Date" id="datepicker" name="date" required>
                     </div>
-                    <div>
-                        <label for="start_time" class="col ml-1 col-form-label">Start Time:</label>
+                <fieldset class="form-row" disabled>
+                    <div class="col">
+                        <label for="start_time" class="col-form-label">Start Time:</label>
                     </div>
-                    <div>
+                    <div class="col">
                         <input type="time" class="form-control bg-warning" id="start_time" value="08:00" name="start_time" required>
                     </div>
                     <div>
-                        <label for="end_time" class="col col-form-label">End Time:</label>
+                        <label for="end_time" class="col-form-label">End Time:</label>
                     </div>
-                    <div>
+                    <div class="col">
                         <input type="time" class="form-control bg-warning" id="end_time" value="16:00" name="end_time" required>
                     </div>
+                </fieldset>
             </div>
             <fieldset disabled>
                 <div class="form-body">

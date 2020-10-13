@@ -4,14 +4,14 @@
     <div>
         <h3 class="text-muted mt-2">Slipway inspection</h3>
         <form action="../slipway_patrol.php" method="post">
-            <div class="form-row">
+            <div class="form-row mb-2">
                 <div class="col-1">
                     <label for="datepicker" class="ui-helper-hidden"></label>
                     <input type="text" class="form-control bg-warning" placeholder="Batch Date" id="datepicker" name="date" required>
                 </div>
                 <fieldset class="form-row" disabled>
                  <div class="col">
-                     <label>
+                     <label for="slipway" class="ui-helper-hidden"></label>
                      <select class="form-control custom-select bg-warning" name="slipway" id="slipway" required><option selected value="">Slipway</option>
                             <?php
                             if (isset($slipways)) {
@@ -21,24 +21,20 @@
                             }
                             ?>
                      </select>
-                     </label>
+
                     </div>
-                <div class="form-group row">
-                    <label for="time" class="col col-form-label ml-2">Start Time:</label>
-                </div>
-                <div class="col">
-                    <label>
-                        <input type="time" class="form-control bg-warning" name="start_time" required>
-                    </label>
-                </div>
-                <div class="form-group row">
-                    <label for="time" class="col col-form-label">End Time:</label>
-                </div>
-                <div class="col">
-                    <label>
-                        <input type="time" class="form-control bg-warning" name="end_time" required>
-                    </label>
-                </div>
+                    <div>
+                        <label for="start_time" class="col-form-label">Start Time:</label>
+                    </div>
+                    <div class="col">
+                        <input type="time" class="form-control bg-warning" id="start_time" value="08:00" name="start_time" required>
+                    </div>
+                    <div>
+                        <label for="end_time" class="col-form-label">End Time:</label>
+                    </div>
+                    <div class="col">
+                        <input type="time" class="form-control bg-warning" id="end_time" value="16:00" name="end_time" required>
+                    </div>
                 </fieldset>
                 </div>
             <fieldset disabled>

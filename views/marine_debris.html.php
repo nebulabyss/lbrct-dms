@@ -7,12 +7,11 @@
             <div class="form-row mb-2">
                 <div class="col-1">
                     <label for="datepicker" class="ui-helper-hidden"></label>
-                    <input type="text" class="form-control bg-warning text-dark" placeholder="Batch Date" id="datepicker" name="date" required>
+                    <input type="text" class="form-control bg-warning" placeholder="Batch Date" id="datepicker" name="date" required>
                 </div>
-
                 <fieldset class="form-row" disabled>
                 <div class="col">
-                    <label>
+                    <label for="zone" class="ui-helper-hidden"></label>
                         <select class="form-control bg-warning text-dark custom-select" name="zone" id="zone" required><option selected value="">Zone</option>
                             <?php
                             if (isset($zones)) {
@@ -22,7 +21,6 @@
                             }
                             ?>
                         </select>
-                    </label>
                 </div>
                 </fieldset>
             </div>
