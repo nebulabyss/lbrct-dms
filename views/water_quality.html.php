@@ -41,6 +41,7 @@
                 echo '</tr>';
                 $rowCounter++;
             endforeach;
+            $_SESSION['check'] = true;
             ?>
             </tbody>
         </table>

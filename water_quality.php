@@ -9,12 +9,13 @@ session_start();
  * @var $pdo
  */
 $database_controller = new DatabaseController($pdo);
-
+if (!isset($_SESSION['check'])) {
+    $_SESSION['check'] = false;
+}
 if (isset($_FILES['userfile'])) {
     $upload = new VuSituXHTML($_FILES);
     $wq_data = $upload->ParseXHTML();
     $_SESSION['wq_data'] = $wq_data;
-
 }
 
 if (isset($_POST['row'])) {
@@ -27,6 +28,16 @@ if (isset($_POST['row'])) {
     $form_processor->ProcessForm($database_controller, $batch_table, $db_table, $allow_duplicate_batch);
 
     unset($_SESSION['wq_data']);
+    unset($_SESSION['check']);
+    header('Location: ' . basename(__FILE__) );
+    exit();
+}
+
+if (($_SESSION['check'] === true) && !isset($_POST['row'])) {
+    $_SESSION['error_message'] = 'No rows marked';
+
+    unset($_SESSION['wq_data']);
+    unset($_SESSION['check']);
     header('Location: ' . basename(__FILE__) );
     exit();
 }
