@@ -11,8 +11,8 @@
                 </div>
                 <fieldset class="form-row" disabled>
                     <div class="col">
-                        <label for="zone" class="ui-helper-hidden"></label>
-                            <select class="form-control bg-warning custom-select" id="zone" name="zone" required><option selected value="">Zone</option>
+                        <label for="next" class="ui-helper-hidden"></label>
+                            <select class="form-control bg-warning custom-select" id="next" name="zone" required><option selected value="">Zone</option>
                                 <?php
                                 if (isset($zones)) {
                                     foreach($zones as $k => $v):

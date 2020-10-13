@@ -11,8 +11,8 @@
                 </div>
                 <fieldset class="form-row" disabled>
                  <div class="col">
-                     <label for="slipway" class="ui-helper-hidden"></label>
-                     <select class="form-control custom-select bg-warning" name="slipway" id="slipway" required><option selected value="">Slipway</option>
+                     <label for="next" class="ui-helper-hidden"></label>
+                     <select class="form-control custom-select bg-warning" name="slipway" id="next" required><option selected value="">Slipway</option>
                             <?php
                             if (isset($slipways)) {
                                 foreach($slipways as $k => $v):

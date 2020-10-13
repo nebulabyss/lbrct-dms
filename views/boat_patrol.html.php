@@ -10,10 +10,10 @@
                     </div>
                 <fieldset class="form-row" disabled>
                     <div class="col">
-                        <label for="start_time" class="col-form-label">Start Time:</label>
+                        <label for="next" class="col-form-label">Start Time:</label>
                     </div>
                     <div class="col">
-                        <input type="time" class="form-control bg-warning" id="start_time" value="08:00" name="start_time" required>
+                        <input type="time" class="form-control bg-warning" id="next" value="08:00" name="start_time" required>
                     </div>
                     <div>
                         <label for="end_time" class="col-form-label">End Time:</label>

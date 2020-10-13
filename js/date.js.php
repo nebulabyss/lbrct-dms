@@ -5,5 +5,5 @@ date_picker.datepicker({
 
 date_picker.change(function() {
     $('fieldset').prop('disabled', false);
-    $('#zone').focus();
+    $('#next').focus();
 });
