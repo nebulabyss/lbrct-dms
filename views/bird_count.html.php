@@ -3,7 +3,7 @@
     <?php require_once "./includes/nav.php";?>
     <div>
         <h3 class="text-muted mt-2">Bird count</h3>
-        <form>
+        <form action="../bird_count.php" method="post">
             <div class="form-row">
                 <div class="col-1">
                     <label for="datepicker" class="ui-helper-hidden"></label>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="col">
                         <label>
-                            <input type="time" class="form-control bg-warning text-dark" name="time_start" required>
+                            <input type="time" class="form-control bg-warning text-dark" name="start_time" required>
                         </label>
                     </div>
                     <div class="form-group row">
@@ -37,18 +37,19 @@
                     </div>
                     <div class="col">
                         <label>
-                            <input type="time" class="form-control bg-warning text-dark" name="time_end" required>
+                            <input type="time" class="form-control bg-warning text-dark" name="end_time" required>
                         </label>
                     </div>
                 </fieldset>
             </div>
             <fieldset disabled>
-                <div class="form-body">
+                <div class="form-body" id="form-body">
 
                 </div>
             </fieldset>
 
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addSpeciesModal">Add species</button>
+            <button type="button" class="btn btn-warning" id="removeRow">Remove last row</button>
             <div class="float-right">
                 <button type="button" class="btn btn-danger">Cancel</button>
                 <button type="submit" class="btn btn-success">Submit</button>
@@ -92,8 +93,9 @@
     <script>
         let lineNum = 1;
         let rowCount = 0;
+        let triggerID = 'longt';
         function generateForm(rc, ln) {
-            formHtml = '<div class="form-row mb-2"> \
+            formHtml = '<div class="form-row mb-2" id="row' + rowCount + '"> \
                        <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
                           <div class="col"> \
                             <input id="species" type="text" class="form-control" placeholder="Species Name" name="row[' + rc + '][species]" required> \
@@ -102,7 +104,7 @@
                         <input type="text" class="form-control" placeholder="Count" name="row[' + rc + '][count]" required> \
                       </div> \
                       <div class="col"> \
-                        <select class="form-control custom-select" name="row[' + rc + '][behavior]"><option selected value="">Behaviour</option> \ <?php
+                        <select class="form-control custom-select" name="row[' + rc + '][behaviour]"><option selected value="">Behaviour</option> \ <?php
                 if (isset($behavior_codes)) {
                     foreach($behavior_codes as $k => $v):
                         echo ('<option value="' . $k . '">' . $v . '</option>');
@@ -131,42 +133,60 @@
             return formHtml;
         }
 
-        $(document).ready(function () {
-
+        function formInstance() {
             $( '.form-body' ).append(
                 generateForm(rowCount, lineNum)
             );
+        }
 
-            $( document ).on( 'keydown', '#species', function() {
-                $(this).autocomplete({
-                    source: 'bird_c_name.php'
-                });
-            });
-            $( document ).on( 'keydown', '#longt', function( event ) {
-                let keyCode = event.keyCode || event.which;
-                if (keyCode === 9) {
-                    rowCount++;
-                    lineNum++;
+        $(document).ready(function() {
+            formInstance();
+        });
 
-                    $( '.form-body' ).append(
-                        generateForm(rowCount, lineNum)
-                    );
-                    $(this).focus();
-                }
+        $(document).on( 'keydown', '#species', function() {
+            $(this).autocomplete({
+                source: 'bird_c_name.php'
             });
         });
 
-        let date_picker = $( '#datepicker' );
+        $(document).on( 'keydown', ('#' + triggerID), function( event ) {
+            let keyCode = event.keyCode || event.which;
+            if (keyCode === 9) {
+                rowCount++;
+                lineNum++;
+                formInstance();
+                let mod = triggerID + (rowCount - 1);
+                $(this).attr('id', mod);
+                $(this).focus();
+            }
+        });
+
+        $('#removeRow').click(function() {
+            let lastFormDiv = '#row' + rowCount;
+            if (rowCount === 0){
+                $(lastFormDiv).remove();
+                formInstance();
+            }
+            if (rowCount > 0) {
+                $(lastFormDiv).fadeOut();
+                rowCount--;
+                lineNum--;
+                let mod = '#' + triggerID + (rowCount);
+                $(mod).attr('id', triggerID);
+            }
+        });
+
+        let date_picker = $('#datepicker');
         date_picker.datepicker({
             dateFormat:  "yy-mm-dd"
         });
 
-        date_picker.change( function () {
+        date_picker.change(function() {
             $('fieldset').prop('disabled', false);
             $('#zone').focus();
         });
 
-        $( '#addSpecies' ).submit(function( event ) {
+        $('#addSpecies').submit(function(event) {
             event.preventDefault();
             let request = $.ajax({
                 type: "POST",
