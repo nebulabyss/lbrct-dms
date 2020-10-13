@@ -21,8 +21,7 @@
                             }
                             ?>
                      </select>
-
-                    </div>
+                 </div>
                     <div>
                         <label for="start_time" class="col-form-label">Start Time:</label>
                     </div>
@@ -36,7 +35,7 @@
                         <input type="time" class="form-control bg-warning" id="end_time" value="16:00" name="end_time" required>
                     </div>
                 </fieldset>
-                </div>
+            </div>
             <fieldset disabled>
                 <div class="form-body">
 
