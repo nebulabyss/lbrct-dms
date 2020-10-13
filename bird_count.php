@@ -7,10 +7,22 @@ session_start();
 /**
  * @var $pdo
  */
-// $form_processor = new FormProcessor($_POST);
 $database_controller = new DatabaseController($pdo);
-$allow_duplicate_batch = false;
+if (isset($_POST['date'])) {
+    $allow_duplicate_batch = false;
+    $form_processor = new FormProcessor($_POST);
+    $form_processor->FormElementCleanUp();
+    $form_processor->ProcessBirdNames($database_controller);
+    /*
+     * Specify relevant batch table and form table as strings.
+     */
+    $batch_table = 'bird_count_batch';
+    $db_table = 'bird_count';
+    $form_processor->ProcessForm($database_controller, $batch_table, $db_table, $allow_duplicate_batch);
 
+    header('Location: ' . basename(__FILE__) );
+    exit();
+}
 /*
  * Use an array of arrays.
  * The first element per array is the database table.
