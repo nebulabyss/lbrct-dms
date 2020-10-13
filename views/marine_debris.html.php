@@ -31,6 +31,7 @@
 
                 </div>
             </fieldset>
+            <button type="button" class="btn btn-danger font-weight-bold" id="removeRow">&nbsp;&#45;&nbsp;</button>
         <div class="float-right">
             <button type="button" class="btn btn-danger">Cancel</button>
             <button type="submit" class="btn btn-success">Submit</button>
@@ -43,7 +44,7 @@
         let rowCount = 0;
         let triggerID = 'final';
         function generateForm(rc, ln) {
-            formHtml = '<div class="form-row mb-2"> \
+            formHtml = '<div class="form-row mb-2" id="row' + rowCount + '"> \
                        <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
                                                 <div class="col"> \
                         <select class="form-control custom-select" name="row[' + rc + '][item]" required><option selected value="">Item</option> \ <?php

@@ -49,7 +49,7 @@
         let rowCount = 0;
         let triggerID = 'final';
         function generateForm(rc, ln) {
-            formHtml = '<div class="form-row mb-2"> \
+            formHtml = '<div class="form-row mb-2" id="row' + rowCount + '"> \
                       <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
                       <div class=""> \
                         <label for="time" class="col col-form-label font-weight-bold">Time:</label> \
