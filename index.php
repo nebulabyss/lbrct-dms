@@ -1,9 +1,8 @@
 <?php
 session_start();
-?>
-
-<?php
 include "./includes/header.php";
+
+unset($_SESSION['wq_data']);
 
 if (!isset($_SESSION['user_name'])) {
     header("Location: login.php");
