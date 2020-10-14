@@ -25,16 +25,14 @@ if (isset($_POST['row'])) {
     $form_processor->ProcessForm($database_controller, $batch_table, $db_table, $allow_duplicate_batch);
 
     unset($_SESSION['wq_data']);
-    unset($_SESSION['check']);
     header('Location: ' . basename(__FILE__) );
     exit();
 }
 
-if (isset($_SESSION['check']) && !isset($_POST['row'])) {
+if (isset($_POST['wq']) && !isset($_POST['row'])) {
     $_SESSION['error_message'] = 'No rows marked';
 
     unset($_SESSION['wq_data']);
-    unset($_SESSION['check']);
     header('Location: ' . basename(__FILE__) );
     exit();
 }

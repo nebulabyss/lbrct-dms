@@ -41,13 +41,12 @@
                 echo '</tr>';
                 $rowCounter++;
             endforeach;
-            $_SESSION['check'] = true;
             ?>
             </tbody>
         </table>
         <div class="float-right mb-4">
-            <button type="button" class="btn btn-danger">Cancel</button>
-            <button type="submit" class="btn btn-success">Submit</button>
+            <?php include './includes/cancel_button.php'?>
+            <button type="submit" class="btn btn-success" name="wq" value="wq">Submit</button>
         </div>
     </form>
         <script>
