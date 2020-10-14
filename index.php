@@ -12,7 +12,5 @@ if (!isset($_SESSION['user_name'])) {
 <body>
 <div class="container-fluid">
 <?php include "./includes/nav.php";?>
-
 </div>
-
 <?php include "./includes/footer.php";?>
