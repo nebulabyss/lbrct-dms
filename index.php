@@ -16,6 +16,3 @@ if (!isset($_SESSION['user_name'])) {
 </div>
 
 <?php include "./includes/footer.php";?>
-
-</body>
-
