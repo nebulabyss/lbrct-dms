@@ -11,7 +11,7 @@
     <?php endif; ?>
 </nav>
 <?php if (isset($_SESSION['user_id'])): ?>
-<nav class="">
+<nav>
     <ul class="nav bg-light p-2 border-bottom">
         <li class="nav-item dropdown mr-2">
             <a class="nav-link btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" href="#" id="compliance" role="button" aria-haspopup="true" aria-expanded="false">
@@ -60,12 +60,12 @@
 <?php unset($_SESSION['error_message']);?>
 <?php endif; ?>
 <?php if (isset($_SESSION['success_message'])): ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>BATCH ID: &gt; <?=$_SESSION['bid']?> &lt;</strong> <?=$_SESSION['success_message']?>.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>BATCH ID: &gt; <?=$_SESSION['bid']?> &lt;</strong> <?=$_SESSION['success_message']?>.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 <?php unset($_SESSION['success_message']);?>
 <?php unset($_SESSION['bid']);?>
 <?php endif; ?>

@@ -79,7 +79,7 @@ class FormProcessor
         if ($check_batch && $allow_duplicates) {
             $last_batch_id = (int)$check_batch;
         }   elseif ($check_batch && !$allow_duplicates) {
-            $_SESSION['error_message'] = 'Duplicate of batch <strong>> ' . $check_batch . ' <</strong> which is already recorded in the database';
+            $_SESSION['error_message'] = 'Duplicate of batch <strong>&gt; ' . $check_batch . ' &lt;</strong> which is already recorded in the database';
             return;
         }   else {
             $db_object->InsertIntoDatabase($batch_data, $batch_table);
