@@ -57,7 +57,7 @@
                         <label for="time" class="col col-form-label font-weight-bold">Time:</label> \
                       </div> \
                       <div class="col-auto"> \
-                        <input type="time" class="form-control text-dark" name="row[' + rc + '][time]"> \
+                        <input type="time" class="form-control" name="row[' + rc + '][time]"> \
                       </div> \
                       <div class="col"> \
                       <select class="form-control custom-select" name="row[' + rc + '][activity]"><option selected value="">Activity</option> \ <?php
