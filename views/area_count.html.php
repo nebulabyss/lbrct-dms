@@ -55,7 +55,7 @@
                 } ?>
                 </fieldset>
             <div class="float-right">
-            <button type="button" class="btn btn-danger">Cancel</button>
+            <?php include './includes/cancel_button.php'?>
             <button type="submit" class="btn btn-success">Submit</button>
             </div>
         </form>

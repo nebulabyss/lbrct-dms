@@ -45,7 +45,7 @@
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addSpeciesModal">Add species</button>
             <?php include './includes/remove_row_botton.php'?>
             <div class="float-right">
-                <button type="button" class="btn btn-danger">Cancel</button>
+                <?php include './includes/cancel_button.php'?>
                 <button type="submit" class="btn btn-success">Submit</button>
             </div>
         </form>
