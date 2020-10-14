@@ -83,6 +83,7 @@
             </fieldset>
         <div>
             <button type="submit" class="btn btn-primary">Upload</button>
+            <?php include './includes/cancel_button.php'?>
         </div>
         </form>
     </div>
