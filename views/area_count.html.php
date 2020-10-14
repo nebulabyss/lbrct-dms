@@ -28,7 +28,7 @@
                         <div class="form-row mb-2">
                             <label class="col-form-label d-inline-block" style="width: 250px;">' . $k . '</label>
                             <div class="col">
-                                <input type="number" class="form-control" name="row[' . $rowCount . '][transit]">
+                                <input type="number" id="next" class="form-control" name="row[' . $rowCount . '][transit]">
                             </div>
                             <div class="col">
                                 <input type="number" class="form-control" name="row[' . $rowCount . '][moored]">
