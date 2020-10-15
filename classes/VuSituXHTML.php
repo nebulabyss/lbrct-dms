@@ -28,10 +28,21 @@ class VuSituXHTML
         $keys = array('time', 'rdocon', 'rdosat', 'temp', 'cond', 'sal', 'depth', 'ph', 'marked');
         $wq_data = array();
         $wq_data['site'] = $_POST['site'];
+        $tr_length = false;
         foreach ($trList as $tr) {
+            if ($tr->childNodes->length > 9) {
+                $tr_length = true;
+            }
             $row = [];
             $counter = 0;
             foreach ($tr->getElementsByTagName("td") as $td) {
+                if ($tr_length && $counter == 8 || $counter == 9) {
+                    $counter++;
+                    continue;
+                }
+                if ($counter == 10) {
+                    $counter = 8;
+                }
                 $string = trim($td->textContent);
                 if ($counter == 0) {
                     $needle = strpos($string, ' ');
