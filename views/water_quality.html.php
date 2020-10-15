@@ -3,18 +3,18 @@
     <?php include "includes/nav.php";?>
     <form action="../water_quality.php" method="post">
         <table class="table table-bordered mt-2">
-            <thead>
+            <thead class="thead-dark">
             <tr>
-                <th scope="col">Mark</th>
-                <th scope="col">Depth (m)</th>
-                <th scope="col">Date</th>
-                <th scope="col">Time</th>
-                <th scope="col">RDO Concentration (mg/L)</th>
-                <th scope="col">RDO Saturation (%Sat)</th>
-                <th scope="col">Temperature (°C)</th>
-                <th scope="col">Specific Conductivity (mS/cm)</th>
-                <th scope="col">Salinity (PSU)</th>
-                <th scope="col">pH</th>
+                <th style="position: sticky; top: 0; z-index: 100;">Mark</th>
+                <th style="position: sticky; top: 0;">Depth (m)</th>
+                <th style="position: sticky; top: 0;">Date</th>
+                <th style="position: sticky; top: 0;">Time</th>
+                <th style="position: sticky; top: 0;">RDO Concentration (mg/L)</th>
+                <th style="position: sticky; top: 0;">RDO Saturation (%Sat)</th>
+                <th style="position: sticky; top: 0;">Temperature (°C)</th>
+                <th style="position: sticky; top: 0;">Specific Conductivity (mS/cm)</th>
+                <th style="position: sticky; top: 0;">Salinity (PSU)</th>
+                <th style="position: sticky; top: 0;">pH</th>
             </tr>
             </thead>
             <tbody>
