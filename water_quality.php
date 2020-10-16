@@ -49,6 +49,7 @@ if (isset($_POST['wq']) && !isset($_POST['row'])) {
  * Subsequent elements are the relevant columns.
  */
 if (empty($_POST)) {
+    unset($_SESSION['temp']);
     $table_columns = array(
         array('water_quality_sites', 'id', 'description')
     );
