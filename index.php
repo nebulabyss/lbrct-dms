@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (isset($_SESSION['wq_data'])) {
-    unset($_SESSION['wq_data']);
+if (isset($_SESSION['temp'])) {
+    unset($_SESSION['temp']);
 }
 
 if (!isset($_SESSION['user_name'])) {
