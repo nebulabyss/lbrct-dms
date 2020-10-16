@@ -62,7 +62,7 @@
         <form action="../water_quality.php" method="post" enctype="multipart/form-data">
             <fieldset class="form-group">
             <div class="form-row mb-2">
-                <div class="col-2">
+                <div class="col-auto">
                     <label>
                         <select class="form-control custom-select bg-warning" name="site" id="site" required><option selected value="">Site</option>
                             <?php
@@ -74,6 +74,10 @@
                             ?>
                         </select>
                     </label>
+                </div>
+                <div class="form-check ml-2 my-2">
+                    <input class="form-check-input big-checkbox" type="checkbox" id="gridCheck" name="override">
+                    <label class="form-check-label ml-1" for="gridCheck">Override</label>
                 </div>
             </div>
                 <div class="custom-file col-4">
