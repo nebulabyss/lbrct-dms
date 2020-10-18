@@ -24,7 +24,7 @@ if (isset($_POST['row'])) {
     }
 
     $marked = array_keys($_POST['row']);
-        $form_processor = new FormProcessor($_SESSION['temp']['wq_data']);
+    $form_processor = new FormProcessor($_SESSION['temp']['wq_data']);
     $form_processor->WQMarkedElementCleanUp($marked);
 
     $batch_table = 'water_quality_batch';
@@ -32,7 +32,7 @@ if (isset($_POST['row'])) {
     $form_processor->ProcessForm($database_controller, $batch_table, $db_table, $allow_duplicate_batch);
 
     unset($_SESSION['temp']);
-    header('Location: ' . basename(__FILE__) );
+    header('Location: ' . basename(__FILE__));
     exit();
 }
 
@@ -40,7 +40,7 @@ if (isset($_POST['wq']) && !isset($_POST['row'])) {
     $_SESSION['error_message'] = 'No rows marked';
 
     unset($_SESSION['temp']);
-    header('Location: ' . basename(__FILE__) );
+    header('Location: ' . basename(__FILE__));
     exit();
 }
 /*
