@@ -56,7 +56,7 @@ class DatabaseController
         $sql = 'SELECT ' . $table_columns[1] . ' FROM ' . $table_columns[0];
         $query = $this->pdo->prepare($sql);
         $query->execute(array());
-        return $query->fetchAll(PDO::FETCH_COLUMN );
+        return $query->fetchAll(PDO::FETCH_COLUMN);
     }
 
     public function CheckIfBatchExists($batch_data, $batch_table)
@@ -81,14 +81,16 @@ class DatabaseController
         return $batch_result;
     }
 
-    public function MarineDebrisCodes() {
+    public function MarineDebrisCodes()
+    {
         $query = $this->pdo->prepare('SELECT marine_debris_minor_categories.marine_debris_minor_categories_id, marine_debris_minor_categories.code, marine_debris_minor_categories.description, marine_debris_major_categories.description FROM marine_debris_minor_categories INNER JOIN marine_debris_major_categories WHERE marine_debris_minor_categories.marine_debris_major_categories_id = marine_debris_major_categories.marine_debris_major_categories_id;
 ');
         $query->execute(array());
         return $query->fetchAll(PDO::FETCH_NAMED);
     }
 
-    public function CheckBirdName($bird_name) {
+    public function CheckBirdName($bird_name)
+    {
         $name_result = false;
         $table = 'birds_species';
         $column = 'bird_id';
