@@ -44,7 +44,7 @@
             <?php include './includes/remove_row_botton.php'?>
             <div class="float-right">
                 <?php include './includes/cancel_button.php'?>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success" id="submit">Submit</button>
             </div>
         </form>
     </div>
@@ -57,10 +57,10 @@
                         <label for="time" class="col col-form-label font-weight-bold">Time:</label> \
                       </div> \
                       <div class="col-auto"> \
-                        <input type="time" class="form-control" name="row[' + rc + '][time]"> \
+                        <input type="time" class="form-control validate" name="row[' + rc + '][time]"> \
                       </div> \
                       <div class="col"> \
-                      <select class="form-control custom-select" name="row[' + rc + '][activity]"><option selected value="">Activity</option> \ <?php
+                      <select class="form-control custom-select validate" name="row[' + rc + '][activity]"><option selected value="">Activity</option> \ <?php
                         if (isset($activity)) {
                             foreach ($activity as $k => $v):
                                 echo('<option value="' . $k . '">' . $v . '</option>');
@@ -69,34 +69,35 @@
                 ?> </select> \
                         </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Vehicle Reg." name="row[' + rc + '][vreg]"> \
+                        <input type="text" class="form-control validate" placeholder="Vehicle Reg." name="row[' + rc + '][vreg]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Trailer Reg." name="row[' + rc + '][treg]"> \
+                        <input type="text" class="form-control validate" placeholder="Trailer Reg." name="row[' + rc + '][treg]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="SAMSA" name="row[' + rc + '][samsa]"> \
+                        <input type="text" class="form-control validate" placeholder="SAMSA" name="row[' + rc + '][samsa]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Boat Name" name="row[' + rc + '][bname]"> \
+                        <input type="text" class="form-control validate" placeholder="Boat Name" name="row[' + rc + '][bname]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Engine size" name="row[' + rc + '][size]"> \
+                        <input type="text" class="form-control validate" placeholder="Engine size" name="row[' + rc + '][size]"> \
                       </div> \
                       <div class="form-check my-auto ml-2 mr-1"> \
-                        <input class="form-check-input big-checkbox" type="checkbox" id="gridCheck" name="row[' + rc + '][twin]"> \
+                        <input class="form-check-input big-checkbox validate" type="checkbox" id="gridCheck" name="row[' + rc + '][twin]"> \
                         <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Twin</label> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" class="form-control" placeholder="Licence No." name="row[' + rc + '][licence]"> \
+                        <input type="text" class="form-control validate" placeholder="Licence No." name="row[' + rc + '][licence]"> \
                       </div> \
                       <div class="col"> \
-                        <input type="text" id="final" class="form-control" placeholder="Breede No." name="row[' + rc + '][breede]"> \
+                        <input type="text" id="final" class="form-control validate" placeholder="Breede No." name="row[' + rc + '][breede]"> \
                       </div> \
             </div>'
             return formHtml;
         }
         <?php include './js/form.js.php'?>
         <?php include './js/date.js.php'?>
+        <?php include './js/last_row_validate.js.php'?>
     </script>
 </div>
