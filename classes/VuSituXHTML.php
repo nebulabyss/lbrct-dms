@@ -34,14 +34,14 @@ class VuSituXHTML
         $wq_data['date'] = substr($date, 0, $needle);
 
         $tr_length = false;
-        if ($trList->item(0)->childNodes->length > 9) {
+        if ($trList->item(0)->childNodes->length > count($keys)) {
             $tr_length = true;
         }
 
         foreach ($trList as $tr) {
             if ($tr_length) {
-                $tr->removeChild($tr->childNodes->item(8));
-                $tr->removeChild($tr->childNodes->item(8));
+                $tr->removeChild($tr->childNodes->item(count($keys) - 1));
+                $tr->removeChild($tr->childNodes->item(count($keys) - 1));
             }
 
             $row = [];
