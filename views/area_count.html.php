@@ -25,28 +25,28 @@
                 if (isset($zones)) {
                     foreach($zones as $k):
                         echo ('                    
-                        <div class="form-row mb-2">
+                        <div class="form-row mb-2" id="validationBlock">
                             <label class="col-form-label d-inline-block" style="width: 250px;">' . $k . '</label>
                             <div class="col">
-                                <input type="number" id="next" class="form-control" name="row[' . $rowCount . '][transit]">
+                                <input type="number" id="next" class="form-control validate" name="row[' . $rowCount . '][transit]">
                             </div>
                             <div class="col">
-                                <input type="number" class="form-control" name="row[' . $rowCount . '][moored]">
+                                <input type="number" class="form-control validate" name="row[' . $rowCount . '][moored]">
                             </div>
                             <div class="col">
-                                <input type="number" class="form-control" name="row[' . $rowCount . '][skiing]">
+                                <input type="number" class="form-control validate" name="row[' . $rowCount . '][skiing]">
                             </div>
                             <div class="col">
-                                <input type="number" class="form-control" name="row[' . $rowCount . '][fishing]">
+                                <input type="number" class="form-control validate" name="row[' . $rowCount . '][fishing]">
                             </div>
                             <div class="col">
-                                <input type="number" class="form-control" name="row[' . $rowCount . '][other]">
+                                <input type="number" class="form-control validate" name="row[' . $rowCount . '][other]">
                             </div>
                             <div class="col">
-                                <input type="number" class="form-control" name="row[' . $rowCount . '][angler]">
+                                <input type="number" class="form-control validate" name="row[' . $rowCount . '][angler]">
                             </div>
                             <div class="col">
-                                <input type="number" class="form-control" name="row[' . $rowCount . '][bait]">
+                                <input type="number" class="form-control validate" name="row[' . $rowCount . '][bait]">
                             </div>
                         </div>
                         ');
@@ -56,10 +56,11 @@
                 </fieldset>
             <div class="float-right">
             <?php include './includes/cancel_button.php'?>
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success" id="submit">Submit</button>
             </div>
         </form>
 </div>
 <script>
     <?php include './js/date.js.php'?>
+    <?php include './js/area_count_validate.js.php'?>
 </script>
