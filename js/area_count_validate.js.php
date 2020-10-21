@@ -1,7 +1,5 @@
 $('#submit').on('click', function(event) {
     var fields = document.getElementsByClassName('validate');
-    console.log(fields);
-    console.log(fields.length);
     var fieldCount = 0;
     for (var i = 0; i < fields.length; i++) {
         if (fields[i].textLength === 0) {

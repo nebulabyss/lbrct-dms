@@ -30,7 +30,7 @@
         <?php include './includes/remove_row_botton.php'?>
         <div class="float-right">
             <?php include './includes/cancel_button.php'?>
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success" id="submit">Submit</button>
         </div>
     </form>
 </div>
@@ -40,7 +40,7 @@
         formHtml = '<div class="form-row mb-2" id="row' + rowCount + '"> \
                    <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
                       <div class="col"> \
-                    <select class="form-control custom-select" name="row[' + rc + '][zone]" id="zone"><option selected value="">Zone</option> \ <?php
+                    <select class="form-control custom-select validate" name="row[' + rc + '][zone]" id="zone"><option selected value="">Zone</option> \ <?php
             if (isset($zones)) {
                 foreach ($zones as $k => $v):
                     echo('<option value="' . $k . '">' . $v . '</option>');
@@ -49,34 +49,34 @@
             ?> </select> \
                 </div> \
                   <div> \
-                  <input id="c_name" type="text" class="form-control" placeholder="Breede Reg." name="row[' + rc + '][breede]"> \
+                  <input id="c_name" type="text" class="form-control validate" placeholder="Breede Reg." name="row[' + rc + '][breede]"> \
                   </div> \
                   <div class="col"> \
-                    <input type="text" class="form-control" placeholder="Licence No." name="row[' + rc + '][licence]"> \
+                    <input type="text" class="form-control validate" placeholder="Licence No." name="row[' + rc + '][licence]"> \
                   </div> \
                   <div class="col"> \
-                    <input type="text" class="form-control" placeholder="SAMSA" name="row[' + rc + '][samsa]"> \
+                    <input type="text" class="form-control validate" placeholder="SAMSA" name="row[' + rc + '][samsa]"> \
                   </div> \
                   <div class="col"> \
-                    <input type="text" class="form-control" placeholder="Boat Name" name="row[' + rc + '][bname]"> \
+                    <input type="text" class="form-control validate" placeholder="Boat Name" name="row[' + rc + '][bname]"> \
                   </div> \
                   <div class="col"> \
-                    <input type="text" class="form-control" placeholder="Engine size" name="row[' + rc + '][size]"> \
+                    <input type="text" class="form-control validate" placeholder="Engine size" name="row[' + rc + '][size]"> \
                   </div> \
                   <div class="form-check my-auto ml-2 mr-1"> \
-                  <input class="form-check-input big-checkbox" type="checkbox" id="gridCheck" name="row[' + rc + '][twin]"> \
+                  <input class="form-check-input big-checkbox  validate" type="checkbox" id="gridCheck" name="row[' + rc + '][twin]"> \
                   <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Twin</label> \
                   </div> \
                   <div class="form-check my-auto ml-2 mr-1"> \
-                  <input class="form-check-input big-checkbox" type="checkbox" id="gridCheck" name="row[' + rc + '][fine]"> \
+                  <input class="form-check-input big-checkbox validate" type="checkbox" id="gridCheck" name="row[' + rc + '][fine]"> \
                   <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Fine</label> \
                   </div> \
                   <div class="form-check my-auto ml-2 mr-1"> \
-                  <input class="form-check-input big-checkbox" type="checkbox" id="gridCheck" name="row[' + rc + '][warn]"> \
+                  <input class="form-check-input big-checkbox validate" type="checkbox" id="gridCheck" name="row[' + rc + '][warn]"> \
                   <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Warning</label> \
                   </div> \
                   <div class="col"> \
-                  <select class="form-control custom-select" name="row[' + rc + '][trans]" id="final"><option selected value="">Transgression</option> \ <?php
+                  <select class="form-control custom-select validate" name="row[' + rc + '][trans]" id="final"><option selected value="">Transgression</option> \ <?php
             if (isset($trans)) {
                 foreach ($trans as $k => $v):
                     echo('<option value="' . $k . '">' . $v . '</option>');
@@ -90,4 +90,5 @@
     }
     <?php include './js/form.js.php'?>
     <?php include './js/date.js.php'?>
+    <?php include './js/last_row_validate.js.php'?>
 </script>
