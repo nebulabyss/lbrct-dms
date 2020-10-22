@@ -44,7 +44,7 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Boat inspections</a>
                 <a class="dropdown-item" href="#">Slipway inspections</a>
-                <a class="dropdown-item" href="#">Zone usage count</a>
+                <a class="dropdown-item" href="../zone_count_report.php">Zone usage count</a>
             </div>
         </li>
     </ul>
