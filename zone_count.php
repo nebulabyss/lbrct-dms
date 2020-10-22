@@ -33,6 +33,6 @@ $table_columns = array(
 $zones = $database_controller->SelectColumn($table_columns[0]);
 
 include 'includes/header.php';
-include 'views/area_count.html.php';
+include 'views/zone_count.html.php';
 include 'includes/footer.php';
 

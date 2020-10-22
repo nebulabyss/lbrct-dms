@@ -20,7 +20,7 @@
             <div class="dropdown-menu" aria-labelledby="compliance">
                 <a class="dropdown-item" href="../boat_patrol.php">Add boat inspection</a>
                 <a class="dropdown-item" href="../slipway_patrol.php">Add slipway inspection</a>
-                <a class="dropdown-item" href="../area_count.php">Add zone usage count</a>
+                <a class="dropdown-item" href="../zone_count.php">Add zone usage count</a>
             </div>
         </li>
         <li class="nav-item dropdown mr-2">
@@ -39,12 +39,12 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="reports">
                 <a class="dropdown-item" href="#">Bird counts</a>
-                <a class="dropdown-item" href="#">Water quality</a>
                 <a class="dropdown-item" href="#">Marine debris</a>
+                <a class="dropdown-item" href="#">Water quality</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Boat inspections</a>
                 <a class="dropdown-item" href="#">Slipway inspections</a>
-                <a class="dropdown-item" href="#">Area usage count</a>
+                <a class="dropdown-item" href="#">Zone usage count</a>
             </div>
         </li>
     </ul>
