@@ -85,7 +85,7 @@
 <!-- Modal End -->
 <script>
     <?php include './js/form_variables.js.php'?>
-    function generateForm(rc, ln) {
+    function generateFormRow(rc, ln) {
         formHtml = '<div class="form-row mb-2" id="row' + rowCount + '"> \
                    <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
                       <div class="col"> \

@@ -1,11 +1,11 @@
-function formInstance() {
+function addFormRow() {
     $( '.form-body' ).append(
-        generateForm(rowCount, lineNum)
+        generateFormRow(rowCount, lineNum)
     );
 }
 
 $(document).ready(function() {
-    formInstance();
+    addFormRow();
 });
 
 $(document).on( 'keydown', ('#' + triggerID), function( event ) {
@@ -13,9 +13,9 @@ $(document).on( 'keydown', ('#' + triggerID), function( event ) {
     if (keyCode === 9) {
         rowCount++;
         lineNum++;
-        formInstance();
+        addFormRow();
         let rowId = triggerID + (rowCount - 1);
-        $(this).attr('id', rowId);
+        $(this).attr('id', rowId); // rename previous rowId to not execute on keydown
         $(this).focus();
     }
 });
@@ -24,14 +24,14 @@ $('#removeRow').click(function() {
     let lastFormRowDiv = '#row' + rowCount;
     if (rowCount === 0){
         $(lastFormRowDiv).remove();
-        formInstance();
+        addFormRow();
     }
     if (rowCount > 0) {
         $(lastFormRowDiv).fadeOut();
         rowCount--;
         lineNum--;
         let rowId = '#' + triggerID + (rowCount);
-        $(rowId).attr('id', triggerID);
+        $(rowId).attr('id', triggerID); // set current last row to triggerID to execute on keydown
     }
 });
 
