@@ -130,7 +130,7 @@ class DatabaseController
                     compliance_zone_counts.batch_id = compliance_zones_batch.date BETWEEN :start_date AND :end_date
             GROUP BY
                 compliance_zone_counts.zone
-    ');
+        ');
         $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
