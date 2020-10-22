@@ -14,24 +14,24 @@ $(document).on( 'keydown', ('#' + triggerID), function( event ) {
         rowCount++;
         lineNum++;
         formInstance();
-        let mod = triggerID + (rowCount - 1);
-        $(this).attr('id', mod);
+        let rowId = triggerID + (rowCount - 1);
+        $(this).attr('id', rowId);
         $(this).focus();
     }
 });
 
 $('#removeRow').click(function() {
-    let lastFormDiv = '#row' + rowCount;
+    let lastFormRowDiv = '#row' + rowCount;
     if (rowCount === 0){
-        $(lastFormDiv).remove();
+        $(lastFormRowDiv).remove();
         formInstance();
     }
     if (rowCount > 0) {
-        $(lastFormDiv).fadeOut();
+        $(lastFormRowDiv).fadeOut();
         rowCount--;
         lineNum--;
-        let mod = '#' + triggerID + (rowCount);
-        $(mod).attr('id', triggerID);
+        let rowId = '#' + triggerID + (rowCount);
+        $(rowId).attr('id', triggerID);
     }
 });
 
