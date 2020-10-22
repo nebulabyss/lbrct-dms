@@ -2,6 +2,7 @@
 session_start();
 
 $salt = '+Aqr2jwFfD-nSQ4J';
+$login = true;
 
 if (isset($_POST['email'])) {
     $_SESSION['user_name'] = "Signed in user";
@@ -9,46 +10,9 @@ if (isset($_POST['email'])) {
     header("Location: index.php");
     return;
 }
+
+include './includes/header.php';
 ?>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <title>LBRCT Data Management System</title>
-    <style>
-        .form-signin {
-            width: 100%;
-            max-width: 330px;
-            padding: 15px;
-            margin: auto;
-        }
-        .form-signin .form-control {
-            position: relative;
-            box-sizing: border-box;
-            height: auto;
-            padding: 10px;
-            font-size: 16px;
-        }
-        .form-signin .form-control:focus {
-            z-index: 2;
-        }
-        .form-signin input[type="email"] {
-            margin-bottom: -1px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-        .form-signin input[type="password"] {
-            margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-</style>
-</head>
 <body>
 <div class="container-fluid">
     <?php require_once "./includes/nav.php";?>
@@ -62,4 +26,3 @@ if (isset($_POST['email'])) {
     </form>
 </div>
 <?php include "./includes/footer.php";?>
-</body>
