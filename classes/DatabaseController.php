@@ -83,8 +83,16 @@ class DatabaseController
 
     public function MarineDebrisCodes()
     {
-        $query = $this->pdo->prepare('SELECT marine_debris_minor_categories.marine_debris_minor_categories_id, marine_debris_minor_categories.code, marine_debris_minor_categories.description, marine_debris_major_categories.description FROM marine_debris_minor_categories INNER JOIN marine_debris_major_categories WHERE marine_debris_minor_categories.marine_debris_major_categories_id = marine_debris_major_categories.marine_debris_major_categories_id;
-');
+        $query = $this->pdo->prepare('
+            SELECT
+                marine_debris_minor_categories.marine_debris_minor_categories_id,
+                marine_debris_minor_categories.code,
+                marine_debris_minor_categories.description,
+                marine_debris_major_categories.description
+            FROM
+                marine_debris_minor_categories
+            INNER JOIN marine_debris_major_categories WHERE marine_debris_minor_categories.marine_debris_major_categories_id = marine_debris_major_categories.marine_debris_major_categories_id;
+        ');
         $query->execute(array());
         return $query->fetchAll(PDO::FETCH_NAMED);
     }
@@ -102,5 +110,28 @@ class DatabaseController
         if ($row !== false) $name_result = (int)$row[$column];
 
         return $name_result;
+    }
+
+    public function zoneCountReport($start_date, $end_date)
+    {
+        $query = $this->pdo->prepare('
+            SELECT
+                SUM(compliance_zone_counts.transit),
+                SUM(compliance_zone_counts.moored),
+                SUM(compliance_zone_counts.skiing),
+                SUM(compliance_zone_counts.fishing),
+                SUM(compliance_zone_counts.other),
+                SUM(compliance_zone_counts.angler),
+                SUM(compliance_zone_counts.bait)
+            FROM
+                compliance_zone_counts,
+                compliance_zones_batch
+            WHERE
+                    compliance_zone_counts.batch_id = compliance_zones_batch.date BETWEEN :start_date AND :end_date
+            GROUP BY
+                compliance_zone_counts.zone
+    ');
+        $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 }
