@@ -30,7 +30,7 @@
         </div>
     <?php elseif (!empty($_POST)): ?>
     <div class="table-responsive">
-        <table class="table table-sm table-bordered mt-3">
+        <table class="table table-sm table-bordered mt-3" id="data-table">
             <thead class="thead-light">
             <tr>
                 <th>Recreational activity</th>
@@ -59,4 +59,5 @@
 <script>
     <?php include './js/clipboard.js.php'?>
     <?php include './js/report.js.php'?>
+    <?php include './js/csv.js.php'?>
 </script>

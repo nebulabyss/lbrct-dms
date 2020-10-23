@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-success float-right" id="submit">Export as CSV
+<button type="button" class="btn btn-success float-right" id="csv">Export as CSV
     <svg style="vertical-align: top;" width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-file-earmark-spreadsheet" fill="currentColor"
          xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M5 10H3V9h10v1h-3v2h3v1h-3v2H9v-2H6v2H5v-2H3v-1h2v-2zm1 0v2h3v-2H6z"/>
