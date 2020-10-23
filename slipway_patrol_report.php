@@ -15,6 +15,7 @@ if (isset($_POST['start_date'])) {
     $recreational = $database_controller->recreationalSlipwayReport($_POST['start_date'], $_POST['end_date']);
     $commercial = $database_controller->commercialSlipwayReport($_POST['start_date'], $_POST['end_date']);
 }
+
 include 'includes/header.php';
 include 'views/slipway_patrol_report.html.php';
 include 'includes/footer.php';
