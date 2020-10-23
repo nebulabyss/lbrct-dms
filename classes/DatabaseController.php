@@ -134,4 +134,72 @@ class DatabaseController
         $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function boatPatrolReport($start_date, $end_date) {
+        $query = $this->pdo->prepare("
+                SELECT
+                    COUNT(
+                    DISTINCT boat_patrol.boat_patrol_id
+                    )
+                FROM
+                    boat_patrol
+                WHERE
+                    boat_patrol.batch_id IN(
+                    SELECT
+                        boat_patrol_batch.batch_id
+                    FROM
+                        boat_patrol_batch
+                    WHERE
+                        boat_patrol_batch.date BETWEEN :start_date AND :end_date
+                    )
+        ");
+        $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
+        return $query->fetchAll(PDO::FETCH_NUM);
+    }
+
+    public function commercialSlipwayReport($start_date, $end_date) {
+        $query = $this->pdo->prepare("
+                SELECT
+                    COUNT(
+                    DISTINCT slipway_patrol.slipway_patrol_id
+                    )
+                FROM
+                    slipway_patrol
+                WHERE
+                    slipway_patrol.batch_id IN(
+                    SELECT
+                        slipway_patrol_batch.batch_id
+                    FROM
+                        slipway_patrol_batch
+                    WHERE
+                        slipway_patrol_batch.date BETWEEN :start_date AND :end_date
+                    )
+                AND slipway_patrol.licence = 'C'
+        ");
+        $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
+        return $query->fetchAll(PDO::FETCH_NUM);
+    }
+
+    public function recreationalSlipwayReport($start_date, $end_date) {
+        $query = $this->pdo->prepare("
+                SELECT
+                    COUNT(
+                    DISTINCT slipway_patrol.slipway_patrol_id
+                    )
+                FROM
+                    slipway_patrol
+                WHERE
+                    slipway_patrol.batch_id IN(
+                    SELECT
+                        slipway_patrol_batch.batch_id
+                    FROM
+                        slipway_patrol_batch
+                    WHERE
+                        slipway_patrol_batch.date BETWEEN :start_date AND :end_date
+                    )
+                AND slipway_patrol.licence != 'C' OR slipway_patrol.licence IS NULL
+        ");
+        $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
+        return $query->fetchAll(PDO::FETCH_NUM);
+    }
 }
