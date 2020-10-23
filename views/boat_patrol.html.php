@@ -49,19 +49,19 @@
             ?> </select> \
                 </div> \
                   <div> \
-                  <input id="c_name" type="text" class="form-control validate" placeholder="Breede Reg." name="row[' + rc + '][breede]"> \
+                  <input id="c_name" type="text" class="form-control validate" placeholder="Breede Reg." maxlength="5" name="row[' + rc + '][breede]"> \
                   </div> \
                   <div class="col"> \
-                    <input type="text" class="form-control validate" placeholder="Licence No." name="row[' + rc + '][licence]"> \
+                    <input type="text" class="form-control validate" placeholder="Licence No." maxlength="4" name="row[' + rc + '][licence]"> \
                   </div> \
                   <div class="col"> \
-                    <input type="text" class="form-control validate" placeholder="SAMSA" name="row[' + rc + '][samsa]"> \
+                    <input type="text" class="form-control validate" placeholder="SAMSA" maxlength="20" name="row[' + rc + '][samsa]"> \
                   </div> \
                   <div class="col"> \
-                    <input type="text" class="form-control validate" placeholder="Boat Name" name="row[' + rc + '][bname]"> \
+                    <input type="text" class="form-control validate" placeholder="Boat Name" maxlength="30" name="row[' + rc + '][bname]"> \
                   </div> \
                   <div class="col"> \
-                    <input type="text" class="form-control validate" placeholder="Engine size" name="row[' + rc + '][size]"> \
+                    <input type="text" class="form-control validate" placeholder="Engine size" maxlength="3" name="row[' + rc + '][size]"> \
                   </div> \
                   <div class="form-check my-auto ml-2 mr-1"> \
                   <input class="form-check-input big-checkbox  validate" type="checkbox" id="gridCheck" name="row[' + rc + '][twin]"> \
