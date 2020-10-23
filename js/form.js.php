@@ -35,6 +35,6 @@ $('#removeRow').click(function() {
     }
 });
 
-$(z () {
+$(function () {
     $('[data-toggle="tooltip"]').tooltip()
 });
