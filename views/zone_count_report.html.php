@@ -33,32 +33,26 @@
         <table class="table table-sm table-bordered mt-3">
             <thead class="thead-light">
             <tr>
-                <th>Area</th>
-                <th>Boats in transit</th>
-                <th>Boats moored</th>
-                <th>Boats skiing</th>
-                <th>Boats fishing</th>
-                <th>Other</th>
-                <th>Shore anglers</th>
-                <th>Bait collectors</th>
+                <th>Recreational activity</th>
+                <th>Total count</th>
+                <th>Peak number of users per day</th>
             </tr>
             </thead>
             <tbody>
             <?php
-            if (isset($zones)) {
-                $counter = 0;
-                while ($counter < count($zones)) {
-                    echo '<tr><td>' . $zones[$counter] . '</td>';
-                    foreach ($zone_count[$counter] as $k => $v) {
-                        echo '<td>' . $v . '</td>';
-                    }
-                    echo '</tr>';
-                    $counter++;
-                }
+            $row_names = array('Boats in transit', 'Boats at mooring', 'Boats skiing', 'Boats fishing', 'Non-motorized water sport (Kite surfing, sailing)', 'Shore anglers', 'Bait collectors');
+            $counter = 0;
+            while ($counter < count($row_names)) {
+                echo '<tr><td>' . $row_names[$counter] . '</td>';
+                echo '<td>' . $zone_count[0][$counter] . '</td>';
+                echo '<td>' . $zone_max_per_day[0][$counter] . '</td>';
+                $counter++;
             }
+            echo '</tr>';
             ?>
             </tbody>
         </table>
+
         <button type="button" class="btn btn-success float-right" id="submit">Export as CSV</button>
         <?php endif; ?>
     </div>
