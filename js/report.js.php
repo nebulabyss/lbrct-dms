@@ -20,3 +20,11 @@ $('#submit').on('click', function (e) {
         $('h3').before(message);
     }
 });
+
+$('#copy').on('click', function () {
+    $('[data-toggle="tooltip"]').tooltip('enable')
+    $('[data-toggle="tooltip"]').tooltip('show')
+    $('[data-toggle="tooltip"]').tooltip('disable')
+});
+
+new ClipboardJS('#copy');

@@ -19,7 +19,7 @@
                        } ?>required>
             </div>
             <div class="ml-3">
-                <button type="submit" class="btn btn-info" id="submit">Submit</button>
+                <button type="submit" class="btn btn-primary" id="submit">Submit</button>
                 <?php include './includes/cancel_button.php' ?>
             </div>
         </div>
@@ -38,7 +38,7 @@
                 <th>Peak number of users per day</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="clipboard">
             <?php
             $row_names = array('Boats in transit', 'Boats at mooring', 'Boats skiing', 'Boats fishing', 'Non-motorized water sport (Kite surfing, sailing)', 'Shore anglers', 'Bait collectors');
             $counter = 0;
@@ -52,11 +52,11 @@
             ?>
             </tbody>
         </table>
-
-        <button type="button" class="btn btn-success float-right" id="submit">Export as CSV</button>
+        <?php include './includes/report_buttons.php'?>
         <?php endif; ?>
     </div>
 </div>
 <script>
+    <?php include './js/clipboard.js.php'?>
     <?php include './js/report.js.php'?>
 </script>

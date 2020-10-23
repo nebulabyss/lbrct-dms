@@ -1,0 +1,2 @@
+<button type="button" class="btn btn-success float-right" id="submit">Export as CSV</button>
+<button type="button" class="btn btn-info float-right mr-1" id="copy" data-toggle="tooltip" data-placement="bottom" title="Copied!" data-clipboard-target="#clipboard" data-clipboard-action="copy">Copy to clipboard</button>
