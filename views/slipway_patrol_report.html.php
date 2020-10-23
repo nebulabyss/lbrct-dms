@@ -24,7 +24,7 @@
             </div>
         </div>
     </form>
-    <?php if (isset($recreational) && $recreational[0][0] == false): ?>
+    <?php if (isset($recreational) && $recreational[0] == false): ?>
         <div>
             <h4 class="text-danger mt-5 text-center">No records for selected dates.</h4>
         </div>
@@ -42,7 +42,7 @@
                 <td>Recreational river boats</td>
                 <?php
                 if (isset($recreational)) {
-                    echo '<td>' . $recreational[0][0] . '</td>';
+                    echo '<td>' . $recreational[0] . '</td>';
                 }
                 ?>
             </tr>
@@ -50,7 +50,7 @@
                 <td>Commercial boats</td>
                 <?php
                 if (isset($commercial)) {
-                    echo '<td>' . $commercial[0][0] . '</td>';
+                    echo '<td>' . $commercial[0] . '</td>';
                 }
                 ?>
             </tr>
