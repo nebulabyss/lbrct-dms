@@ -112,7 +112,7 @@ class DatabaseController
         return $name_result;
     }
 
-    public function zoneCountReport($start_date, $end_date)
+    public function zoneCountReportSum($start_date, $end_date)
     {
         $query = $this->pdo->prepare('
             SELECT
@@ -124,18 +124,51 @@ class DatabaseController
                 SUM(compliance_zone_counts.angler),
                 SUM(compliance_zone_counts.bait)
             FROM
+                compliance_zone_counts
+            WHERE
+                compliance_zone_counts.batch_id IN(
+                SELECT
+                    compliance_zones_batch.batch_id
+                FROM
+                    compliance_zones_batch
+                WHERE
+                    compliance_zones_batch.date BETWEEN :start_date AND :end_date
+                )
+        ');
+        $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
+        return $query->fetchAll(PDO::FETCH_NUM);
+    }
+
+    public function zoneCountReportMax($start_date, $end_date)
+    {
+        $query = $this->pdo->prepare('
+            SELECT
+                MAX(compliance_zone_counts.transit),
+                MAX(compliance_zone_counts.moored),
+                MAX(compliance_zone_counts.skiing),
+                MAX(compliance_zone_counts.fishing),
+                MAX(compliance_zone_counts.other),
+                MAX(compliance_zone_counts.angler),
+                MAX(compliance_zone_counts.bait)
+            FROM
                 compliance_zone_counts,
                 compliance_zones_batch
             WHERE
-                    compliance_zone_counts.batch_id = compliance_zones_batch.date BETWEEN :start_date AND :end_date
-            GROUP BY
-                compliance_zone_counts.zone
+                compliance_zone_counts.batch_id IN(
+                SELECT
+                    compliance_zones_batch.batch_id
+                FROM
+                    compliance_zones_batch
+                WHERE
+                    compliance_zones_batch.date BETWEEN :start_date AND :end_date
+                )
         ');
         $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        return $query->fetchAll(PDO::FETCH_NUM);
     }
 
-    public function boatPatrolReport($start_date, $end_date) {
+    public function boatPatrolReport($start_date, $end_date)
+    {
         $query = $this->pdo->prepare("
                 SELECT
                     COUNT(
@@ -154,10 +187,11 @@ class DatabaseController
                     )
         ");
         $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
-        return $query->fetchAll(PDO::FETCH_NUM);
+        return $query->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    public function commercialSlipwayReport($start_date, $end_date) {
+    public function commercialSlipwayReport($start_date, $end_date)
+    {
         $query = $this->pdo->prepare("
                 SELECT
                     COUNT(
@@ -177,15 +211,14 @@ class DatabaseController
                 AND slipway_patrol.licence = 'C'
         ");
         $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
-        return $query->fetchAll(PDO::FETCH_NUM);
+        return $query->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    public function recreationalSlipwayReport($start_date, $end_date) {
+    public function recreationalSlipwayReport($start_date, $end_date)
+    {
         $query = $this->pdo->prepare("
                 SELECT
-                    COUNT(
-                    DISTINCT slipway_patrol.slipway_patrol_id
-                    )
+                    COUNT(slipway_patrol.slipway_patrol_id)
                 FROM
                     slipway_patrol
                 WHERE
@@ -196,10 +229,16 @@ class DatabaseController
                         slipway_patrol_batch
                     WHERE
                         slipway_patrol_batch.date BETWEEN :start_date AND :end_date
+                ) AND slipway_patrol.slipway_patrol_id NOT IN(
+                    SELECT
+                        slipway_patrol.slipway_patrol_id
+                    FROM
+                        slipway_patrol
+                    WHERE
+                        slipway_patrol.licence = 'C'
                     )
-                AND slipway_patrol.licence != 'C' OR slipway_patrol.licence IS NULL
         ");
         $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
-        return $query->fetchAll(PDO::FETCH_NUM);
+        return $query->fetchAll(PDO::FETCH_COLUMN);
     }
 }
