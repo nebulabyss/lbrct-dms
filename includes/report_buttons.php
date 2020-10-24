@@ -7,7 +7,7 @@
     </svg>
 </button>
 <button type="button" class="btn btn-info float-right mr-1" id="copy" data-toggle="tooltip" data-placement="bottom"
-        title="Copied!" data-clipboard-target="#clipboard" data-clipboard-action="copy">Copy to clipboard
+        title="" data-clipboard-target="#clipboard" data-clipboard-action="copy">Copy to clipboard
     <svg style="vertical-align: top;" width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-clipboard-check"
          fill="currentColor"
          xmlns="http://www.w3.org/2000/svg">
