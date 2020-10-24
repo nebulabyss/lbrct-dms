@@ -9,13 +9,17 @@
                 <input type="text" class="form-control datepicker" placeholder="From date" id="start_date"
                        name="start_date" <?php if (isset($_POST['start_date'])) {
                     echo "value=\"" . $_POST["start_date"] . "\" ";
-                } ?>required>
+                } else {
+                    echo "value=\"" . date('Y-m-01') . "\" ";
+                }?>required>
             </div>
             <div class="form-inline">
                 <label for="end_date" class="col-form-label col">To</label>
                 <input type="text" class="form-control datepicker" placeholder="To date" id="end_date" name="end_date"
                        <?php if (isset($_POST['end_date'])) {
                            echo "value=\"" . $_POST["end_date"] . "\" ";
+                       } else {
+                           echo "value=\"" . date('Y-m-t') . "\" ";
                        } ?>required>
             </div>
             <div class="ml-3">
