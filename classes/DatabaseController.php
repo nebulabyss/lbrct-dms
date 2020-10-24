@@ -241,4 +241,49 @@ class DatabaseController
         $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
         return $query->fetchAll(PDO::FETCH_COLUMN);
     }
+
+    public function birdCountReport($start_date, $end_date)
+    {
+        $query = $this->pdo->prepare("
+                SELECT
+                    birds_species.common_name,
+                    SUM(bird_count.count)
+                FROM
+                    birds_species, bird_count
+                WHERE
+                    bird_count.species = birds_species.bird_id AND 
+                    bird_count.batch_id IN(
+                    SELECT
+                        bird_count_batch.batch_id
+                    FROM
+                        bird_count_batch
+                    WHERE
+                        bird_count_batch.date BETWEEN :start_date AND :end_date
+                )
+                GROUP BY birds_species.common_name
+        ");
+        $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
+        return $query->fetchAll(PDO::FETCH_KEY_PAIR);
+    }
+
+    public function birdGrandTotalReport($start_date, $end_date)
+    {
+        $query = $this->pdo->prepare("
+                SELECT
+                    SUM(bird_count.count)
+                FROM
+                bird_count
+                WHERE
+                        bird_count.batch_id IN(
+                    SELECT
+                        bird_count_batch.batch_id
+                    FROM
+                        bird_count_batch
+                    WHERE
+                        bird_count_batch.date BETWEEN :start_date AND :end_date
+                )
+        ");
+        $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
+        return $query->fetchAll(PDO::FETCH_COLUMN);
+    }
 }
