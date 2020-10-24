@@ -38,7 +38,7 @@
                 Reports
             </a>
             <div class="dropdown-menu" aria-labelledby="reports">
-                <a class="dropdown-item" href="#">Bird counts</a>
+                <a class="dropdown-item" href="../bird_count_report.php">Bird counts</a>
                 <a class="dropdown-item" href="#">Marine debris</a>
                 <a class="dropdown-item" href="#">Water quality</a>
                 <div class="dropdown-divider"></div>
