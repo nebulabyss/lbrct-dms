@@ -22,9 +22,12 @@ $('#submit').on('click', function (e) {
 });
 
 $('#copy').on('click', function () {
-    $('[data-toggle="tooltip"]').tooltip('enable')
-    $('[data-toggle="tooltip"]').tooltip('show')
-    $('[data-toggle="tooltip"]').tooltip('disable')
+    $(this).attr('title', 'Copied!');
+    let toggle = $('[data-toggle="tooltip"]');
+    toggle.tooltip('enable');
+    toggle.tooltip('show');
+    toggle.tooltip('disable');
+    $(this).attr('title', '');
 });
 
 new ClipboardJS('#copy');
