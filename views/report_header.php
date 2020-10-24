@@ -10,7 +10,7 @@
                        name="start_date" <?php if (isset($_POST['start_date'])) {
                     echo "value=\"" . $_POST["start_date"] . "\" ";
                 } else {
-                    echo "value=\"" . date('Y-m-01') . "\" ";
+                    echo "value=\"" . date('Y-m-d', strtotime("first day of -1 month")) . "\" ";
                 }?>required>
             </div>
             <div class="form-inline">
@@ -19,7 +19,7 @@
                        <?php if (isset($_POST['end_date'])) {
                            echo "value=\"" . $_POST["end_date"] . "\" ";
                        } else {
-                           echo "value=\"" . date('Y-m-t') . "\" ";
+                           echo "value=\"" . date('Y-m-d', strtotime("last day of -1 month")) . "\" ";
                        } ?>required>
             </div>
             <div class="ml-3">
