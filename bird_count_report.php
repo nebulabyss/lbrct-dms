@@ -7,7 +7,7 @@ session_start();
  * @var $pdo
  */
 $database_controller = new DatabaseController($pdo);
-
+$title = 'Bird count report';
 if (isset($_POST['start_date'])) {
     $table_columns = array(
         array('compliance_zones', 'description'));
