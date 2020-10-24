@@ -1,7 +1,7 @@
 <?php include 'report_header.php'?>
     <?php if (isset($zone_count) && $zone_count[0][0] == false): ?>
         <div>
-            <h4 class="text-danger mt-5 text-center">No records for selected dates.</h4>
+            <h4 class="text-danger mt-5 text-center">No records for selected dates</h4>
         </div>
     <?php elseif (!empty($_POST)): ?>
     <div class="table-responsive">
