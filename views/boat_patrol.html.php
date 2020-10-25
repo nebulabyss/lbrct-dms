@@ -4,9 +4,7 @@
 <h3 class="text-muted mt-2">Boat patrols</h3>
     <form action="../boat_patrol.php" method="post">
         <div class="form-row mb-2">
-                <div class="col-1">
-                    <label for="datepicker" class="ui-helper-hidden"></label><input type="text" class="form-control bg-warning" placeholder="Batch Date" id="datepicker" name="date" required>
-                </div>
+            <?php include './includes/date_picker.php' ?>
             <fieldset class="form-row" disabled>
                 <div class="col">
                     <label for="next" class="col-form-label">Start Time:</label>

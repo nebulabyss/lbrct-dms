@@ -1,6 +1,17 @@
 let date_picker = $('.datepicker');
 date_picker.datepicker({
-    dateFormat:  "yy-mm-dd"
+    dateFormat:  "yy-mm-dd",
+    showOtherMonths: true,
+    selectOtherMonths: true,
+    firstDay: 1
+});
+
+$('#start').click(function (){
+   $('#start_date').datepicker('show');
+});
+
+$('#end').click(function (){
+   $('#end_date').datepicker('show');
 });
 
 $('#submit').on('click', function (e) {

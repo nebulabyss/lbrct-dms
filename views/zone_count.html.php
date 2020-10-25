@@ -4,10 +4,7 @@
         <h3 class="text-muted mt-2">Zone usage count</h3>
         <form action="../zone_count.php" method="post">
             <div class="form-row">
-                <div class="col-1">
-                    <label for="datepicker" class="ui-helper-hidden"></label>
-                    <input type="text" class="form-control bg-warning text-dark" placeholder="Batch Date" id="datepicker" name="date" required>
-                </div>
+                <?php include './includes/date_picker.php' ?>
             </div>
                 <div class="form-row font-weight-bold">
                     <label class="col-form-label d-inline-block" style="width: 250px;"></label>
