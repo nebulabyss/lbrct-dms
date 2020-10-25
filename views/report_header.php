@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <?php require_once "./includes/nav.php"; ?>
     <h3 class="text-muted mt-2"><?= $title ?></h3>
-    <form action="../zone_count_report.php" method="post">
+    <form action="../<?=$form_action?>" method="post">
         <div class="form-row form-row">
             <div class="form-inline">
                 <label for="start_date" class="col-form-label col">From</label>

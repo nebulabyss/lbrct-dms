@@ -8,6 +8,8 @@ session_start();
  */
 $database_controller = new DatabaseController($pdo);
 $title = 'Bird count report';
+$form_action = basename(__FILE__);
+
 if (isset($_POST['start_date'])) {
     $table_columns = array(
         array('compliance_zones', 'description'));
