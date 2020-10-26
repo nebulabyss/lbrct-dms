@@ -34,8 +34,6 @@
                     </div>
                 </fieldset>
             </div>
-
-
             <fieldset disabled>
                 <div class="form-body" id="form-body">
 
@@ -83,7 +81,6 @@
         </div>
     </div>
 </div>
-
 <!-- Modal End -->
 <script>
     <?php include './js/form_variables.js.php'?>
