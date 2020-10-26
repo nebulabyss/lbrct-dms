@@ -13,20 +13,20 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $database_controller = new DatabaseController($pdo);
     $user_auth = $database_controller->UserAuthentication($_POST['email']);
 
-    if (password_verify($_POST['password'], $user_auth[0]['pwd'])) {
-        $_SESSION['USER_ID'] = $user_auth[0]['user_id'];
-        $_SESSION['USER_NAME'] = $user_auth[0]['fname'] . ' ' . $user_auth[0]['lname'];
+    if (password_verify($_POST['password'], $user_auth['pwd'])) {
+        $_SESSION['USER_ID'] = $user_auth['user_id'];
+        $_SESSION['USER_NAME'] = $user_auth['fname'] . ' ' . $user_auth['lname'];
         header("Location: index.php");
         exit;
     } else {
-        $_SESSION['TEMP']['error_message'] = "Authentication failed. Try again";
+        $_SESSION['TEMP']['error_message'] = 'Authentication failed. Try again';
         header("Location: login.php");
         exit;
     }
 }
 
 if (isset($_POST['login'])) {
-    $_SESSION['TEMP']['error_message'] = "Complete all fields";
+    $_SESSION['TEMP']['error_message'] = 'Complete all fields';
     header("Location: login.php");
     exit;
 }

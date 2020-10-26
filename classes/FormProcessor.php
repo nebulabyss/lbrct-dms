@@ -71,6 +71,13 @@ class FormProcessor
      */
     public function ProcessForm($db_object, $batch_table, $db_table, $allow_duplicates)
     {
+        // Verify user privileges
+        $user_privileges = $db_object->GetPrivilegeLevel();
+        if ($user_privileges > 2) {
+            $_SESSION['TEMP']['error_message'] = 'User does <strong>NOT</strong> have database writing permissions';
+            return;
+        }
+
         // Process batch
         $batch_data = array();
         foreach ($this->user_data as $k => $v) {

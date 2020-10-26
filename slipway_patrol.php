@@ -19,7 +19,7 @@ if (isset($_POST['date'])) {
     $db_table = 'slipway_patrol';
     $form_processor->ProcessForm($database_controller, $batch_table, $db_table, $allow_duplicate_batch);
 
-    header('Location: ' . basename(__FILE__) );
+    header('Location: ' . basename(__FILE__));
     exit();
 }
 /*

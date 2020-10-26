@@ -15,6 +15,14 @@ class DatabaseController
         return $this->pdo->lastInsertId();
     }
 
+    public function GetPrivilegeLevel()
+    {
+        $sql = 'SELECT privileges FROM users WHERE user_id = :user_id';
+        $query = $this->pdo->prepare($sql);
+        $query->execute(array(':user_id' => $_SESSION['USER_ID']));
+        return $query->fetch(PDO::FETCH_COLUMN);
+    }
+
     public function InsertIntoDatabase($form_data, $table, $last_batch_id = 0)
     {
         if ($last_batch_id != 0) {
@@ -48,7 +56,7 @@ class DatabaseController
         $sql = 'SELECT user_id, fname, lname, pwd FROM users WHERE email = :email';
         $query = $this->pdo->prepare($sql);
         $query->execute(array(':email' => $email));
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
 
     public function SelectKeyPairs(array $table_columns)
