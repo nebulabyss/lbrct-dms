@@ -3,10 +3,6 @@ session_start();
 include 'pdo.php';
 include './classes/DatabaseController.php';
 
-$salt = '+Aqr2jwFfD-nSQ4J'; // use a random salt in production
-$login = true;
-
-
 if (isset($_POST['email']) && isset($_POST['password'])) {
     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         $_SESSION['TEMP']['error_message'] = "Invalid email";
@@ -15,11 +11,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     }
 
     $database_controller = new DatabaseController($pdo);
-    $password_auth = $database_controller->EmailAuthentication($_POST['email']);
+    $user_auth = $database_controller->UserAuthentication($_POST['email']);
 
-    if (password_verify($_POST["password"], $password_auth[0]["pwd"])) {
-        $_SESSION['USER_ID'] = $password_auth[0]['user_id'];
-        $_SESSION['USER_NAME'] = $password_auth[0]['fname'] . ' ' . $password_auth[0]['lname'];
+    if (password_verify($_POST['password'], $user_auth[0]['pwd'])) {
+        $_SESSION['USER_ID'] = $user_auth[0]['user_id'];
+        $_SESSION['USER_NAME'] = $user_auth[0]['fname'] . ' ' . $user_auth[0]['lname'];
         header("Location: index.php");
         exit;
     } else {
@@ -38,9 +34,11 @@ if (isset($_POST['login'])) {
 if (isset($_GET['expired'])) {
     $_SESSION['TEMP']['error_message'] = 'Session expired, log in again';
 }
+
+$login = true;
 include './includes/header.php';
 ?>
-    <body>
+<body>
 <div class="container-fluid">
     <?php require_once "./includes/nav.php"; ?>
     <?php if (isset($_SESSION['TEMP']['error_message'])): ?>

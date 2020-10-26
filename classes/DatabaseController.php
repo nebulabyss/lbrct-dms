@@ -43,7 +43,7 @@ class DatabaseController
         }
     }
 
-    public function EmailAuthentication($email)
+    public function UserAuthentication($email)
     {
         $sql = 'SELECT user_id, fname, lname, pwd FROM users WHERE email = :email';
         $query = $this->pdo->prepare($sql);
