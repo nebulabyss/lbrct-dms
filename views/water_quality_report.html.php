@@ -5,28 +5,29 @@
     </div>
 <?php elseif (!empty($_POST)): ?>
     <div class="table-responsive">
-    <table class="table table-sm table-bordered mt-3" id="data-table">
-        <thead class="thead-light">
-        <tr>
-            <th>Site Name</th>
-            <th>Salinity (PSU)</th>
-            <th>Temperature (&degC)</th>
-        </tr>
-        </thead>
-        <tbody id="clipboard">
-        <?php
-        $counter = 0;
-        while ($counter < count($water_quality)) {
-            echo '<tr>';
-            foreach ($water_quality[$counter] as $k => $v) {
-                echo '<td>' . $v . '</td>';
+        <table class="table table-sm table-bordered mt-3" id="data-table">
+            <thead class="thead-light">
+            <tr>
+                <th>Site Name</th>
+                <th>Salinity (PSU)</th>
+                <th>Temperature (&degC)</th>
+            </tr>
+            </thead>
+            <tbody id="clipboard">
+            <?php
+            $counter = 0;
+            while ($counter < count($water_quality)) {
+                echo '<tr>';
+                foreach ($water_quality[$counter] as $k => $v) {
+                    echo '<td>' . $v . '</td>';
+                }
+                echo '</tr>';
+                $counter++;
             }
-            echo '</tr>';
-            $counter++;
-        }
-        ?>
-        </tbody>
-    </table>
+            ?>
+            </tbody>
+        </table>
+    </div>
     <?php include './includes/report_buttons.php' ?>
 <?php endif; ?>
     </div>
