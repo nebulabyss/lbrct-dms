@@ -40,7 +40,7 @@
             <div class="dropdown-menu" aria-labelledby="reports">
                 <a class="dropdown-item" href="../bird_count_report.php">Bird counts</a>
                 <a class="dropdown-item" href="../marine_debris_report.php">Marine debris</a>
-                <a class="dropdown-item" href="#">Water quality</a>
+                <a class="dropdown-item" href="../water_quality_report.php">Water quality</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="../boat_patrol_report.php">Boat inspections</a>
                 <a class="dropdown-item" href="../slipway_patrol_report.php">Slipway inspections</a>
