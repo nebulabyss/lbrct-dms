@@ -7,7 +7,7 @@ session_start();
  * @var $pdo
  */
 $database_controller = new DatabaseController($pdo);
-$title = 'Zone usage count report';
+$title = 'Water quality report';
 $form_action = basename(__FILE__);
 
 if (isset($_POST['start_date'])) {
