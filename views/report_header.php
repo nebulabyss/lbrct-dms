@@ -6,13 +6,13 @@
         <div class="form-row">
             <div class="form-inline">
                 <label for="start_date" class="col-form-label col text-muted">Date Range</label>
-                <div class="input-group" id="start_date">
+                <div class="input-group">
                     <input type="text" class="form-control datepicker" placeholder="From date"
                            name="start_date" <?php if (isset($_POST['start_date'])) {
                         echo "value=\"" . $_POST["start_date"] . "\" ";
                     } else {
-                        echo "value=\"" . date('Y-m-d', strtotime("first day of -1 month")) . "\" ";
-                    } ?>required>
+                        echo "value=\"" . date('Y-m-01') . "\" ";
+                    } ?> id="start_date" required>
                     <div class="input-group-append" id="start">
                         <button class="input-group-text btn btn-outline-secondary" type="button">
                             <svg width="1.3em" height="1.3em" viewBox="0 0 16 16"
@@ -28,12 +28,12 @@
             <div class="form-inline ml-lg-n3">
                 <label for="end_date" class="col-form-label col ui-helper-hidden"></label>
                 <div class="input-group">
-                    <input type="text" class="form-control datepicker" placeholder="To date" id="end_date"
+                    <input type="text" class="form-control datepicker" placeholder="To date"
                            name="end_date" <?php if (isset($_POST['end_date'])) {
                         echo "value=\"" . $_POST["end_date"] . "\" ";
                     } else {
-                        echo "value=\"" . date('Y-m-d', strtotime("last day of -1 month")) . "\" ";
-                    } ?>required>
+                        echo "value=\"" . date('Y-m-t') . "\" ";
+                    } ?> id="end_date" required>
                     <div class="input-group-append" id="end">
                         <button class="input-group-text btn btn-outline-secondary" type="button">
                             <svg width="1.3em" height="1.3em" viewBox="0 0 16 16"
