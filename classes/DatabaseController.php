@@ -43,6 +43,14 @@ class DatabaseController
         }
     }
 
+    public function EmailAuthentication($email)
+    {
+        $sql = 'SELECT user_id, fname, lname, pwd FROM users WHERE email = :email';
+        $query = $this->pdo->prepare($sql);
+        $query->execute(array(':email' => $email));
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function SelectKeyPairs(array $table_columns)
     {
         $sql = 'SELECT ' . implode(', ', (array_slice($table_columns, 1))) . ' FROM ' . $table_columns[0];

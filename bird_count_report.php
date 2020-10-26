@@ -1,7 +1,7 @@
 <?php
+include './includes/auth.php';
 include 'pdo.php';
 include 'classes/DatabaseController.php';
-session_start();
 
 /**
  * @var $pdo

@@ -1,7 +1,6 @@
 <?php
-require 'pdo.php';
-
-session_start();
+include './includes/auth.php';
+include 'pdo.php';
 
 if (isset($_POST['species_name']) && isset($_POST['species_type'])) {
 

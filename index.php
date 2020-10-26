@@ -1,11 +1,11 @@
 <?php
-session_start();
+include './includes/auth.php';
 
-if (isset($_SESSION['temp'])) {
-    unset($_SESSION['temp']);
+if (isset($_SESSION['TEMP'])) {
+    unset($_SESSION['TEMP']);
 }
 
-if (!isset($_SESSION['user_name'])) {
+if (!isset($_SESSION['USER_ID'])) {
     header('Location: login.php');
     exit;
 }

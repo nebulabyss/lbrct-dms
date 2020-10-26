@@ -1,16 +1,16 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom shadow-sm">
     <a class="navbar-brand" href="../index.php">LBRCT <small class="text-muted d-sm-none d-md-inline d-none">Data Management System</small></a>
-    <?php if (isset($_SESSION['user_id'])): ?>
+    <?php if (isset($_SESSION['USER_ID'])): ?>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse mr-auto mt-2 mt-lg-0" id="navbarSupportedContent">
-        <span class="navbar-text ml-auto mr-2">Signed in as <span class="text-dark" style="font-weight: bold"><?=$_SESSION['user_name'];?></span></span>
+        <span class="navbar-text ml-auto mr-2">Signed in as <span class="text-dark" style="font-weight: bold"><?=$_SESSION['USER_NAME'];?></span></span>
         <a href='../logout.php' class="btn btn-secondary ml-2 text-white">Sign out</a>
     </div>
     <?php endif; ?>
 </nav>
-<?php if (isset($_SESSION['user_id'])): ?>
+<?php if (isset($_SESSION['USER_ID'])): ?>
 <nav>
     <ul class="nav bg-light p-2 border-bottom">
         <li class="nav-item dropdown mr-2">
@@ -50,22 +50,22 @@
     </ul>
 </nav>
 <?php endif; ?>
-<?php if (isset($_SESSION['error_message'])): ?>
+<?php if (isset($_SESSION['TEMP']['error_message'])): ?>
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>ERROR:</strong> <?=$_SESSION['error_message']?>.
+    <strong>ERROR:</strong> <?=$_SESSION['TEMP']['error_message']?>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<?php unset($_SESSION['error_message']);?>
+<?php unset($_SESSION['TEMP']['error_message']);?>
 <?php endif; ?>
-<?php if (isset($_SESSION['success_message'])): ?>
+<?php if (isset($_SESSION['TEMP']['success_message'])): ?>
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>BATCH ID: &gt; <?=$_SESSION['bid']?> &lt;</strong> <?=$_SESSION['success_message']?>.
+    <strong>BATCH ID: &gt; <?=$_SESSION['TEMP']['bid']?> &lt;</strong> <?=$_SESSION['TEMP']['success_message']?>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<?php unset($_SESSION['success_message']);?>
-<?php unset($_SESSION['bid']);?>
+<?php unset($_SESSION['TEMP']['success_message']);?>
+<?php unset($_SESSION['TEMP']['bid']);?>
 <?php endif; ?>

@@ -1,7 +1,6 @@
 <?php
-require 'pdo.php';
-
-session_start();
+include './includes/auth.php';
+include 'pdo.php';
 
 $stmt = $pdo->prepare('SELECT common_name FROM birds_species
     WHERE common_name LIKE :prefix');
