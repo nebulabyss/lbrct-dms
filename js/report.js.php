@@ -1,7 +1,6 @@
 let date_picker = $('.datepicker');
 date_picker.datepicker({
     dateFormat:  "yy-mm-dd",
-    showOtherMonths: true,
     selectOtherMonths: true,
     firstDay: 1
 });
