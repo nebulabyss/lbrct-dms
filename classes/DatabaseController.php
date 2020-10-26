@@ -286,4 +286,57 @@ class DatabaseController
         $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
         return $query->fetchAll(PDO::FETCH_COLUMN);
     }
+
+    public function MarineDebrisCountReport($start_date, $end_date)
+    {
+        $query = $this->pdo->prepare("
+                SELECT
+                    marine_debris_major_categories.description, 
+                    SUM(marine_debris.count)
+                FROM
+                    marine_debris
+                    INNER JOIN
+                    marine_debris_minor_categories
+                    ON 
+                        marine_debris.item = marine_debris_minor_categories.marine_debris_minor_categories_id
+                    INNER JOIN
+                    marine_debris_major_categories
+                    ON 
+                        marine_debris_minor_categories.marine_debris_major_categories_id = marine_debris_major_categories.marine_debris_major_categories_id
+                    WHERE
+                        marine_debris.batch_id IN(
+                    SELECT
+                        marine_debris_batch.batch_id
+                    FROM
+                        marine_debris_batch
+                    WHERE
+                        marine_debris_batch.date BETWEEN :start_date AND :end_date
+                )
+                GROUP BY
+                    marine_debris_major_categories.description
+	");
+        $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
+        return $query->fetchAll(PDO::FETCH_KEY_PAIR);
+    }
+
+    public function MarineDebrisGrandTotalReport($start_date, $end_date)
+    {
+        $query = $this->pdo->prepare("
+                SELECT
+                    SUM(marine_debris.count)
+                FROM
+                marine_debris
+                WHERE
+                        marine_debris.batch_id IN(
+                    SELECT
+                        marine_debris_batch.batch_id
+                    FROM
+                        marine_debris_batch
+                    WHERE
+                        marine_debris_batch.date BETWEEN :start_date AND :end_date
+                )
+        ");
+        $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
+        return $query->fetchAll(PDO::FETCH_COLUMN);
+    }
 }
