@@ -5,33 +5,33 @@
     </div>
 <?php elseif (!empty($_POST)): ?>
     <div class="table-responsive">
-        <table class="table table-sm table-bordered mt-3" id="data-table">
-            <thead class="thead-light">
-            <tr>
-                <th>Type of inspection</th>
-                <th>Number of boats inspected</th>
-            </tr>
-            </thead>
-            <tbody id="clipboard">
-            <tr>
-                <td>Recreational river boats</td>
-                <?php
-                if (isset($recreational)) {
-                    echo '<td>' . $recreational[0] . '</td>';
-                }
-                ?>
-            </tr>
-            <tr>
-                <td>Commercial boats</td>
-                <?php
-                if (isset($commercial)) {
-                    echo '<td>' . $commercial[0] . '</td>';
-                }
-                ?>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <table class="table table-sm table-bordered mt-3" id="data-table">
+        <thead class="thead-light">
+        <tr>
+            <th>Type of inspection</th>
+            <th>Number of boats inspected</th>
+        </tr>
+        </thead>
+        <tbody id="clipboard">
+        <tr>
+            <td>Recreational river boats</td>
+            <?php
+            if (isset($recreational)) {
+                echo '<td>' . $recreational[0] . '</td>';
+            }
+            ?>
+        </tr>
+        <tr>
+            <td>Commercial boats</td>
+            <?php
+            if (isset($commercial)) {
+                echo '<td>' . $commercial[0] . '</td>';
+            }
+            ?>
+        </tr>
+        </tbody>
+    </table>
     <?php include './includes/report_buttons.php' ?>
 <?php endif; ?>
+    </div>
 <?php include 'report_footer.php' ?>
