@@ -1,1 +1,1 @@
-<button type="button" class="btn btn-danger" onClick="window.location='/';">Cancel</button>
+<button type="button" class="btn btn-danger" onClick="window.location='/dms';">Cancel</button>
