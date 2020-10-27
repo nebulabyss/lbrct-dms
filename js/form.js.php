@@ -27,11 +27,11 @@ $('#removeRow').click(function() {
         addFormRow();
     }
     if (rowCount > 0) {
-        $(lastFormRowDiv).fadeOut();
+        $(lastFormRowDiv).remove();
         rowCount--;
         lineNum--;
         let rowId = '#' + triggerID + (rowCount);
-        $(rowId).attr('id', triggerID); // set current last row to triggerID to execute on keydown
+        $(rowId).attr('id', rowId); // set current last row to triggerID to execute on keydown
     }
 });
 
