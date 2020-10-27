@@ -31,4 +31,5 @@
     <?php include './includes/report_buttons.php' ?>
 <?php endif; ?>
     </div>
+<?php $csv_columns = true ?>;
 <?php include 'report_footer.php' ?>
