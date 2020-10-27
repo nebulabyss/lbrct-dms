@@ -59,5 +59,5 @@
 </div>
 <script>
     <?php include './js/date.js.php'?>
-    <?php include './js/area_count_validate.js.php'?>
+    <?php include './js/zone_count_validate.js.php'?>
 </script>
