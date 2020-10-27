@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <?php require_once "./includes/nav.php";?>
         <h3 class="text-muted mt-2">Zone usage count</h3>
-        <form action="../zone_count.php" method="post">
+        <form action="./zone_count.php" method="post">
             <div class="form-row">
                 <?php include './includes/date_picker.php' ?>
             </div>

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom shadow-sm">
-    <a class="navbar-brand" href="../index.php">LBRCT <small class="text-muted d-sm-none d-md-inline d-none">Data
+    <a class="navbar-brand" href="./index.php">LBRCT <small class="text-muted d-sm-none d-md-inline d-none">Data
             Management System</small></a>
     <?php if (isset($_SESSION['USER_ID'])): ?>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse mr-auto mt-2 mt-lg-0" id="navbarSupportedContent">
             <span class="navbar-text ml-auto mr-2">Signed in as <span class="text-dark"
                                                                       style="font-weight: bold"><?= $_SESSION['USER_NAME']; ?></span></span>
-            <a href='../logout.php' class="btn btn-secondary ml-2 text-white">Sign out</a>
+            <a href='./logout.php' class="btn btn-secondary ml-2 text-white">Sign out</a>
         </div>
     <?php endif; ?>
 </nav>
@@ -22,9 +22,9 @@
                     Compliance
                 </a>
                 <div class="dropdown-menu" aria-labelledby="compliance">
-                    <a class="dropdown-item" href="../boat_patrol.php">Add boat inspection</a>
-                    <a class="dropdown-item" href="../slipway_patrol.php">Add slipway inspection</a>
-                    <a class="dropdown-item" href="../zone_count.php">Add zone usage count</a>
+                    <a class="dropdown-item" href="./boat_patrol.php">Add boat inspection</a>
+                    <a class="dropdown-item" href="./slipway_patrol.php">Add slipway inspection</a>
+                    <a class="dropdown-item" href="./zone_count.php">Add zone usage count</a>
                 </div>
             </li>
             <li class="nav-item dropdown mr-2">
@@ -33,9 +33,9 @@
                     Conservation
                 </a>
                 <div class="dropdown-menu" aria-labelledby="conservation">
-                    <a class="dropdown-item" href="../bird_count.php">Add bird count</a>
-                    <a class="dropdown-item" href="../marine_debris.php">Add marine debris</a>
-                    <a class="dropdown-item" href="../water_quality.php">Add water quality</a>
+                    <a class="dropdown-item" href="./bird_count.php">Add bird count</a>
+                    <a class="dropdown-item" href="./marine_debris.php">Add marine debris</a>
+                    <a class="dropdown-item" href="./water_quality.php">Add water quality</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -44,13 +44,13 @@
                     Reports
                 </a>
                 <div class="dropdown-menu" aria-labelledby="reports">
-                    <a class="dropdown-item" href="../bird_count_report.php">Bird counts</a>
-                    <a class="dropdown-item" href="../marine_debris_report.php">Marine debris</a>
-                    <a class="dropdown-item" href="../water_quality_report.php">Water quality</a>
+                    <a class="dropdown-item" href="./bird_count_report.php">Bird counts</a>
+                    <a class="dropdown-item" href="./marine_debris_report.php">Marine debris</a>
+                    <a class="dropdown-item" href="./water_quality_report.php">Water quality</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="../boat_patrol_report.php">Boat inspections</a>
-                    <a class="dropdown-item" href="../slipway_patrol_report.php">Slipway inspections</a>
-                    <a class="dropdown-item" href="../zone_count_report.php">Zone usage count</a>
+                    <a class="dropdown-item" href="./boat_patrol_report.php">Boat inspections</a>
+                    <a class="dropdown-item" href="./slipway_patrol_report.php">Slipway inspections</a>
+                    <a class="dropdown-item" href="./zone_count_report.php">Zone usage count</a>
                 </div>
             </li>
             <li class="nav-item ml-auto mr-2">
