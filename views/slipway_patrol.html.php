@@ -3,7 +3,7 @@
     <?php include "includes/nav.php";?>
     <div>
         <h3 class="text-muted mt-2">Slipway inspection</h3>
-        <form action="../slipway_patrol.php" method="post">
+        <form action="/slipway_patrol.php" method="post">
             <div class="form-row mb-2">
                 <?php include './includes/date_picker.php' ?>
                 <fieldset class="form-row" disabled>

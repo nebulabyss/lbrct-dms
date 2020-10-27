@@ -3,7 +3,7 @@
     <?php require_once "./includes/nav.php"; ?>
     <div>
         <h3 class="text-muted mt-2">Bird count</h3>
-        <form action="../bird_count.php" method="post">
+        <form action="/bird_count.php" method="post">
             <div class="form-row mb-2">
                 <?php include './includes/date_picker.php' ?>
                 <fieldset class="form-row" disabled>

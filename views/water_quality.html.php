@@ -2,7 +2,7 @@
 <body>
     <div class="container-fluid">
         <?php include "includes/nav.php"; ?>
-        <form action="../water_quality.php" method="post">
+        <form action="/water_quality.php" method="post">
             <table class="table table-bordered mt-2">
                 <thead class="thead-dark">
                 <tr>
@@ -60,7 +60,7 @@
         <?php include "includes/nav.php"; ?>
         <div>
             <h3 class="text-muted mt-2">Water quality</h3>
-            <form action="../water_quality.php" method="post" enctype="multipart/form-data">
+            <form action="/water_quality.php" method="post" enctype="multipart/form-data">
                 <fieldset class="form-group">
                     <div class="form-row mb-2">
                         <div class="col-auto">
