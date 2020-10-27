@@ -74,7 +74,7 @@ class FormProcessor
         // Verify user privileges
         $user_privileges = $db_object->GetPrivilegeLevel();
         if ($user_privileges > 2) {
-            $_SESSION['TEMP']['error_message'] = 'User does <strong>NOT</strong> have database writing permissions';
+            $_SESSION['error_message'] = 'User does <strong>NOT</strong> have database writing permissions';
             return;
         }
 
@@ -92,17 +92,17 @@ class FormProcessor
         if ($check_batch && $allow_duplicates) {
             $last_batch_id = (int)$check_batch;
         } elseif ($check_batch && !$allow_duplicates) {
-            $_SESSION['TEMP']['error_message'] = 'Duplicate of batch <strong>&gt; ' . $check_batch . ' &lt;</strong>';
+            $_SESSION['error_message'] = 'Duplicate of batch <strong>&gt; ' . $check_batch . ' &lt;</strong>';
             return;
         } else {
             $db_object->InsertIntoDatabase($batch_data, $batch_table);
             $last_batch_id = $db_object->GetLastInsertID();
         }
-        $_SESSION['TEMP']['bid'] = $last_batch_id;
+        $_SESSION['bid'] = $last_batch_id;
 
         // Process rows
         $row_count = count($this->user_data['row']);
-        $_SESSION['TEMP']['success_message'] = 'Total records inserted into database => <strong>' . $row_count . '</strong>';
+        $_SESSION['success_message'] = 'Total records inserted into database => <strong>' . $row_count . '</strong>';
         $counter = 0;
         while ($counter < $row_count) {
             $db_object->InsertIntoDatabase($this->user_data['row'][$counter], $db_table, $last_batch_id);
