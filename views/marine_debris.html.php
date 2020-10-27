@@ -3,7 +3,7 @@
     <?php include "./includes/nav.php";?>
     <div>
         <h3 class="text-muted mt-2">Marine debris</h3>
-        <form action="/marine_debris.php" method="post">
+        <form action="../marine_debris.php" method="post">
             <div class="form-row mb-2">
                 <?php include './includes/date_picker.php' ?>
                 <fieldset class="form-row" disabled>
