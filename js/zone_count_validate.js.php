@@ -11,7 +11,7 @@ $('#submit').on('click', function(event) {
         event.preventDefault();
         $('.alert').remove();
         var message = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>ERROR:</strong> Form fields are empty.
+            <strong>ERROR:</strong> Form fields are empty
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
