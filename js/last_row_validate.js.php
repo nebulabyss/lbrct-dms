@@ -1,9 +1,5 @@
-$('#submit').on('click', function (event) {
-    clearEmptyRows(event)
-});
-
-function clearEmptyRows (event) {
-    for (let i = rowCount; i > 0; i--) {
+$('#submit').on('click', function (event)  {
+    for (let i = rowCount; i >= 0; i--) {
         let lastRow = document.getElementById('row' + i);
         let fields = lastRow.getElementsByClassName('validate');
         let fieldCount = 0;
@@ -32,4 +28,4 @@ function clearEmptyRows (event) {
             $(lastFormRowDiv).remove();
         }
     }
-}
+});
