@@ -1,2 +1,2 @@
 # lbrct-dms
-LBRCT Data Mangement System
+LBRCT Data Management System
