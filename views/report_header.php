@@ -50,7 +50,7 @@
             <?php if (isset($newsletter_option)): ?>
                 <div class="form-check ml-2 my-2">
                     <input class="form-check-input big-checkbox" type="checkbox" id="newsletter" name="override">
-                    <label class="form-check-label ml-2" for="gridCheck">Newsletter</label>
+                    <label class="form-check-label ml-2" for="gridCheck">Graph</label>
                 </div>
                 <?php endif; ?>
             </div>
