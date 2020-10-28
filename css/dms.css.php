@@ -11,3 +11,7 @@
     -o-transform: scale(2); /* Opera */
     /* padding: 10px; */
 }
+
+#chart_export:hover {
+    filter: brightness(90%);
+}

@@ -54,9 +54,14 @@
                 <?php if (isset($newsletter_option)): ?>
                     <div class="form-check ml-3 my-2">
                         <input class="form-check-input big-checkbox"
+                               type="checkbox" id="chart_checkbox" name="chart_checkbox">
+                        <label class="form-check-label ml-2" for="chart_checkbox">Show chart</label>
+                    </div>
+                    <div class="form-check pl-3 my-2">
+                        <input class="form-check-input big-checkbox"
                                type="checkbox"<?php if (isset($_POST['newsletter']) && $_POST['newsletter'] === 'on'): ?>
                                checked <?php endif; ?>id="newsletter" name="newsletter">
-                        <label class="form-check-label ml-2" for="newsletter">Graph</label>
+                        <label class="form-check-label ml-2" for="newsletter">Newsletter chart table</label>
                     </div>
                 <?php endif; ?>
             </div>
