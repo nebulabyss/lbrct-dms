@@ -47,13 +47,15 @@
                 </div>
             </div>
             <div class="form-inline ml-2">
-            <div class="ml-2">
-                <button type="submit" class="btn btn-primary" id="submit">Submit</button>
-                <?php include './includes/cancel_button.php' ?>
-            </div>
+                <div class="ml-2">
+                    <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+                    <?php include './includes/cancel_button.php' ?>
+                </div>
                 <?php if (isset($newsletter_option)): ?>
                     <div class="form-check ml-3 my-2">
-                        <input class="form-check-input big-checkbox" type="checkbox"<?php if (isset($_POST['newsletter']) && $_POST['newsletter'] === 'on'):?> checked <?php endif; ?>id="newsletter" name="newsletter">
+                        <input class="form-check-input big-checkbox"
+                               type="checkbox"<?php if (isset($_POST['newsletter']) && $_POST['newsletter'] === 'on'): ?>
+                               checked <?php endif; ?>id="newsletter" name="newsletter">
                         <label class="form-check-label ml-2" for="newsletter">Graph</label>
                     </div>
                 <?php endif; ?>
