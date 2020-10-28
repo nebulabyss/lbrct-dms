@@ -46,7 +46,15 @@
                     </div>
                 </div>
             </div>
-            <div class="ml-3">
+            <div class="form-inline ml-2">
+            <?php if (isset($newsletter_option)): ?>
+                <div class="form-check ml-2 my-2">
+                    <input class="form-check-input big-checkbox" type="checkbox" id="newsletter" name="override">
+                    <label class="form-check-label ml-2" for="gridCheck">Newsletter</label>
+                </div>
+                <?php endif; ?>
+            </div>
+            <div class="ml-2">
                 <button type="submit" class="btn btn-primary" id="submit">Submit</button>
                 <?php include './includes/cancel_button.php' ?>
             </div>

@@ -34,9 +34,11 @@ function ToCSV() {
         }
         csv += newLine
     }
-<?php if ($csv_columns) {
-    echo ('csv = csv.substr(0, 47) + \'\r\n"string","number","number"\' + csv.substr(47);');
-}?>
+
+    if(document.getElementById('newsletter').checked) {
+        let needle = csv.indexOf('\r\n');
+        csv = csv.substr(0, needle) + '\r\n"string","number","number"' + csv.substr(needle);
+    }
     return csv;
 }
 

@@ -1,3 +1,4 @@
+<?php $newsletter_option = true; ?>
 <?php include 'report_header.php' ?>
 <?php if (isset($water_quality) && $water_quality[0][0] == false): ?>
     <div>
@@ -31,5 +32,4 @@
     <?php include './includes/report_buttons.php' ?>
 <?php endif; ?>
     </div>
-<?php $csv_columns = true ?>;
 <?php include 'report_footer.php' ?>
