@@ -981,7 +981,7 @@ a.ui-button:active,
 .ui-button.ui-state-active:hover {
 	border: 1px solid #dddddd;
 	background: #007bff;
-	font-weight: bold;
+	font-weight: normal;
 	color: #fff;
 }
 .ui-icon-background,

@@ -53,12 +53,12 @@
                     <a class="dropdown-item" href="./zone_count_report.php">Zone usage count</a>
                 </div>
             </li>
-            <li class="nav-item ml-auto mr-2">
-                    <a href='#' class="nav-link btn btn-outline-danger dropdown-toggle disabled" id="admin" role="button"
+            <li class="nav-item ml-auto mr-2" style="cursor: not-allowed;">
+                    <a href='#' class="nav-link btn btn-outline-danger dropdown-toggle disabled" id="settings" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Settings
                     </a>
-                <div class="dropdown-menu" aria-labelledby="admin">
+                <div class="dropdown-menu" aria-labelledby="settings">
                     <a class="dropdown-item" href="#">Users</a>
                     <a class="dropdown-item" href="#">Compliance data</a>
                     <a class="dropdown-item" href="#">Conservation data</a>
