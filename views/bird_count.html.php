@@ -88,7 +88,7 @@
     function generateFormRow(rc, ln) {
         formHtml = '<div class="form-row mb-2" id="row' + rowCount + '"> \
                    <label class="col-form-label d-inline-block text-center" style="width: 30px;">' + ln + '</label> \
-                      <div class="col"> \
+                      <div class="col-3"> \
                         <input id="species" type="text" class="form-control" placeholder="Species Name" name="row[' + rc + '][species]" required> \
                   </div> \
                   <div class="col"> \
