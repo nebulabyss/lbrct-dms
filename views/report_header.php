@@ -54,7 +54,7 @@
                 <?php if (isset($newsletter_option)): ?>
                     <div class="form-check ml-3 my-2">
                         <input class="form-check-input big-checkbox"
-                               type="checkbox" id="chart_checkbox" name="chart_checkbox">
+                               type="checkbox" id="chart_checkbox" name="chart_checkbox" <?php if (!isset($_POST['start_date'])) { echo 'disabled';} ?>>
                         <label class="form-check-label ml-2" for="chart_checkbox">Show chart</label>
                     </div>
                     <div class="form-check pl-3 my-2">
