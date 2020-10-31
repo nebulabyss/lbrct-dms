@@ -52,12 +52,18 @@
                     <?php include './includes/cancel_button.php' ?>
                 </div>
                 <?php if (isset($newsletter_option)): ?>
+                <div>
+                <select class="form-control custom-select col-auto ml-3" name="chart-type" id="chart-type"<?php if (!isset($_POST['start_date'])) { echo ' disabled';} ?>><option selected value="">Select chart</option>
+                    <option value="0">Salinity</option>
+                    <option value="1">Temperature</option>
+                </select>
+                </div>
                     <div class="form-check ml-3 my-2">
                         <input class="form-check-input big-checkbox"
-                               type="checkbox" id="chart_checkbox" name="chart_checkbox" <?php if (!isset($_POST['start_date'])) { echo 'disabled';} ?>>
+                               type="checkbox" id="chart_checkbox" name="chart_checkbox" disabled>
                         <label class="form-check-label ml-2" for="chart_checkbox">Show chart</label>
                     </div>
-                    <div class="form-check pl-3 my-2">
+                    <div class="form-check ml-3 my-2">
                         <input class="form-check-input big-checkbox"
                                type="checkbox"<?php if (isset($_POST['newsletter']) && $_POST['newsletter'] === 'on'): ?>
                                checked <?php endif; ?>id="newsletter" name="newsletter">
