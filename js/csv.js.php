@@ -1,7 +1,6 @@
 $('#csv').on('click', function () {
     window.setTimeout(function () {
         var csvData = ToCSV();
-        console.log('csv data ' + csvData);
         var blob = new Blob([csvData], {type: 'text/csv'});
         var a = window.document.createElement('a');
         a.href = window.URL.createObjectURL(blob);
@@ -40,7 +39,6 @@ function ToCSV() {
         let needle = csv.indexOf('\r\n');
         csv = csv.substr(0, needle) + '\r\n"string","number","number"' + csv.substr(needle);
     }
-    console.log('csv' + csv);
     return csv;
 }
 
