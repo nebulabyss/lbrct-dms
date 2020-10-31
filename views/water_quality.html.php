@@ -8,7 +8,7 @@
                 <tr>
                     <th style="position: sticky; top: 0; z-index: 100;">Mark</th>
                     <th style="position: sticky; top: 0;">Depth (m)</th>
-                    <th style="position: sticky; top: 0;">Date</th>
+                    <th style="position: sticky; top: 0;" class="col-auto">Date</th>
                     <th style="position: sticky; top: 0;">Time</th>
                     <th style="position: sticky; top: 0;">RDO Concentration (mg/L)</th>
                     <th style="position: sticky; top: 0;">RDO Saturation (%Sat)</th>
@@ -82,7 +82,7 @@
                             <label class="form-check-label ml-1" for="gridCheck">Override</label>
                         </div>
                     </div>
-                    <div class="custom-file col-4">
+                    <div class="custom-file col-6">
                         <input type="file" name="userfile" class="custom-file-input" id="customFile" required>
                         <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
