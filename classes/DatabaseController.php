@@ -382,4 +382,34 @@ class DatabaseController
         $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
         return $query->fetchAll(PDO::FETCH_NUM);
     }
+
+    public function TransgressionsReport($start_date, $end_date)
+    {
+        $query = $this->pdo->prepare("
+                SELECT
+                    transgression_types.description, 
+                    count(boat_patrol.warn), 
+                    count(boat_patrol.fine)
+                FROM
+                    boat_patrol
+                    INNER JOIN
+                    transgression_types
+                    ON 
+                        boat_patrol.trans = transgression_types.transgression_id
+                WHERE
+                    boat_patrol.batch_id IN (
+                    SELECT
+                        boat_patrol_batch.batch_id 
+                    FROM
+                        boat_patrol_batch 
+                    WHERE
+                        boat_patrol_batch.date BETWEEN :start_date AND :end_date ) AND boat_patrol.warn OR boat_patrol.fine > 0
+                GROUP BY
+                    transgression_types.description, transgression_types.transgression_id
+                ORDER BY
+                    transgression_types.transgression_id
+        ");
+        $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
+        return $query->fetchAll(PDO::FETCH_NUM);
+    }
 }
