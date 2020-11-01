@@ -20,7 +20,7 @@
             while ($counter < count($transgressions)) {
                 echo '<tr>';
                 foreach ($transgressions[$counter] as $k => $v) {
-                    if ($k === NULL) {
+                    if ($k > 0 && $v == 0) {
                         echo '<td>' . '' . '</td>';
                     } else {
                         echo '<td>' . $transgressions[$counter][$k] . '</td>';
