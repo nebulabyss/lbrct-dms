@@ -1,6 +1,6 @@
 <?php $newsletter_option = true; ?>
 <?php include 'report_header.php' ?>
-<?php if (isset($water_quality) && $water_quality[0][0] == false): ?>
+<?php if (isset($water_quality) && $water_quality == false): ?>
     <div>
         <h4 class="text-danger mt-5 text-center">No records for selected dates</h4>
     </div>
