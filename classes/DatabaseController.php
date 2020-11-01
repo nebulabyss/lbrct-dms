@@ -403,7 +403,7 @@ class DatabaseController
                     FROM
                         boat_patrol_batch 
                     WHERE
-                        boat_patrol_batch.date BETWEEN :start_date AND :end_date ) AND boat_patrol.warn OR boat_patrol.fine > 0
+                        boat_patrol_batch.date BETWEEN :start_date AND :end_date ) AND (boat_patrol.warn OR boat_patrol.fine > 0)   
                 GROUP BY
                     transgression_types.description, transgression_types.transgression_id
                 ORDER BY
