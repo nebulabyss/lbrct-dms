@@ -53,7 +53,7 @@
                 </div>
                 <?php if (isset($newsletter_option)): ?>
                 <div>
-                <select class="form-control custom-select col-auto ml-3" name="chart-type" id="chart-type"<?php if (!isset($_POST['start_date'])) { echo ' disabled';} ?>><option selected value="">Select chart</option>
+                <select class="form-control custom-select col-auto ml-3" name="chart-type" id="chart-type"<?php if ($no_dates == false || !isset($_POST['start_date'])) { echo ' disabled';} ?>><option selected value="">Select chart</option>
                     <option value="0">Salinity</option>
                     <option value="1">Temperature</option>
                 </select>
