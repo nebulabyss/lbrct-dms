@@ -86,6 +86,7 @@ class FormProcessor
             }
             $batch_data[$k] = $v;
         }
+        $batch_data['user'] = $_SESSION['USER_ID'];
 
         $check_batch = $db_object->CheckIfBatchExists($batch_data, $batch_table);
 
