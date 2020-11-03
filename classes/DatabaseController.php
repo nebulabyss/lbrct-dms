@@ -75,6 +75,73 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_COLUMN);
     }
 
+    public function SelectTransgressions(array $table_columns)
+    {
+        $query = $this->pdo->prepare('
+                SELECT
+                    boat_patrol.boat_patrol_id, 
+                    boat_patrol_batch.date, 
+                    boat_patrol.breede, 
+                    boat_patrol.licence, 
+                    boat_patrol.bname, 
+                    boat_patrol.samsa, 
+                    boat_patrol.size
+                FROM
+                    boat_patrol
+                    INNER JOIN
+                    boat_patrol_batch
+                    ON 
+                        boat_patrol.batch_id = boat_patrol_batch.batch_id
+                WHERE
+                    boat_patrol.trans = 1 AND
+                    boat_patrol_batch.batch_id = boat_patrol.batch_id
+                    
+                ORDER BY
+                boat_patrol.boat_patrol_id
+        ');
+        $query->execute(array());
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function UpdateTransgression($id)
+    {
+        $stmt = $this->pdo->prepare('
+                UPDATE
+                    boat_patrol
+                SET boat_patrol.trans = 0
+                WHERE
+                    boat_patrol.boat_patrol_id = :id
+        ');
+        $stmt->execute(array(':id' => $id));
+    }
+
+    public function SelectBoatId($id)
+    {
+        $query = $this->pdo->prepare('
+                SELECT
+                    boat_patrol.boat_patrol_id, 
+                    boat_patrol_batch.date, 
+                    boat_patrol.breede, 
+                    boat_patrol.licence, 
+                    boat_patrol.bname, 
+                    boat_patrol.samsa, 
+                    boat_patrol.size
+                FROM
+                    boat_patrol
+                    INNER JOIN
+                    boat_patrol_batch
+                    ON 
+                        boat_patrol.batch_id = boat_patrol_batch.batch_id
+                WHERE
+                    boat_patrol.boat_patrol_id = :id AND
+                    boat_patrol_batch.batch_id = boat_patrol.batch_id
+                ORDER BY
+                boat_patrol.boat_patrol_id
+        ');
+        $query->execute(array(':id' => $id));
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function CheckIfBatchExists($batch_data, $batch_table)
     {
         $batch_result = false;
@@ -386,28 +453,34 @@ class DatabaseController
     public function TransgressionsReport($start_date, $end_date)
     {
         $query = $this->pdo->prepare("
-                SELECT
-                    transgression_types.description, 
-                    count(boat_patrol.warn), 
-                    count(boat_patrol.fine)
-                FROM
-                    boat_patrol
-                    INNER JOIN
-                    transgression_types
-                    ON 
-                        boat_patrol.trans = transgression_types.transgression_id
-                WHERE
-                    boat_patrol.batch_id IN (
+                    SELECT
+                        transgression_types.description, 
+                        COUNT(transgressions.warning), 
+                        COUNT(transgressions.fine)
+                    FROM
+                        boat_patrol
+                        INNER JOIN
+                        boat_patrol_batch
+                        ON 
+                            boat_patrol.batch_id = boat_patrol_batch.batch_id
+                        INNER JOIN
+                        transgressions
+                        ON 
+                            boat_patrol.boat_patrol_id = transgressions.boat_patrol_id
+                        INNER JOIN
+                        transgression_types
+                        ON 
+                            transgressions.trans_type = transgression_types.transgression_id
+                    WHERE
+	                     boat_patrol.batch_id IN (
                     SELECT
                         boat_patrol_batch.batch_id 
                     FROM
                         boat_patrol_batch 
                     WHERE
-                        boat_patrol_batch.date BETWEEN :start_date AND :end_date ) AND (boat_patrol.warn OR boat_patrol.fine > 0)   
-                GROUP BY
-                    transgression_types.description, transgression_types.transgression_id
-                ORDER BY
-                    transgression_types.transgression_id
+                        boat_patrol_batch.date BETWEEN :start_date AND :end_date )  
+                    GROUP BY transgression_types.description, transgression_id
+                    ORDER BY transgression_types.transgression_id
         ");
         $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
         return $query->fetchAll(PDO::FETCH_NUM);
