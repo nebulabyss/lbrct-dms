@@ -1,7 +1,11 @@
 <body>
 <div class="container-fluid">
     <?php require_once "./includes/nav.php"; ?>
-    <?php if (isset($_GET['id'])): ?>
+    <?php if ($boat_trans == false): ?>
+        <div>
+            <h4 class="text-success mt-5 text-center">All transgressions processed</h4>
+        </div>
+    <?php elseif (isset($_GET['id'])): ?>
         <h3 class="text-muted mt-2">Process transgression</h3>
         <table class="table table-striped table-sm col-6">
             <thead>
