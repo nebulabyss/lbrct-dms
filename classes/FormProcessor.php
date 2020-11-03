@@ -101,7 +101,6 @@ class FormProcessor
         }
         $_SESSION['bid'] = $last_batch_id;
 
-        // Process rows
         $row_count = count($this->user_data['row']);
         $_SESSION['success_message'] = 'Total records inserted into database => <strong>' . $row_count . '</strong>';
         $counter = 0;
@@ -109,5 +108,17 @@ class FormProcessor
             $db_object->InsertIntoDatabase($this->user_data['row'][$counter], $db_table, $last_batch_id);
             $counter++;
         }
+    }
+
+    public function ProcessRows($db_object, $db_table, $last_batch_id) {
+        $row_count = count($this->user_data['row']);
+        $_SESSION['success_message'] = 'Total records inserted into database => <strong>' . $row_count . '</strong>';
+        $counter = 0;
+        while ($counter < $row_count) {
+            $db_object->InsertIntoDatabase($this->user_data['row'][$counter], $db_table, $last_batch_id);
+            $counter++;
+        }
+        $_SESSION['bid'] = $_SESSION['TEMP']['boat_patrol_id'];
+        unset($_SESSION['TEMP']);
     }
 }
