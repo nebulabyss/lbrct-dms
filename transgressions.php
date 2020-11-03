@@ -13,8 +13,9 @@ if (isset($_POST['row'])) {
     $boat_id = $_SESSION['TEMP']['boat_patrol_id'];
     for ($i = 0; $i < count($_POST['row']); $i++) {
         $_POST['row'][$i]['boat_patrol_id'] = $boat_id;
+        $_POST['row'][$i]['user'] = $_SESSION['USER_ID'];
     }
-    print("<pre>".print_r($_POST,true)."</pre>");
+
     $form_processor = new FormProcessor($_POST);
     $form_processor->FormElementCleanUp();
     $form_processor->ProcessRows($database_controller, 'transgressions', 0);
