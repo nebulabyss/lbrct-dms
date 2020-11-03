@@ -24,6 +24,7 @@
                 <div class="dropdown-menu" aria-labelledby="compliance">
                     <a class="dropdown-item" href="./boat_patrol.php">Add boat inspection</a>
                     <a class="dropdown-item" href="./slipway_patrol.php">Add slipway inspection</a>
+                    <a class="dropdown-item" href="./transgressions.php">Add transgression</a>
                     <a class="dropdown-item" href="./zone_count.php">Add zone usage count</a>
                 </div>
             </li>
