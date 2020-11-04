@@ -62,28 +62,14 @@
                     <input type="text" class="form-control validate" placeholder="Engine size" maxlength="3" name="row[' + rc + '][size]"> \
                   </div> \
                   <div class="form-check my-auto ml-2 mr-1"> \
-                  <input class="form-check-input big-checkbox  validate" type="checkbox" id="gridCheck" name="row[' + rc + '][twin]"> \
-                  <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Twin</label> \
+                  <input class="form-check-input big-checkbox  validate" type="checkbox" id="twin" name="row[' + rc + '][twin]"> \
+                  <label class="form-check-label font-weight-bold ml-1" for="twin">Twin</label> \
                   </div> \
                   <div class="form-check my-auto ml-2 mr-1"> \
-                  <input class="form-check-input big-checkbox validate" type="checkbox" id="gridCheck" name="row[' + rc + '][fine]"> \
-                  <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Fine</label> \
+                  <input class="form-check-input big-checkbox validate" type="checkbox" id="trans" name="row[' + rc + '][trans]"> \
+                  <label class="form-check-label font-weight-bold ml-1" for="trans">Transgression</label> \
                   </div> \
-                  <div class="form-check my-auto ml-2 mr-1"> \
-                  <input class="form-check-input big-checkbox validate" type="checkbox" id="gridCheck" name="row[' + rc + '][warn]"> \
-                  <label class="form-check-label font-weight-bold ml-1" for="gridCheck">Warning</label> \
-                  </div> \
-                  <div class="col"> \
-                  <select class="form-control custom-select validate" name="row[' + rc + '][trans]" id="final"><option selected value="">Transgression</option> \ <?php
-            if (isset($trans)) {
-                foreach ($trans as $k => $v):
-                    echo('<option value="' . $k . '">' . $v . '</option>');
-                endforeach;
-            }
-            ?> </select> \
-                    </div> \
-                    </div>'
-
+                </div>'
         return formHtml;
     }
     <?php include './js/form.js.php'?>
