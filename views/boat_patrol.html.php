@@ -66,7 +66,7 @@
                   <label class="form-check-label font-weight-bold ml-1" for="twin">Twin</label> \
                   </div> \
                   <div class="form-check my-auto ml-2 mr-1"> \
-                  <input class="form-check-input big-checkbox validate" type="checkbox" id="trans" name="row[' + rc + '][trans]"> \
+                  <input class="form-check-input big-checkbox validate" type="checkbox" id="final" name="row[' + rc + '][trans]"> \
                   <label class="form-check-label font-weight-bold ml-1" for="trans">Transgression</label> \
                   </div> \
                 </div>'
