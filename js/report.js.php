@@ -1,3 +1,16 @@
+let start_date_picker = $('.start_datepicker');
+start_date_picker.datepicker({
+    dateFormat:  "yy-mm-dd",
+    showOtherMonths: true,
+    selectOtherMonths: true,
+    firstDay: 1,
+    changeMonth: true,
+    changeYear: true,
+    onChangeMonthYear: function(year, month){
+        $(this).datepicker( "setDate", year + '-' + month + '-01' );
+    }
+});
+
 let date_picker = $('.datepicker');
 date_picker.datepicker({
     dateFormat:  "yy-mm-dd",
@@ -5,7 +18,11 @@ date_picker.datepicker({
     selectOtherMonths: true,
     firstDay: 1,
     changeMonth: true,
-    changeYear: true
+    changeYear: true,
+    onChangeMonthYear: function(year, month){
+        var date = new Date(parseInt(year), parseInt(month) , 0).getDate();
+        $(this).datepicker( "setDate", year + '-' + month + '-' + date );
+    }
 });
 
 $('#start').click(function (){
