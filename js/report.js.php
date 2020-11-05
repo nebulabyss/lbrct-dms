@@ -89,53 +89,44 @@ dateRanges = function () {
         previousFinYearStart = currentYear - 2;
         previousFinYearEnd = currentYear - 1;
     }
-
-    let rangeSelector = /** @lang HTML */
-        `
-            <option selected value="">Select date range</option>
-            <option value="0">Q1: July to September ${currentFinYearStart}</option>
-            <option value="1">Q2: October to December ${currentFinYearStart}</option>
-            <option value="2">Q3: January to March ${currentFinYearEnd}</option>
-            <option value="3">Q4: April to July ${currentFinYearEnd}</option>
-            <option value="4">Current Financial Year: ${currentFinYearStart} - ${currentFinYearEnd}</option>
-            <option value="5">Previous Financial Year: ${previousFinYearStart} - ${previousFinYearEnd}</option>
-
-        `;
-
-    $('#range-options').append(rangeSelector);
 }
 dateRanges();
 
 rangeOptions = $('#range-options');
 $(rangeOptions).on('change', function () {
-    if (rangeOptions.val() === "0") {
-        start_date_picker.val(currentFinYearStart + firstQuarter[0]);
-        end_date_picker.val(currentFinYearStart + firstQuarter[1]);
-    }
+    switch (rangeOptions.val()) {
+        case "0":
+            start_date_picker.val(currentFinYearStart + firstQuarter[0]);
+            end_date_picker.val(currentFinYearStart + firstQuarter[1]);
+            break;
 
-    if (rangeOptions.val() === "1") {
-        start_date_picker.val(currentFinYearStart + secondQuarter[0]);
-        end_date_picker.val(currentFinYearStart + secondQuarter[1]);
-    }
+        case "1":
+            start_date_picker.val(currentFinYearStart + secondQuarter[0]);
+            end_date_picker.val(currentFinYearStart + secondQuarter[1]);
+            break;
 
-    if (rangeOptions.val() === "2") {
-        start_date_picker.val(currentFinYearEnd + thirdQuarter[0]);
-        end_date_picker.val(currentFinYearEnd + thirdQuarter[1]);
-    }
+        case "2":
+            start_date_picker.val(currentFinYearEnd + thirdQuarter[0]);
+            end_date_picker.val(currentFinYearEnd + thirdQuarter[1]);
+            break;
 
-    if (rangeOptions.val() === "3") {
-        start_date_picker.val(currentFinYearEnd + fourthQuarter[0]);
-        end_date_picker.val(currentFinYearEnd + fourthQuarter[1]);
-    }
+        case "3":
+            start_date_picker.val(currentFinYearEnd + fourthQuarter[0]);
+            end_date_picker.val(currentFinYearEnd + fourthQuarter[1]);
+            break;
 
-    if (rangeOptions.val() === "4") {
-        start_date_picker.val(currentFinYearStart + firstQuarter[0]);
-        end_date_picker.val(currentFinYearEnd + fourthQuarter[1]);
-    }
+        case "4":
+            start_date_picker.val(currentFinYearStart + firstQuarter[0]);
+            end_date_picker.val(currentFinYearEnd + fourthQuarter[1]);
+            break;
 
-    if (rangeOptions.val() === "5") {
-        start_date_picker.val(previousFinYearStart + firstQuarter[0]);
-        end_date_picker.val(previousFinYearEnd + fourthQuarter[1]);
+        case "5":
+            start_date_picker.val(previousFinYearStart + firstQuarter[0]);
+            end_date_picker.val(previousFinYearEnd + fourthQuarter[1]);
+            break;
+
+        default:
+            console.log("Error in date range case statement");
     }
 });
 
