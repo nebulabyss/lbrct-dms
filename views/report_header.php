@@ -6,8 +6,8 @@
         <div class="form-row">
             <div class="form-inline">
                 <label for="start_date" class="col-form-label col text-muted">Date Range</label>
-                <div class="input-group">
-                    <input type="text" class="form-control datepicker" placeholder="From date"
+                <div class="input-group start_date">
+                    <input type="text" class="form-control start_datepicker" placeholder="From date"
                            name="start_date" <?php if (isset($_POST['start_date'])) {
                         echo "value=\"" . $_POST["start_date"] . "\" ";
                     } else {
@@ -27,7 +27,7 @@
             </div>
             <div class="form-inline ml-lg-n3">
                 <label for="end_date" class="col-form-label col ui-helper-hidden"></label>
-                <div class="input-group">
+                <div class="input-group end_date">
                     <input type="text" class="form-control datepicker" placeholder="To date"
                            name="end_date" <?php if (isset($_POST['end_date'])) {
                         echo "value=\"" . $_POST["end_date"] . "\" ";
