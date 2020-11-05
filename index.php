@@ -26,4 +26,38 @@ $boat_trans = $database_controller->CheckForTransgressions();
         </div>
     <?php endif; ?>
 </div>
+<div id="landing" style="color: #E5E4E2; margin-left: 16px; bottom: 0;position: fixed; font-size: small;">
+    <div id="heading" class="">Version: </div>
+    <div id="release-date">Released: </div>
+    <div>
+        <ul id="release-notes" style="padding-left: 16px;">
+        </ul>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: "https://api.github.com/repos/nebulabyss/lbrct-dms/releases/latest"
+        }).then(function(data) {
+            $('#heading').append(data.tag_name);
+            let releaseNotes = data.body;
+            let releaseDate = data.published_at.substring(0, data.published_at.indexOf('T'));
+            let text = '';
+            let count = 0;
+            let position = releaseNotes.indexOf('\r\n');
+            let lastPos = releaseNotes.indexOf('- ');
+
+            while (position !== -1) {
+                count++;
+                text += `<li>${releaseNotes.substring(lastPos + 2, position)}</li>`;
+                    lastPos = position + 2;
+                position = releaseNotes.indexOf('\r\n', position + 1);
+            }
+            console.log(count);
+            $('#release-body').append(data.body);
+            $('#release-date').append(releaseDate);
+            $('#release-notes').append(text);
+        });
+    });
+</script>
 <?php include './includes/footer.php'; ?>
