@@ -3,7 +3,9 @@ date_picker.datepicker({
     dateFormat:  "yy-mm-dd",
     showOtherMonths: true,
     selectOtherMonths: true,
-    firstDay: 1
+    firstDay: 1,
+    changeMonth: true,
+    changeYear: true
 });
 
 date_picker.change(function() {
