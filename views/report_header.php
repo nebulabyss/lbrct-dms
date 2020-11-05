@@ -1,3 +1,26 @@
+<?php
+$currentYear = date("Y");
+$currentMonth = date("m");
+$previousYear = $currentYear - 1;
+$currentFinYearStart = 0;
+$currentFinYearEnd = 0;
+$previousFinYearStart = 0;
+$previousFinYearEnd = 0;
+
+if ($currentMonth >= 7) {
+    $currentFinYearStart = $currentYear;
+    $currentFinYearEnd = $currentYear + 1;
+    $previousFinYearStart = $currentYear - 1;
+    $previousFinYearEnd = $currentYear;
+}
+
+if ($currentMonth <= 6) {
+    $currentFinYearStart = $currentYear - 1;
+    $currentFinYearEnd = $currentYear;
+    $previousFinYearStart = $currentYear - 2;
+    $previousFinYearEnd = $currentYear - 1;
+}
+?>
 <body>
 <div class="container-fluid">
     <?php require_once "./includes/nav.php"; ?>
@@ -8,7 +31,15 @@
                 <label for="range-selector" class="col-form-label text-muted ui-helper-hidden"></label>
                 <div id="range-selector">
                     <select class="form-control custom-select mr-2 col-auto" id="range-options">
-
+                        <option selected value="">Select date range</option>
+                        <option value="0">Q1: July to September <?= $currentFinYearStart ?></option>
+                        <option value="1">Q2: October to December <?= $currentFinYearStart ?></option>
+                        <option value="2">Q3: January to March <?= $currentFinYearEnd ?></option>
+                        <option value="3">Q4: April to July <?= $currentFinYearEnd ?></option>
+                        <option value="4">Current Financial Year: <?= $currentFinYearStart ?>
+                            - <?= $currentFinYearEnd ?></option>
+                        <option value="5">Previous Financial Year: <?= $previousFinYearStart ?>
+                            - <?= $previousFinYearEnd ?></option>
                     </select>
                 </div>
                 <div class="input-group start_date">
@@ -57,12 +88,16 @@
                     <?php include './includes/cancel_button.php' ?>
                 </div>
                 <?php if (isset($newsletter_option)): ?>
-                <div>
-                <select class="form-control custom-select col-auto ml-3" name="chart-type" id="chart-type"<?php if ($no_dates == false || !isset($_POST['start_date'])) { echo ' disabled';} ?>><option selected value="">Select chart</option>
-                    <option value="0">Salinity</option>
-                    <option value="1">Temperature</option>
-                </select>
-                </div>
+                    <div>
+                        <select class="form-control custom-select col-auto ml-3" name="chart-type"
+                                id="chart-type"<?php if ($no_dates == false || !isset($_POST['start_date'])) {
+                            echo ' disabled';
+                        } ?>>
+                            <option selected value="">Select chart</option>
+                            <option value="0">Salinity</option>
+                            <option value="1">Temperature</option>
+                        </select>
+                    </div>
                     <div class="form-check ml-3 my-2">
                         <input class="form-check-input big-checkbox"
                                type="checkbox" id="chart_checkbox" name="chart_checkbox" disabled>
