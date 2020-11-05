@@ -5,7 +5,10 @@ date_picker.datepicker({
     selectOtherMonths: true,
     firstDay: 1,
     changeMonth: true,
-    changeYear: true
+    changeYear: true,
+    onChangeMonthYear: function(year, month){
+        $(this).datepicker( "setDate", year + '-' + month + '-01' );
+    }
 });
 
 date_picker.change(function() {
