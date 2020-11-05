@@ -103,6 +103,20 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function CheckForTransgressions()
+    {
+        $query = $this->pdo->prepare('
+                SELECT
+                    boat_patrol.trans
+                FROM
+                    boat_patrol
+                WHERE
+                    boat_patrol.trans = 1                    
+        ');
+        $query->execute(array());
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function UpdateTransgression($id)
     {
         $stmt = $this->pdo->prepare('
