@@ -75,7 +75,7 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    public function SelectTransgressions(array $table_columns)
+    public function SelectTransgressions()
     {
         $query = $this->pdo->prepare('
                 SELECT
