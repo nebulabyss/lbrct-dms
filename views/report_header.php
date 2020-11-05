@@ -5,7 +5,12 @@
     <form action="./<?= $form_action ?>" method="post">
         <div class="form-row">
             <div class="form-inline">
-                <label for="start_date" class="col-form-label col text-muted">Date Range</label>
+                <label for="range-selector" class="col-form-label text-muted ui-helper-hidden"></label>
+                <div id="range-selector">
+                    <select class="form-control custom-select mr-2 col-auto" id="range-options">
+
+                    </select>
+                </div>
                 <div class="input-group start_date">
                     <input type="text" class="form-control start_datepicker" placeholder="From date"
                            name="start_date" <?php if (isset($_POST['start_date'])) {
