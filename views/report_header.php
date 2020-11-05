@@ -30,7 +30,7 @@ if ($currentMonth <= 6) {
             <div class="form-inline">
                 <label for="range-selector" class="col-form-label text-muted ui-helper-hidden"></label>
                 <div id="range-selector">
-                    <select class="form-control custom-select mr-2 col-auto" id="range-options">
+                    <select class="form-control custom-select mr-3 col-auto" id="range-options">
                         <option selected value="">Select date range</option>
                         <option value="0">Q1: July to September <?= $currentFinYearStart ?></option>
                         <option value="1">Q2: October to December <?= $currentFinYearStart ?></option>
@@ -43,7 +43,7 @@ if ($currentMonth <= 6) {
                     </select>
                 </div>
                 <div class="input-group start_date">
-                    <input type="text" class="form-control start_datepicker" placeholder="From date"
+                    <input type="text" class="form-control start_datepicker ml-n1" placeholder="From date"
                            name="start_date" <?php if (isset($_POST['start_date'])) {
                         echo "value=\"" . $_POST["start_date"] . "\" ";
                     } else {
@@ -61,7 +61,7 @@ if ($currentMonth <= 6) {
                     </div>
                 </div>
             </div>
-            <div class="form-inline ml-lg-n3">
+            <div class="form-inline ml-n3">
                 <label for="end_date" class="col-form-label col ui-helper-hidden"></label>
                 <div class="input-group end_date">
                     <input type="text" class="form-control datepicker" placeholder="To date"
