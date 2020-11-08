@@ -37,6 +37,7 @@
                     <a class="dropdown-item" href="./bird_count.php">Add bird count</a>
                     <a class="dropdown-item" href="./marine_debris.php">Add marine debris</a>
                     <a class="dropdown-item" href="./water_quality.php">Add water quality</a>
+                    <a class="dropdown-item" href="./secchi_depth.php">Add secchi depth</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
