@@ -13,7 +13,7 @@ if (isset($_POST['row'])) {
     $allow_duplicate_batch = true;
     $counter = 0;
     while ($counter < count($_POST['row'])) {
-        $_POST['row'][$counter] += ['wq_quality_site_id' => $counter + 1];
+        $_POST['row'][$counter] += ['site' => $counter + 1];
         $counter++;
     }
 
@@ -24,7 +24,7 @@ if (isset($_POST['row'])) {
     while ($rowCount < $counter) {
         $secchi_data = [];
         $secchi_data['date'] = $_POST['date'];
-        $secchi_data['site'] = $_POST['row'][$rowCount]['wq_quality_site_id'];
+        $secchi_data['site'] = $_POST['row'][$rowCount]['site'];
         $secchi_data['row'][0] = $_POST['row'][$rowCount];
 
         $form_processor = new FormProcessor($secchi_data);
