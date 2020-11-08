@@ -449,19 +449,18 @@ class DatabaseController
                         water_quality
                         INNER JOIN water_quality_batch ON water_quality.batch_id = water_quality_batch.batch_id
                         INNER JOIN water_quality_sites ON water_quality_batch.site = water_quality_sites.id
-                        INNER JOIN secchi_depth ON water_quality_batch.batch_id = secchi_depth.batch_id
+                        LEFT JOIN secchi_depth ON water_quality_batch.batch_id = secchi_depth.batch_id
                         INNER JOIN ( SELECT water_quality.batch_id, MAX( water_quality.depth ) AS MaxDepth FROM water_quality WHERE water_quality.marked = 1 GROUP BY water_quality.batch_id ) AS CompareTable ON water_quality.batch_id = CompareTable.batch_id 
                         AND water_quality.depth = CompareTable.MaxDepth 
                     WHERE
-                        water_quality.batch_id IN ((
+                            water_quality.batch_id IN (
                             SELECT
                                 water_quality_batch.batch_id 
                             FROM
                                 water_quality_batch 
                             WHERE
                                 water_quality_batch.date BETWEEN :start_date 
-                                AND :end_date 
-                            )) 
+                                AND :end_date )                            
                     GROUP BY
                         water_quality_sites.description,
                         water_quality.sal,
@@ -469,7 +468,7 @@ class DatabaseController
                         secchi_depth.depth,
                         water_quality_sites.id 
                     ORDER BY
-                        water_quality_sites.id ASC
+                        water_quality_sites.id
         ");
         $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
         return $query->fetchAll(PDO::FETCH_NUM);
