@@ -12,6 +12,7 @@
                 <th>Site Name</th>
                 <th>Salinity (PSU)</th>
                 <th>Temperature (&degC)</th>
+                <th>Secchi depth (m)</th>
             </tr>
             </thead>
             <tbody id="clipboard">
