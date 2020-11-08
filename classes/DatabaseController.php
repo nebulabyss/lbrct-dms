@@ -502,7 +502,7 @@ class DatabaseController
 
     public function WaterQualityDates() {
         $query = $this->pdo->prepare("
-        SELECT date FROM water_quality_batch WHERE date BETWEEN CURDATE() - INTERVAL 30 DAY AND CURDATE() GROUP BY date
+        SELECT date FROM water_quality_batch WHERE date < CURDATE() GROUP BY date
         ");
         $query->execute(array());
         return $query->fetchAll(PDO::FETCH_COLUMN);
