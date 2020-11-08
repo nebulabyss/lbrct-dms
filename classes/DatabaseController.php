@@ -499,4 +499,12 @@ class DatabaseController
         $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
         return $query->fetchAll(PDO::FETCH_NUM);
     }
+
+    public function WaterQualityDates() {
+        $query = $this->pdo->prepare("
+        SELECT date FROM water_quality_batch WHERE date BETWEEN CURDATE() - INTERVAL 30 DAY AND CURDATE() GROUP BY date
+        ");
+        $query->execute(array());
+        return $query->fetchAll(PDO::FETCH_COLUMN);
+    }
 }
