@@ -15,10 +15,10 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
 }
 $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 
-if (!isset($_SESSION['CREATED'])) {
-    $_SESSION['CREATED'] = time();
-} else if (time() - $_SESSION['CREATED'] > 3600) {
+if (!isset($_SESSION['LAST_ACTIVITY'])) {
+    $_SESSION['LAST_ACTIVITY'] = time();
+} else if (time() - $_SESSION['LAST_ACTIVITY'] > 3600) {
     // session started more than 1 hours ago
     session_regenerate_id(true);    // change session ID for the current session and invalidate old session ID
-    $_SESSION['CREATED'] = time();  // update creation time
+    $_SESSION['LAST_ACTIVITY'] = time();  // update creation time
 }
