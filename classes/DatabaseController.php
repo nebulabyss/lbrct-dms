@@ -468,33 +468,35 @@ class DatabaseController
     {
         $query = $this->pdo->prepare("
                     SELECT
-                        transgression_types.description, 
-                        COUNT(transgressions.warning), 
-                        COUNT(transgressions.fine)
+                        water_quality_sites.description,
+                        ROUND( water_quality.sal, 2 ),
+                        ROUND( water_quality.temp, 2 ),
+                        secchi_depth.depth 
                     FROM
-                        boat_patrol
-                        INNER JOIN
-                        boat_patrol_batch
-                        ON 
-                            boat_patrol.batch_id = boat_patrol_batch.batch_id
-                        INNER JOIN
-                        transgressions
-                        ON 
-                            boat_patrol.boat_patrol_id = transgressions.boat_patrol_id
-                        INNER JOIN
-                        transgression_types
-                        ON 
-                            transgressions.trans_type = transgression_types.transgression_id
+                        water_quality
+                        INNER JOIN water_quality_batch ON water_quality.batch_id = water_quality_batch.batch_id
+                        INNER JOIN water_quality_sites ON water_quality_batch.site = water_quality_sites.id
+                        INNER JOIN secchi_depth ON water_quality_batch.batch_id = secchi_depth.batch_id
+                        INNER JOIN ( SELECT water_quality.batch_id, MAX( water_quality.depth ) AS MaxDepth FROM water_quality WHERE water_quality.marked = 1 GROUP BY water_quality.batch_id ) AS CompareTable ON water_quality.batch_id = CompareTable.batch_id 
+                        AND water_quality.depth = CompareTable.MaxDepth 
                     WHERE
-	                     boat_patrol.batch_id IN (
-                    SELECT
-                        boat_patrol_batch.batch_id 
-                    FROM
-                        boat_patrol_batch 
-                    WHERE
-                        boat_patrol_batch.date BETWEEN :start_date AND :end_date )  
-                    GROUP BY transgression_types.description, transgression_id
-                    ORDER BY transgression_types.transgression_id
+                        water_quality.batch_id IN ((
+                            SELECT
+                                water_quality_batch.batch_id 
+                            FROM
+                                water_quality_batch 
+                            WHERE
+                                water_quality_batch.date BETWEEN $start_date 
+                                AND $end_date 
+                            )) 
+                    GROUP BY
+                        water_quality_sites.description,
+                        water_quality.sal,
+                        water_quality.temp,
+                        secchi_depth.depth,
+                        water_quality_sites.id 
+                    ORDER BY
+                        water_quality_sites.id ASC
         ");
         $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date));
         return $query->fetchAll(PDO::FETCH_NUM);
