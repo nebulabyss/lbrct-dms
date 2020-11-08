@@ -86,7 +86,7 @@ class FormProcessor
             }
             $batch_data[$k] = $v;
         }
-        $batch_data['user'] = $_SESSION['USER_ID'];
+        print("<pre>".print_r($batch_data,true)."</pre>");
 
         $check_batch = $db_object->CheckIfBatchExists($batch_data, $batch_table);
 
@@ -96,6 +96,7 @@ class FormProcessor
             $_SESSION['error_message'] = 'Duplicate of batch <strong>&gt; ' . $check_batch . ' &lt;</strong>';
             return;
         } else {
+            $batch_data['user'] = $_SESSION['USER_ID'];
             $db_object->InsertIntoDatabase($batch_data, $batch_table);
             $last_batch_id = $db_object->GetLastInsertID();
         }
