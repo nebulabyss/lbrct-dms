@@ -86,7 +86,6 @@ class FormProcessor
             }
             $batch_data[$k] = $v;
         }
-        print("<pre>".print_r($batch_data,true)."</pre>");
 
         $check_batch = $db_object->CheckIfBatchExists($batch_data, $batch_table);
 
