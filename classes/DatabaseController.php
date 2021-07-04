@@ -10,7 +10,7 @@ class DatabaseController
         $this->pdo = $pdo;
     }
 
-    public function GetLastInsertID()
+    public function GetLastInsertID(): string
     {
         return $this->pdo->lastInsertId();
     }
@@ -59,7 +59,7 @@ class DatabaseController
         return $query->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function SelectKeyPairs(array $table_columns)
+    public function SelectKeyPairs(array $table_columns): array
     {
         $sql = 'SELECT ' . implode(', ', (array_slice($table_columns, 1))) . ' FROM ' . $table_columns[0];
         $query = $this->pdo->prepare($sql);
@@ -67,7 +67,7 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_KEY_PAIR);
     }
 
-    public function SelectColumn(array $table_columns)
+    public function SelectColumn(array $table_columns): array
     {
         $sql = 'SELECT ' . $table_columns[1] . ' FROM ' . $table_columns[0];
         $query = $this->pdo->prepare($sql);
@@ -75,7 +75,7 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    public function SelectTransgressions()
+    public function SelectTransgressions(): array
     {
         $query = $this->pdo->prepare('
                 SELECT
@@ -103,7 +103,7 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function CheckForTransgressions()
+    public function CheckForTransgressions(): array
     {
         $query = $this->pdo->prepare('
                 SELECT
@@ -129,7 +129,7 @@ class DatabaseController
         $stmt->execute(array(':id' => $id));
     }
 
-    public function SelectBoatId($id)
+    public function SelectBoatId($id): array
     {
         $query = $this->pdo->prepare('
                 SELECT
@@ -178,7 +178,7 @@ class DatabaseController
         return $batch_result;
     }
 
-    public function MarineDebrisCodes()
+    public function MarineDebrisCodes(): array
     {
         $query = $this->pdo->prepare('
             SELECT
@@ -209,7 +209,7 @@ class DatabaseController
         return $name_result;
     }
 
-    public function zoneCountReportSum($start_date, $end_date)
+    public function zoneCountReportSum($start_date, $end_date): array
     {
         $query = $this->pdo->prepare('
             SELECT
@@ -236,7 +236,7 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_NUM);
     }
 
-    public function zoneCountReportMax($start_date, $end_date)
+    public function zoneCountReportMax($start_date, $end_date): array
     {
         $query = $this->pdo->prepare('
             SELECT
@@ -264,7 +264,7 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_NUM);
     }
 
-    public function boatPatrolReport($start_date, $end_date)
+    public function boatPatrolReport($start_date, $end_date): array
     {
         $query = $this->pdo->prepare("
                 SELECT
@@ -287,7 +287,7 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    public function commercialSlipwayReport($start_date, $end_date)
+    public function commercialSlipwayReport($start_date, $end_date): array
     {
         $query = $this->pdo->prepare("
                 SELECT
@@ -311,7 +311,7 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    public function recreationalSlipwayReport($start_date, $end_date)
+    public function recreationalSlipwayReport($start_date, $end_date): array
     {
         $query = $this->pdo->prepare("
                 SELECT
@@ -339,7 +339,7 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    public function birdCountReport($start_date, $end_date)
+    public function birdCountReport($start_date, $end_date): array
     {
         $query = $this->pdo->prepare("
                 SELECT
@@ -363,7 +363,7 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_KEY_PAIR);
     }
 
-    public function birdGrandTotalReport($start_date, $end_date)
+    public function birdGrandTotalReport($start_date, $end_date): array
     {
         $query = $this->pdo->prepare("
                 SELECT
@@ -384,7 +384,7 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    public function MarineDebrisCountReport($start_date, $end_date)
+    public function MarineDebrisCountReport($start_date, $end_date): array
     {
         $query = $this->pdo->prepare("
                 SELECT
@@ -416,7 +416,7 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_KEY_PAIR);
     }
 
-    public function MarineDebrisGrandTotalReport($start_date, $end_date)
+    public function MarineDebrisGrandTotalReport($start_date, $end_date): array
     {
         $query = $this->pdo->prepare("
                 SELECT
@@ -437,7 +437,7 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    public function WaterQuality($start_date, $end_date)
+    public function WaterQuality($start_date, $end_date): array
     {
         $query = $this->pdo->prepare("
                     SELECT
@@ -474,7 +474,7 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_NUM);
     }
 
-    public function TransgressionsReport($start_date, $end_date)
+    public function TransgressionsReport($start_date, $end_date): array
     {
         $query = $this->pdo->prepare("
                     SELECT
@@ -510,7 +510,8 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_NUM);
     }
 
-    public function WaterQualityDates() {
+    public function WaterQualityDates(): array
+    {
         $query = $this->pdo->prepare("
         SELECT date FROM water_quality_batch WHERE date < CURDATE() GROUP BY date
         ");
