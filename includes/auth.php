@@ -19,6 +19,6 @@ if (!isset($_SESSION['LAST_ACTIVITY'])) {
     $_SESSION['LAST_ACTIVITY'] = time();
 } else if (time() - $_SESSION['LAST_ACTIVITY'] > 3600) {
     // session started more than 1 hours ago
-    session_regenerate_id(true);    // change session ID for the current session and invalidate old session ID
+    session_regenerate_id(false);    // change session ID for the current session and invalidate old session ID
     $_SESSION['LAST_ACTIVITY'] = time();  // update creation time
 }
