@@ -7,7 +7,7 @@
                 <?php include './includes/date_picker.php' ?>
             </div>
                 <div class="form-row font-weight-bold">
-                    <label class="col-form-label d-inline-block" style="width: 250px;"></label>
+                    <label class="col-form-label d-inline-block" style="width: 300px;"></label>
                     <div class="col col-form-label">Boats in transit</div>
                     <div class="col col-form-label">Boats moored</div>
                     <div class="col col-form-label">Boats skiing</div>
@@ -23,7 +23,7 @@
                     foreach($zones as $k):
                         echo ('                    
                         <div class="form-row mb-2" id="validationBlock">
-                            <label class="col-form-label d-inline-block" style="width: 250px;">' . $k . '</label>
+                            <label class="col-form-label d-inline-block" style="width: 300px;">' . $k . '</label>
                             <div class="col">
                                 <input type="number" id="next" class="form-control validate" name="row[' . $rowCount . '][transit]">
                             </div>
