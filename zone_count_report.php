@@ -11,12 +11,25 @@ $title = 'Zone usage count report';
 $form_action = basename(__FILE__);
 
 if (isset($_POST['start_date'])) {
-    $table_columns = array(
-        array('compliance_zones', 'description'));
+    if ($_POST['start_date'] <= "2021-06-30" && $_POST['end_date'] > "2021-06-30") {
+        $report_error = 1;
 
-    $zones = $database_controller->SelectColumn($table_columns[0]);
-    $zone_count = $database_controller->zoneCountReportSum($_POST['start_date'], $_POST['end_date']);
-    $zone_max_per_day = $database_controller->zoneCountReportMax($_POST['start_date'], $_POST['end_date']);
+    } elseif ($_POST['start_date'] > "2021-06-30") {
+        $table_columns = array(
+            array('compliance_zones_2021', 'description'));
+
+        $zones = $database_controller->SelectColumn($table_columns[0]);
+        $zone_count = $database_controller->zoneCountReportSum($_POST['start_date'], $_POST['end_date']);
+        $zone_max_per_day = $database_controller->zoneCountReportMax($_POST['start_date'], $_POST['end_date']);
+
+    } else {
+        $table_columns = array(
+            array('compliance_zones', 'description'));
+
+        $zones = $database_controller->SelectColumn($table_columns[0]);
+        $zone_count = $database_controller->zoneCountReportSum($_POST['start_date'], $_POST['end_date']);
+        $zone_max_per_day = $database_controller->zoneCountReportMax($_POST['start_date'], $_POST['end_date']);
+    }
 }
 
 include 'includes/header.php';
