@@ -1,10 +1,15 @@
 <?php include 'report_header.php' ?>
-<?php if (isset($zone_count) && $zone_count[0][0] == false): ?>
+<?php if ($report_error): ?>
+    <div>
+        <h4 class="text-danger mt-5 text-center">Data model mismatch - Select dates either before or after
+            2021-07-01</h4>
+    </div>
+<?php elseif (isset($zone_count) && $zone_count[0][0] == false): ?>
     <div>
         <h4 class="text-danger mt-5 text-center">No records for selected dates</h4>
     </div>
 <?php elseif (!empty($_POST)): ?>
-    <div class="table-responsive">
+<div class="table-responsive">
     <table class="table table-sm table-bordered mt-3" id="data-table">
         <thead class="thead-light">
         <tr>
@@ -28,6 +33,6 @@
         </tbody>
     </table>
     <?php include './includes/report_buttons.php' ?>
-<?php endif; ?>
-    </div>
+    <?php endif; ?>
+</div>
 <?php include 'report_footer.php' ?>
