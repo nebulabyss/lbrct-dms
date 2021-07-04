@@ -28,7 +28,7 @@ if (isset($_POST['row'])) {
 }
 
 $table_columns = array(
-    array('compliance_zones', 'description'));
+    array('compliance_zones_2021', 'description'));
 
 $zones = $database_controller->SelectColumn($table_columns[0]);
 
