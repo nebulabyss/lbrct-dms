@@ -12,7 +12,7 @@ $form_action = basename(__FILE__);
 
 if (isset($_POST['start_date'])) {
     $table_columns = array(
-        array('compliance_zones', 'description'));
+        array('compliance_zones_2021', 'description'));
 
     $patrols = $database_controller->boatPatrolReport($_POST['start_date'], $_POST['end_date']);
 }
