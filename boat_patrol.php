@@ -28,7 +28,7 @@ if (isset($_POST['date'])) {
  * Subsequent elements are the relevant columns.
  */
 $table_columns = array(
-    array('compliance_zones', 'compliance_zones_id', 'description'));
+    array('compliance_zones_2021', 'compliance_zones_id', 'description'));
 $zones = $database_controller->SelectKeyPairs($table_columns[0]);
 
 include 'includes/header.php';
