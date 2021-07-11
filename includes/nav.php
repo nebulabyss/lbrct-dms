@@ -54,6 +54,8 @@
                     <a class="dropdown-item" href="./slipway_patrol_report.php">Slipway inspections</a>
                     <a class="dropdown-item" href="./transgressions_report.php">Transgressions</a>
                     <a class="dropdown-item" href="./zone_count_report.php">Zone usage count</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="./area_count_report.php">Area pressure</a>
                 </div>
             </li>
             <li class="nav-item ml-auto mr-2" style="cursor: not-allowed;">
