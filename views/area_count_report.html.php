@@ -4,7 +4,7 @@
         <h4 class="text-danger mt-5 text-center">Data model mismatch - Select dates either before or after
             2021-07-01</h4>
     </div>
-<?php elseif (isset($zone_count) && $zone_count[0][0] == false): ?>
+<?php elseif (isset($area_count) && $area_count[0][0][0] == false): ?>
     <div>
         <h4 class="text-danger mt-5 text-center">No records for selected dates</h4>
     </div>
