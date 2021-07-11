@@ -236,6 +236,33 @@ class DatabaseController
         return $query->fetchAll(PDO::FETCH_NUM);
     }
 
+    public function areaCountReportSum($start_date, $end_date, $area): array
+    {
+        $query = $this->pdo->prepare('
+            SELECT
+                SUM(compliance_zone_counts.transit),
+                SUM(compliance_zone_counts.moored),
+                SUM(compliance_zone_counts.skiing),
+                SUM(compliance_zone_counts.fishing),
+                SUM(compliance_zone_counts.other),
+                SUM(compliance_zone_counts.angler),
+                SUM(compliance_zone_counts.bait)
+            FROM
+                compliance_zone_counts  
+            WHERE
+                compliance_zone_counts.batch_id IN(
+                SELECT
+                    compliance_zones_batch.batch_id
+                FROM
+                    compliance_zones_batch
+                WHERE
+                    compliance_zones_batch.date BETWEEN :start_date AND :end_date 
+                ) AND compliance_zone_counts.zone = :area
+        ');
+        $query->execute(array(':start_date' => $start_date, ':end_date' => $end_date, ':area' => $area));
+        return $query->fetchAll(PDO::FETCH_NUM);
+    }
+
     public function zoneCountReportMax($start_date, $end_date): array
     {
         $query = $this->pdo->prepare('
