@@ -1,5 +1,5 @@
 <?php include 'report_header.php' ?>
-<?php if ($report_error): ?>
+<?php if (isset($report_error)): ?>
     <div>
         <h4 class="text-danger mt-5 text-center">Data model mismatch - Select dates either before or after
             2021-07-01</h4>
