@@ -1,1 +1,2 @@
 <button type="button" class="btn btn-danger font-weight-bold" id="removeRow" data-toggle="tooltip" data-placement="bottom" title="Delete last row">&nbsp;&#45;&nbsp;</button>
+<button type="button" class="btn btn-success font-weight-bold" id="addRow" data-toggle="tooltip" data-placement="bottom" title="Add row">&nbsp;&#43;&nbsp;</button>
