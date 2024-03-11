@@ -35,6 +35,12 @@ $('#removeRow').click(function() {
     }
 });
 
+$('#addRow').click(function() {
+    rowCount++;
+    lineNum++;
+    addFormRow();
+    });
+
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 });
