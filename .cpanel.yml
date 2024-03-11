@@ -1,4 +1,0 @@
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/$USER/public_html/dms
-    - /bin/cp -r * $DEPLOYPATH
